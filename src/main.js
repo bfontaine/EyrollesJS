@@ -2,7 +2,7 @@ var entities = require( './entities' );
 
 var SearchQuery = function SearchQuery( str ) {
 
-    this.results = new entities.BooksList(
+    this.books = new entities.BooksList(
         '?q=' + encodeURIComponent( str )
     ).fetch();
 

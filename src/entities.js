@@ -52,7 +52,7 @@ var Author = createEntity( '', function( author, $ ) {
 
     author.books = $( 'li.listePrincipale .centre h2 a' ).map(function( i, a ) {
 
-        return new Book( a.attribs.href ).fetch();
+        return new Book( a.attribs.href );//.fetch();
 
     });
 
@@ -119,6 +119,14 @@ var BooksList = createEntity( '/Accueil/Recherche/', function( books, $ ) {
 });
 
 var Publisher = createEntity( '', function( publisher, $ ) {
+
+    publisher.name = $( '#contenu h1' ).text().split( colon_re )[1].trim();
+
+    publisher.books = $( 'li.listePrincipale .centre h2 a' ).map(function( i, a ) {
+
+        return new Book( a.attribs.href );//.fetch();
+
+    });
 
 });
 
