@@ -4,6 +4,7 @@ exports.variables = {
 
         root: 'http://www.eyrolles.com/',
 
+        // basic search
         basic: '/Accueil/Recherche/'
 
     },

@@ -28,7 +28,7 @@ function makeParams( params ) {
 
 }
 
-function getURL( url, callback, error_callback ) {
+function parseBody( url, callback, error_callback ) {
 
     if ( !re_http.test( url ) ) {
         url = config.urls.root + url;
@@ -54,30 +54,4 @@ function getURL( url, callback, error_callback ) {
 
 }
 
-function _extends( target ) {
-
-    var k, i, o,
-        objs   = Array.prototype.slice.call( arguments, 1 );
-
-    for ( i in objs ) {
-        o = objs[i];
-        for ( k in o ) {
-            if ( o.hasOwnProperty( k ) ) {
-
-                target[ k ] = o[ k ];
-
-            }
-        }
-    }
-
-    return target;
-
-}
-
-function _clone( o ) {
-    return _extends( {}, o );
-}
-
-exports.getURL     = getURL;
-exports.makeParams = makeParams;
-exports.extends    = _extends;
+exports.parseBody = parseBody;
