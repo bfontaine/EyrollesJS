@@ -3,10 +3,13 @@ var requests = require( './requests' ),
     details_sep = /:|\n|(?:\s{5,})/,
     colon_re    = /\s*:\s*/,
 
-    // Parser shortcut
+    // Parser shortcuts
     getPrice = function( e ) {
         return parseFloat( e.text().replace( ',', '.' ) );
-    };
+    },
+    trim = function( s ) {
+        return s ? s.trim() : '';
+    }
 
 /**
  * Return an object constructor for an entity. Entities
@@ -91,11 +94,11 @@ var Book = createEntity( '', function( book, $ ) {
 
     }
 
-    book.type   = details[3].trim();
-    book.isbn13 = details[12].trim();
-    book.ean13  = details[14].trim();
-    book.isbn10 = details[16].trim();
-    book.format = details[24].trim();
+    book.type   = trim(details[3]);
+    book.isbn13 = trim(details[12]);
+    book.ean13  = trim(details[14]);
+    book.isbn10 = trim(details[16]);
+    book.format = trim(details[24]);
     book.weight = parseInt(details[28]);
 
     book.prices = {
