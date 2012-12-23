@@ -56,10 +56,11 @@ function getURL( url, callback, error_callback ) {
 
 function _extends( target ) {
 
-    var k, o,
-        objs   = [].slice.call( arguments ).slice( 1 );
+    var k, i, o,
+        objs   = Array.prototype.slice.call( arguments, 1 );
 
-    for ( o in objs ) {
+    for ( i in objs ) {
+        o = objs[i];
         for ( k in o ) {
             if ( o.hasOwnProperty( k ) ) {
 
