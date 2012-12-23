@@ -1,6 +1,7 @@
 var requests = require( './requests' ),
 
     details_sep = /:|\n|(?:\s{5,})/,
+    colon_re    = /\s*:\s*/,
 
     // Parser shortcut
     getPrice = function( e ) {
@@ -46,7 +47,15 @@ function createEntity( baseUrl, parser ) {
 }
 
 var Author = createEntity( '', function( author, $ ) {
-    //TODO
+
+    author.name = $( '#contenu h1' ).text().split( colon_re )[1].trim();
+
+    author.books = $( 'li.listePrincipale .centre h2 a' ).map(function( i, a ) {
+
+        return new Book( a.attribs.href ).fetch();
+
+    });
+
 });
 
 var Book = createEntity( '', function( book, $ ) {
@@ -101,8 +110,6 @@ var Book = createEntity( '', function( book, $ ) {
 
 var BooksList = createEntity( '/Accueil/Recherche/', function( books, $ ) {
 
-    // TODO handle pagination
-
     books.results = $( 'li.listePrincipale .centre h2 a' ).map(function( i, a ) {
 
         return new Book( a.attribs.href ).fetch();
@@ -112,7 +119,7 @@ var BooksList = createEntity( '/Accueil/Recherche/', function( books, $ ) {
 });
 
 var Publisher = createEntity( '', function( publisher, $ ) {
-    //TODO
+
 });
 
 exports.Author = Author;
