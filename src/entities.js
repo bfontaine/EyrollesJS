@@ -1,4 +1,11 @@
-var requests = require( './requests' );
+var requests = require( './requests' ),
+
+    details_sep = /:|\n|(?:\s{5,})/,
+
+    // Parser shortcut
+    getPrice = function( e ) {
+        return parseFloat( e.text().replace( ',', '.' ) );
+    };
 
 /**
  * Return an object constructor for an entity. Entities
@@ -49,7 +56,9 @@ var Book = createEntity( '', function( book, $ ) {
         minis        = desc.find( '.mini-info' ),
 
         authors      = minis.first().children().first().find( 'a' ),
-        publisher    = minis.first().children().last().find( 'a' );
+        publisher    = minis.first().children().last().find( 'a' ),
+        details      = $( '.tab-content' ).last()
+                                .find( 'ul' ).text().split( details_sep );
 
     book.img         = infos.find( 'img.livre' ).attr( 'src' );
     book.title       = desc.find( 'h1' ).text();
@@ -72,6 +81,21 @@ var Book = createEntity( '', function( book, $ ) {
         book.author = book.authors[0];
 
     }
+
+    book.type   = details[3].trim();
+    book.isbn13 = details[12].trim();
+    book.ean13  = details[14].trim();
+    book.isbn10 = details[16].trim();
+    book.format = details[24].trim();
+    book.weight = parseInt(details[28]);
+
+    book.prices = {
+        website: getPrice( $( '.prixremise' ).children() ),
+        bookstore: getPrice( $( '.prixediteur' ).children() )
+    };
+
+    book.isAvailable = $( '.period .spacer' )
+                                .text().indexOf( 'indisponible' ) === -1;
 
 });
 
