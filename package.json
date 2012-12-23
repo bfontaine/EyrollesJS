@@ -3,7 +3,10 @@
   "version": "0.0.1",
   "private": true,
   "dependencies": {
-    "cheerio"       : "*",
-    "request"       : "*"
+    "cheerio" : "*",
+    "request" : "*"
+  },
+  "devDependencies": {
+      "nock" : "*"
   }
 }
