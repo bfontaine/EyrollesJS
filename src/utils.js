@@ -10,7 +10,9 @@ var cheerio    = require( 'cheerio' ),
 
 function makeParams( params ) {
 
-    var encoded = [], k;
+    var encoded = [],
+        params  = _extends( {}, config.defaultParams, params ),
+        k;
 
     for ( k in params ) {
 
@@ -52,20 +54,27 @@ function getURL( url, callback, error_callback ) {
 
 }
 
-function _extends( that, obj ) {
+function _extends( target ) {
 
-    var k;
+    var k, o,
+        objs   = [].slice.call( arguments ).slice( 1 );
 
-    for ( k in obj ) {
-        if ( obj.hasOwnProperty( k ) ) {
+    for ( o in objs ) {
+        for ( k in o ) {
+            if ( o.hasOwnProperty( k ) ) {
 
-            that[ k ] = obj[ k ];
+                target[ k ] = o[ k ];
 
+            }
         }
     }
 
-    return that;
+    return target;
 
+}
+
+function _clone( o ) {
+    return _extends( {}, o );
 }
 
 exports.getURL     = getURL;
