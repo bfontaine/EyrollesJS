@@ -6,6 +6,12 @@ exports.variables = {
 
         basic: '/Accueil/Recherche/'
 
+    },
+
+    defaultParams: {
+
+        ajax: 'on' // makes the page weight lighter
+
     }
 
 };

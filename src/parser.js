@@ -1,29 +1,43 @@
+var Author, Book, Publisher;
 
+// FIXME this is used to avoid a dependency loop:
+// objects → parser
+// parser → objects
+exports.setObjs = function( A, B, P ) {
 
-var objs = require( './objects' ),
+    Author    = A;
+    Book      = B;
+    Publisher = P;
 
-    // shortcut
-    text = function( e ) { return e.children[0].data; },
+}
 
-    Author    = objs.Author,
-    Book      = objs.Book,
-    Publisher = objs.Publisher;
+function text( e, n ) {
 
+    if ( n === undefined ) { n = 0; }
+
+    var firstchild = e && e.children[ n ];
+
+    return firstchild ? firstchild.data : '';
+
+};
 
 exports.parseBook = function( book, $ ) {
 
-    var infos        = $( '.contenu' ),
-        desc         = $( '#description', infos ),
-        minis        = $( '.mini-info', desc ),
+    _$ = $;
 
-        authors      = $( 'a', minis.first().children[0] ),
-        publisher    = $( 'a', minis.first().children[1] );
+    var infos        = $( '#contenu' ),
+        desc         = infos.find( '#description' ),
+        minis        = desc.find( '.mini-info' ),
 
-    book.img         = $( 'img.livre', infos ).attr( 'src' );
-    book.title       = text( $( 'h1', desc ).first() );
-    book.short_desc  = text( $( 'h2', desc ).first() );
-    book.pages_count = parseInt(minis.last().children[0].data);
-    book.date        = minis.last().children[1].data;
+        authors      = minis.first().children().first().find( 'a' ),
+        publisher    = minis.first().children().last().find( 'a' );
+
+    book.img         = infos.find( 'img.livre' ).attr( 'src' );
+    book.title       = desc.find( 'h1' ).text();
+    book.short_desc  = desc.find( 'h2' ).first().text();
+    book.pages_count = parseInt( minis.last().children()
+                                        .first().text().split( ':' )[1] )
+    book.date        = text( minis.last().children()[1], 1 ).trim();
 
     book.publisher   = new Publisher({
         url: publisher.attr( 'href' ),
@@ -33,7 +47,7 @@ exports.parseBook = function( book, $ ) {
     book.authors     = authors.map(function( i, a ) {
 
         return new Author({
-            url: a.attr( 'href' ),
+            url: a.attribs.href,
             name: text( a )
         });
 
@@ -69,7 +83,7 @@ exports.parseBooks = function( $ ) {
 
     return $( 'li.listePrincipale .centre h2 a' ).map(function( i, a ) {
 
-        return new Book({ url: e.src}).fetch();
+        return new Book({ url: a.attribs.href }).fetch();
 
     });
 

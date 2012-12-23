@@ -24,7 +24,7 @@ function makeParams( params ) {
 
     return '?' + encoded.join( '&' );
 
-};
+}
 
 function getURL( url, callback, error_callback ) {
 
@@ -50,8 +50,24 @@ function getURL( url, callback, error_callback ) {
 
     });
 
-};
+}
 
-exports.parser     = require( './parser' );
+function _extends( that, obj ) {
+
+    var k;
+
+    for ( k in obj ) {
+        if ( obj.hasOwnProperty( k ) ) {
+
+            that[ k ] = obj[ k ];
+
+        }
+    }
+
+    return that;
+
+}
+
 exports.getURL     = getURL;
 exports.makeParams = makeParams;
+exports.extends    = _extends;

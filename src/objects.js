@@ -1,40 +1,78 @@
 
 var mixins = require( './mixins' ),
+    parser = require( './parser' ),
     utils  = require( './utils' ),
+    config = require( './config' ).variables;
 
-    Author = function( attrs ) {
+parser.setObjs( Author, Book, Publisher );
 
-        if (!( this instanceof arguments.callee )) {
-            return new arguments.callee( attrs );
-        }
+function Author( attrs ) {
 
-        mixins.fetchAndParse( this );
-        utils.extends( this, attrs );
+    if (!( this instanceof arguments.callee )) {
+        return new arguments.callee( attrs );
+    }
 
-    },
+    mixins.fetchAndParse( this, parser, utils.getURL );
+    utils.extends( this, attrs );
 
-    Book   = function( attrs ) {
+}
 
-        if (!( this instanceof arguments.callee )) {
-            return new arguments.callee( attrs );
-        }
+function Book( attrs ) {
 
-        mixins.fetchAndParse( this );
-        utils.extends( this, attrs );
+    if (!( this instanceof arguments.callee )) {
+        return new arguments.callee( attrs );
+    }
 
-    },
+    mixins.fetchAndParse( this, parser, utils.getURL );
+    utils.extends( this, attrs );
 
-    Publisher = function( attrs ) {
+}
 
-        if (!( this instanceof arguments.callee )) {
-            return new arguments.callee( attrs );
-        }
+function Publisher( attrs ) {
 
-        mixins.fetchAndParse( this );
-        utils.extends( this, attrs );
+    if (!( this instanceof arguments.callee )) {
+        return new arguments.callee( attrs );
+    }
 
-    };
+    mixins.fetchAndParse( this, parser, utils.getURL );
+    utils.extends( this, attrs );
+
+}
+
+function Query( q ) {
+
+    if (!( this instanceof arguments.callee )) {
+        return new arguments.callee( q );
+    }
+
+    var str = '' + q,
+        // Only basic queries are supported right now
+        url = config.urls.root
+                + config.urls.basic
+                + utils.makeParams({ q: str });
+
+    this.results = [];
+    this.fetched = false;
+
+    //TODO handle multiple pages
+
+    var that = this;
+
+    this.fetch = function() {
+
+        utils.getURL( url, function( $ ) {
+
+            that.results = parser.parseBooks( $ );
+            that.fetched = true;
+
+        });
+
+        return this;
+    }
+
+}
 
 exports.Author    = Author;
 exports.Book      = Book;
 exports.Publisher = Publisher;
+exports.Query     = Query;
