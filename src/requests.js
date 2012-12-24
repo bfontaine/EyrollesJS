@@ -36,13 +36,13 @@ function parseBody( url, callback, error_callback ) {
 
     return request( url, function( error, response, body ) {
 
-        var code  = response.statusCode;
+        var code  = response && response.statusCode;
 
         if ( error || code !== 200 ) {
-            console.log( 'Error requesting ' + url ); 
+            //console.log( 'Error requesting ' + url ); 
 
             if ( code === 404 ) {
-                console.log( 'E404: ' + url )
+                //console.log( 'E404: ' + url )
             }
 
             return ( error_callback || noop )( error || code );
