@@ -81,7 +81,7 @@ var Book = createEntity( '', function( book, $, opts ) {
         details      = $( '.tab-content' ).last()
                                 .find( 'ul' ).text().split( details_sep ),
 
-        a, prefetch  = opts.prefetch;
+        a, prefetch  = opts && opts.prefetch;
 
     book.img         = infos.find( 'img.livre' ).attr( 'src' );
     book.title       = desc.find( 'h1' ).text();
