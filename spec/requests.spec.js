@@ -10,7 +10,6 @@ describe( 'parseBody function', function() {
 
             'undefined':    undefined,
             'not a string': 42,
-            'empty string': '',
             'bad protocol': 'htttp://foo.com',
             'mal formed': 'http://-ww*$&.!~~^#',
             '404 error': 'http://404.com/'
