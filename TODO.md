@@ -3,3 +3,4 @@
   BooksList & Publisher parsers, and handle pagination
 * By default, don't fetch sub-entities (e.g. books of a publisher),
   and add an option to prefetch them, like now
+* Add `main` module tests
