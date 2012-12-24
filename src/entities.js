@@ -65,8 +65,6 @@ function createEntity( baseUrl, parser ) {
 
 var Author = createEntity( '', function( author, $, opts ) {
 
-    var b, prefetch = opts.prefetch;
-
     author.name = $( '#contenu h1' ).text().split( colon_re )[1].trim();
 
     author.books = parseBooksList( $, opts );
