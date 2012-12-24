@@ -9,7 +9,7 @@ var requests = require( './requests' ),
     },
     trim = function( s ) {
         return s ? s.trim() : '';
-    }
+    };
 
 /**
  * Return an object constructor for an entity. Entities
@@ -34,11 +34,11 @@ function createEntity( baseUrl, parser ) {
            return new arguments.callee( path );
        }
 
-       that.fetch = function() {
+       that.fetch = function( opts ) {
 
            requests.parseBody( baseUrl + path, function( $ ) {
 
-               parser( that, $ );
+               parser( that, $, opts );
 
            });
 
@@ -49,19 +49,23 @@ function createEntity( baseUrl, parser ) {
 
 }
 
-var Author = createEntity( '', function( author, $ ) {
+var Author = createEntity( '', function( author, $, opts ) {
+
+    var b, prefetch = opts.prefetch;
 
     author.name = $( '#contenu h1' ).text().split( colon_re )[1].trim();
 
     author.books = $( 'li.listePrincipale .centre h2 a' ).map(function( i, a ) {
 
-        return new Book( a.attribs.href );//.fetch();
+        b = new Book( a.attribs.href );
+
+        return prefetch ? b.fetch( opts ) : b;
 
     });
 
 });
 
-var Book = createEntity( '', function( book, $ ) {
+var Book = createEntity( '', function( book, $, opts ) {
 
     var infos        = $( '#contenu' ),
         desc         = infos.find( '#description' ),
@@ -70,7 +74,9 @@ var Book = createEntity( '', function( book, $ ) {
         authors      = minis.first().children().first().find( 'a' ),
         publisher    = minis.first().children().last().find( 'a' ),
         details      = $( '.tab-content' ).last()
-                                .find( 'ul' ).text().split( details_sep );
+                                .find( 'ul' ).text().split( details_sep ),
+
+        a, prefetch  = opts.prefetch;
 
     book.img         = infos.find( 'img.livre' ).attr( 'src' );
     book.title       = desc.find( 'h1' ).text();
@@ -83,7 +89,9 @@ var Book = createEntity( '', function( book, $ ) {
 
     book.authors     = authors.map(function( i, a ) {
 
-        return new Author( a.attribs.href );
+        a = new Author( a.attribs.href );
+
+        return prefetch ? a.fetch( opts ) : a;
 
     });
 
@@ -111,11 +119,11 @@ var Book = createEntity( '', function( book, $ ) {
 
 });
 
-var BooksList = createEntity( '/Accueil/Recherche/', function( books, $ ) {
+var BooksList = createEntity( '/Accueil/Recherche/', function( books, $, opts ) {
 
     books.results = $( 'li.listePrincipale .centre h2 a' ).map(function( i, a ) {
 
-        return new Book( a.attribs.href ).fetch();
+        return new Book( a.attribs.href ).fetch( opts );
 
     });
 
