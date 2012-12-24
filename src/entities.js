@@ -11,6 +11,20 @@ var requests = require( './requests' ),
         return s ? s.trim() : '';
     };
 
+function parseBooksList( $, opts ) {
+
+    var prefetch = opts && opts.prefetch;
+
+    return $( 'li.listePrincipale .centre h2 a' ).map(function( i, a ) {
+
+        b = new Book( a.attribs.href );
+
+        return prefetch ? b.fetch( opts ) : b;
+
+    });
+
+}
+
 /**
  * Return an object constructor for an entity. Entities
  * has a `fetch` function which retrieve their attributes
@@ -55,14 +69,7 @@ var Author = createEntity( '', function( author, $, opts ) {
 
     author.name = $( '#contenu h1' ).text().split( colon_re )[1].trim();
 
-    author.books = $( 'li.listePrincipale .centre h2 a' ).map(function( i, a ) {
-
-        b = new Book( a.attribs.href );
-
-        return prefetch ? b.fetch( opts ) : b;
-
-    });
-
+    author.books = parseBooksList( $, opts );
 });
 
 var Book = createEntity( '', function( book, $, opts ) {
@@ -121,11 +128,7 @@ var Book = createEntity( '', function( book, $, opts ) {
 
 var BooksList = createEntity( '/Accueil/Recherche/', function( books, $, opts ) {
 
-    books.results = $( 'li.listePrincipale .centre h2 a' ).map(function( i, a ) {
-
-        return new Book( a.attribs.href ).fetch( opts );
-
-    });
+    books.results = parseBooksList( $, opts );
 
 });
 
@@ -133,11 +136,7 @@ var Publisher = createEntity( '', function( publisher, $ ) {
 
     publisher.name = $( '#contenu h1' ).text().split( colon_re )[1].trim();
 
-    publisher.books = $( 'li.listePrincipale .centre h2 a' ).map(function( i, a ) {
-
-        return new Book( a.attribs.href );//.fetch();
-
-    });
+    publisher.books = parseBooksList( $, opts );
 
 });
 
