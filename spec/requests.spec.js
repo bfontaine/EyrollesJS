@@ -39,4 +39,21 @@ describe( 'parseBody function', function() {
 
     }
 
+    it( 'should call the success callback for good URLs', function( done ) {
+
+        var url = 'http://www.google.com',
+            page_content = '<h1>Google</h1>';
+
+        nock( url )
+            .get( '/' ).reply( 200, page_content );
+
+        requests.parseBody( url, function( $ ) {
+
+            expect( $( '*' ).toString() ).toEqual( page_content );
+            done();
+
+        });
+
+    });
+
 });
