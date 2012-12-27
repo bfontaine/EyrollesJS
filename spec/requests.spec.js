@@ -56,3 +56,44 @@ describe( 'parseBody function', function() {
     });
 
 });
+
+describe( 'getParams function', function() {
+
+    it( 'should return an empty object for a malformed URL', function() {
+
+        expect( requests.getParams( undefined ) ).toEqual( {} );
+        expect( requests.getParams( null ) ).toEqual( {} );
+        expect( requests.getParams( 42 ) ).toEqual( {} );
+        expect( requests.getParams( '' ) ).toEqual( {} );
+
+    });
+
+    it( 'should return an empty object for an URL without query part', function() {
+
+        expect( requests.getParams( 'http://foo.com' ) ).toEqual( {} );
+        expect( requests.getParams( 'foo.com?' ) ).toEqual( {} );
+
+    });
+
+    it( 'should return the URL parameters from its query part', function() {
+
+        expect( requests.getParams( 'foo.com?a=b' ) ).toEqual({ a:'b' });
+        expect( requests.getParams( 'foo.com?a=b&b=c&c=42' ) ).toEqual({
+            a: 'b', b:'c', c:'42'
+        });
+
+    });
+
+    it( 'should decode URI-encoded parameters', function() {
+
+        expect( requests.getParams( 'foo.com?q=%20%3F' ) ).toEqual({ q:' ?' });
+    });
+
+    it( 'should parse empty parameters as empty strings', function() {
+
+        expect( requests.getParams( 'foo.com?q=' ) ).toEqual({ q:'' });
+        expect( requests.getParams( 'foo.com?a&b' ) ).toEqual({ a:'', b:'' });
+
+    });
+
+});

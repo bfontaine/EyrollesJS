@@ -28,6 +28,40 @@ function makeParams( params ) {
 
 }
 
+function getParams( url ) {
+
+    if (!( '' + url === url )) {
+
+        return {};
+
+    }
+
+    var params = {},
+        query = url.split( '?', 2 )[1],
+        param;
+
+    if ( !query ) {
+        return params;
+    }
+
+    query.split( '&' ).forEach(function( p ) {
+
+        param = p.split('=');
+
+        if ( param.length === 1 ) {
+
+            param.push( '' );
+
+        }
+
+        params[ decodeURIComponent( param[0] ) ]
+                                = decodeURIComponent( param[1] );
+
+    });
+
+    return params;
+}
+
 function parseBody( url, callback, error_callback ) {
 
     if ( !re_http.test( url ) ) {
@@ -55,3 +89,4 @@ function parseBody( url, callback, error_callback ) {
 }
 
 exports.parseBody = parseBody;
+exports.getParams = getParams;
