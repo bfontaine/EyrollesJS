@@ -138,7 +138,7 @@ var BooksList = createEntity( '/Accueil/Recherche/', function( books, $, opts ) 
 
 });
 
-var Publisher = createEntity( '', function( publisher, $ ) {
+var Publisher = createEntity( '', function( publisher, $, opts ) {
 
     publisher.name = $( '#contenu h1' ).text().split( colon_re )[1].trim();
 
