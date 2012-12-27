@@ -2,6 +2,7 @@ var requests = require( './requests' ),
 
     details_sep = /:|\n|(?:\s{5,})/,
     colon_re    = /\s*:\s*/,
+    no_img_re   = /\/novisuel\.gif$/,
 
     // Parser shortcuts
     getPrice = function( e ) {
@@ -84,6 +85,8 @@ var Book = createEntity( '', function( book, $, opts ) {
         desc         = infos.find( '#description' ),
         minis        = desc.find( '.mini-info' ),
 
+        img_src      = infos.find( 'img.livre' ).attr( 'src' ),
+
         authors      = minis.first().children().first().find( 'a' ),
         publisher    = minis.first().children().last().find( 'a' ),
         details      = $( '.tab-content' ).last()
@@ -91,7 +94,7 @@ var Book = createEntity( '', function( book, $, opts ) {
 
         a, prefetch  = opts && opts.prefetch;
 
-    book.img         = infos.find( 'img.livre' ).attr( 'src' );
+    book.img         = no_img_re.test( img_src ) ? null : img_src;
     book.title       = desc.find( 'h1' ).text();
     book.short_desc  = desc.find( 'h2' ).first().text();
     book.pages_count = parseInt( minis.last().children()
