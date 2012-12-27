@@ -14,9 +14,17 @@ var requests = require( './requests' ),
 
 function parseBooksList( $, opts ) {
 
-    var prefetch = opts && opts.prefetch;
+    opts = opts || {};
 
-    return $( 'li.listePrincipale .centre h2 a' ).map(function( i, a ) {
+    var prefetch = opts.prefetch;
+
+    if ( $( '#noSearchResult' ).length > 0 || $( '.noresult' ).length > 0 ) {
+
+        return [];
+
+    }
+
+    var books = $( 'li.listePrincipale .centre h2 a' ).map(function( i, a ) {
 
         b = new Book( a.attribs.href, { title: a.children[0].data } );
 
@@ -24,6 +32,7 @@ function parseBooksList( $, opts ) {
 
     });
 
+    return books;
 }
 
 /**
