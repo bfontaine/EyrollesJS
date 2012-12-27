@@ -111,3 +111,37 @@ describe( 'getParams function', function() {
     });
 
 });
+
+describe( 'paginate function', function() {
+
+    it( 'should fail if no parser is provided', function() {
+
+        expect( requests.paginate.bind( null, '/?q=2', {} ) )
+                            .toThrow(new Error( 'No parser provided!' ));
+
+        expect( requests.paginate.bind( null, '/?q=2', { limit:2, offset:2 } ) )
+                            .toThrow(new Error( 'No parser provided!' ));
+
+    });
+
+    it( 'should handle empty pages', function( done ) {
+
+        nock( 'http://www.eyrolles.com' )
+                .get( '/nores1?ajax=on&page=1' ).reply( 200, '<p class="gauche">: 0 à 0 sur 0 livres</p>' );
+
+
+        requests.paginate( 'nores1', {
+
+            parser: function() { return []; },
+            callback: function( all ) {
+
+                expect( all ).toEqual( [] );
+                done();
+
+            }
+
+        });
+
+    });
+
+});
