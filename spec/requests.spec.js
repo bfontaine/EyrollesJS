@@ -72,12 +72,14 @@ describe( 'getParams function', function() {
 
         expect( requests.getParams( 'http://foo.com' ) ).toEqual( {} );
         expect( requests.getParams( 'foo.com?' ) ).toEqual( {} );
+        expect( requests.getParams( '?' ) ).toEqual( {} );
 
     });
 
     it( 'should return the URL parameters from its query part', function() {
 
         expect( requests.getParams( 'foo.com?a=b' ) ).toEqual({ a:'b' });
+        expect( requests.getParams( '?foo=b' ) ).toEqual({ foo:'b' });
         expect( requests.getParams( 'foo.com?a=b&b=c&c=42' ) ).toEqual({
             a: 'b', b:'c', c:'42'
         });
@@ -87,12 +89,24 @@ describe( 'getParams function', function() {
     it( 'should decode URI-encoded parameters', function() {
 
         expect( requests.getParams( 'foo.com?q=%20%3F' ) ).toEqual({ q:' ?' });
+        expect( requests.getParams( 'foo.com?q=%26%23%24%2F%2F' ) ).toEqual({ q:'&#$//' });
+
     });
 
-    it( 'should parse empty parameters as empty strings', function() {
+    it( 'should parse empty values as empty strings', function() {
 
         expect( requests.getParams( 'foo.com?q=' ) ).toEqual({ q:'' });
+        expect( requests.getParams( 'foo.com?q=&r' ) ).toEqual({ q:'', r:'' });
         expect( requests.getParams( 'foo.com?a&b' ) ).toEqual({ a:'', b:'' });
+
+    });
+
+    it( 'should not parse empty keys', function() {
+
+        expect( requests.getParams( 'foo.com?&' ) ).toEqual({});
+        expect( requests.getParams( 'foo.com?&&&&&&&' ) ).toEqual({});
+        expect( requests.getParams( 'foo.com?&a=2' ) ).toEqual({ a:'2' });
+        expect( requests.getParams( 'foo.com?s=2&' ) ).toEqual({ s:'2' });
 
     });
 

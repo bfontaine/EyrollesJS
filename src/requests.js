@@ -54,6 +54,12 @@ function getParams( url ) {
 
         }
 
+        if ( param[0].length == 0 ) {
+    
+            return;
+
+        }
+
         params[ decodeURIComponent( param[0] ) ]
                                 = decodeURIComponent( param[1] );
 
