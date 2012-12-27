@@ -17,7 +17,7 @@ function parseBooksList( $, opts ) {
 
     return $( 'li.listePrincipale .centre h2 a' ).map(function( i, a ) {
 
-        b = new Book( a.attribs.href );
+        b = new Book( a.attribs.href, { title: a.children[0].data } );
 
         return prefetch ? b.fetch( opts ) : b;
 
@@ -40,9 +40,9 @@ function parseBooksList( $, opts ) {
  **/
 function createEntity( baseUrl, parser ) {
 
-   return function( path ) {
+    return function( path, attrs ) {
 
-       var that = this, k;
+       var that = this, attr;
 
        if (!( that instanceof arguments.callee )) {
            return new arguments.callee( path );
@@ -57,6 +57,14 @@ function createEntity( baseUrl, parser ) {
            });
 
            return that;
+       }
+
+       for ( attr in attrs ) {
+           if ( attrs.hasOwnProperty( attr ) ) {
+
+                that[ attr ] = attrs[ attr ];
+
+           }
        }
 
    };
