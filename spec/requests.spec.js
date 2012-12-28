@@ -112,6 +112,135 @@ describe( 'getParams function', function() {
 
 });
 
+describe( 'parseBodies function', function() {
+
+    it( 'should pass an empty array if there’s no URL', function( done ) {
+
+        requests.parseBodies( [], noop, function( r ) {
+
+            expect( r ).toEqual( [] );
+            done();
+
+        })
+
+    });
+
+    it( 'should pass a null-filled array if there’s no valid URL', function( done ) {
+
+        nock( 'http://www.eyrolles.com' )
+            .get( '/404' ).reply( 404, 'Oops!' )
+            .get( '/500' ).reply( 500, 'Oops!' );
+
+        var codes = [];
+
+        requests.parseBodies( [ '404', '500' ], noop, function( r ) {
+
+            expect( r ).toEqual( [ null, null ] );
+            expect( codes ).toContain( 404 );
+            expect( codes ).toContain( 500 );
+            done();
+
+        }, function( err ) {
+            codes.push( err );
+        });
+
+    });
+
+    it( 'should works with one valid URL', function( done ) {
+
+        nock( 'http://www.eyrolles.com' )
+            .get( '/foo' ).reply( 200, '<p>It Works!</p>' );
+
+        requests.parseBodies( [ 'foo' ], function( $ ) {
+        
+            return 'foo';
+        
+        }, function( r ) {
+        
+            expect( r ).toEqual([ 'foo' ]);
+            done();
+        
+        });
+
+    });
+
+    it( 'should work with multiple valid URL', function( done ) {
+
+        nock( 'http://www.eyrolles.com' )
+            .get( '/foo' ).reply( 200, 'Foo!' )
+            .get( '/bar' ).reply( 200, 'Bar!' )
+            .get( '/moo' ).reply( 200, 'Moo!' );
+
+        requests.parseBodies( [ 'foo', 'bar', 'moo' ], function( $ ) {
+
+            return $.html();
+
+        }, function( r ) {
+
+            expect( r ).toContain( 'Foo!' );
+            expect( r ).toContain( 'Bar!' );
+            expect( r ).toContain( 'Moo!' );
+            done();
+
+        });
+
+    });
+
+    it(  'should pass the results array '
+       + 'in the same order than the URLs one', function( done ) {
+
+        nock( 'http://www.eyrolles.com' )
+            .get( '/foo' ).reply( 200, 'Foo!' )
+            .get( '/bar' ).reply( 200, 'Bar!' )
+            .get( '/moo' ).reply( 200, 'Moo!' );
+
+        requests.parseBodies( [ 'foo', 'bar', 'moo' ], function( $ ) {
+
+            return $.html();
+
+        }, function( r ) {
+
+            expect( r ).toEqual([ 'Foo!', 'Bar!', 'Moo!' ])
+            done();
+
+        });
+        
+    });
+
+    it( 'should set `null` as a result for failing URLs', function( done ) {
+
+        nock( 'http://www.eyrolles.com' )
+            .get( '/foo' ).reply( 200, 'Foo!' )
+            .get( '/404' ).reply( 404, 'Oops' )
+            .get( '/bar' ).reply( 200, 'Bar!' )
+            .get( '/500' ).reply( 500, 'Oops' )
+            .get( '/moo' ).reply( 200, 'Moo!' );
+
+        var urls  = [ 'foo', '404', 'bar', '500', 'moo' ],
+            codes = [];
+
+        requests.parseBodies( urls, function( $ ) {
+
+            return $.html();
+        
+        }, function( r ) {
+
+            expect( r ).toEqual([ 'Foo!', null, 'Bar!', null, 'Moo!' ]);
+            expect( codes ).toContain( 404 );
+            expect( codes ).toContain( 500 );
+            done();
+
+        }, function ( err ) {
+           
+            codes.push( err );
+        
+        });
+
+    });
+
+});
+
+/*
 describe( 'paginate function', function() {
 
     it( 'should fail if no parser is provided', function() {
@@ -144,4 +273,4 @@ describe( 'paginate function', function() {
 
     });
 
-});
+});*/

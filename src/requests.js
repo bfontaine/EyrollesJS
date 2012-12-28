@@ -78,6 +78,10 @@ function getParams( url ) {
     return params;
 }
 
+/**
+ * Request an URL, load the response in a Cheerio object
+ * and pass it to a callback.
+ **/
 function parseBody( url, callback, error_callback ) {
 
     if ( !re_http.test( url ) ) {
@@ -99,6 +103,46 @@ function parseBody( url, callback, error_callback ) {
         }
 
         return ( callback || noop )( cheerio.load( body ) );
+
+    });
+
+}
+
+/**
+ * Request a bunch of URLs, parse each page (`parser` function arg),
+ * and pass the list of parsed values to the callback
+ **/
+function parseBodies( urls, parser, callback, error_callback ) {
+
+    var urls_count = urls.length,
+        results    = [];
+
+    if ( urls_count === 0 ) {
+        return ( callback || noop )( results );
+    }
+
+    urls.forEach( function( url, i ) {
+
+        parseBody( url, function( $ ) {
+
+           results[ i ] = parser( $ );
+           urls_count--;
+
+           if ( urls_count === 0 ) {
+               ( callback || noop )( results );
+           }
+
+        }, function( err ) {
+            
+            results[ i ] = null;
+            urls_count--;
+
+            ( error_callback || noop )( err );
+
+           if ( urls_count === 0 ) {
+               ( callback || noop )( results );
+           }
+        });
 
     });
 
@@ -229,6 +273,7 @@ function paginate( url, opts ) {
 
 }
 
-exports.parseBody = parseBody;
-exports.paginate  = paginate;
-exports.getParams = getParams;
+exports.parseBody   = parseBody;
+exports.parseBodies = parseBodies;
+exports.paginate    = paginate;
+exports.getParams   = getParams;
