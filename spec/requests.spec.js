@@ -1,8 +1,10 @@
 var requests = require( '../src/requests' ),
-
     nock     = require( 'nock' ),
-    
-    noop = function(){};
+
+    BASE_URL = 'http://www.eyrolles.com',
+
+    _n       = function() { return nock( BASE_URL ); },
+    noop     = function(){};
 
 describe( 'parseBody function', function() {
 
@@ -127,8 +129,7 @@ describe( 'parseBodies function', function() {
 
     it( 'should pass a null-filled array if there’s no valid URL', function( done ) {
 
-        nock( 'http://www.eyrolles.com' )
-            .get( '/404' ).reply( 404, 'Oops!' )
+        _n().get( '/404' ).reply( 404, 'Oops!' )
             .get( '/500' ).reply( 500, 'Oops!' );
 
         var codes = [];
@@ -148,8 +149,7 @@ describe( 'parseBodies function', function() {
 
     it( 'should works with one valid URL', function( done ) {
 
-        nock( 'http://www.eyrolles.com' )
-            .get( '/foo' ).reply( 200, '<p>It Works!</p>' );
+        _n().get( '/foo' ).reply( 200, '<p>It Works!</p>' );
 
         requests.parseBodies( [ 'foo' ], function( $ ) {
         
@@ -166,8 +166,7 @@ describe( 'parseBodies function', function() {
 
     it( 'should work with multiple valid URL', function( done ) {
 
-        nock( 'http://www.eyrolles.com' )
-            .get( '/foo' ).reply( 200, 'Foo!' )
+        _n().get( '/foo' ).reply( 200, 'Foo!' )
             .get( '/bar' ).reply( 200, 'Bar!' )
             .get( '/moo' ).reply( 200, 'Moo!' );
 
@@ -189,8 +188,7 @@ describe( 'parseBodies function', function() {
     it(  'should pass the results array '
        + 'in the same order than the URLs one', function( done ) {
 
-        nock( 'http://www.eyrolles.com' )
-            .get( '/foo' ).reply( 200, 'Foo!' )
+        _n().get( '/foo' ).reply( 200, 'Foo!' )
             .get( '/bar' ).reply( 200, 'Bar!' )
             .get( '/moo' ).reply( 200, 'Moo!' );
 
@@ -209,8 +207,7 @@ describe( 'parseBodies function', function() {
 
     it( 'should set `null` as a result for failing URLs', function( done ) {
 
-        nock( 'http://www.eyrolles.com' )
-            .get( '/foo' ).reply( 200, 'Foo!' )
+        _n().get( '/foo' ).reply( 200, 'Foo!' )
             .get( '/404' ).reply( 404, 'Oops' )
             .get( '/bar' ).reply( 200, 'Bar!' )
             .get( '/500' ).reply( 500, 'Oops' )
@@ -240,7 +237,6 @@ describe( 'parseBodies function', function() {
 
 });
 
-/*
 describe( 'paginate function', function() {
 
     it( 'should fail if no parser is provided', function() {
@@ -253,24 +249,281 @@ describe( 'paginate function', function() {
 
     });
 
-    it( 'should handle empty pages', function( done ) {
+    it(  'should return an empty array '
+       + 'if the first page request fails', function( done ) {
 
-        nock( 'http://www.eyrolles.com' )
-                .get( '/nores1?ajax=on&page=1' ).reply( 200, '<p class="gauche">: 0 à 0 sur 0 livres</p>' );
+        _n().get( '/foo?ajax=on&page=1' ).reply( 404, 'Oops!' );
 
+        var code = null;
 
-        requests.paginate( 'nores1', {
+        requests.paginate( 'foo', {
 
-            parser: function() { return []; },
-            callback: function( all ) {
+            parser: noop,
 
-                expect( all ).toEqual( [] );
+            callback: function( r ) {
+
+                expect( r ).toEqual( [] );
+                expect( code ).toEqual( 404 );
                 done();
+
+            },
+
+            error: function( err ) {
+
+                code =  err;
 
             }
 
         });
 
+    })
+
+    it(  'should not request other pages '
+       + 'if the first one contains no results', function( done ) {
+
+        _n().get( '/foo?ajax=on&page=1' ).reply( 200, '1' )
+            .get( '/foo?ajax=on&page=2' ).reply( 200, '2' );
+
+        var _2nd_page_requested = false;
+
+        requests.paginate( 'foo', {
+
+            callback: function( r ) {
+
+                expect( _2nd_page_requested ).toBeFalsy();
+                expect( r ).toEqual( [] );
+                done();
+
+            },
+
+            parser: function( $ ) {
+
+                if ( $.html() === '2' ) {
+                    _2nd_page_requested = true;
+                }
+
+                return [];
+
+            }
+
+
+        })
+
     });
 
-});*/
+    it( 'should set the `first` flag on the first page', function( done ) {
+
+        _n().get( '/foo?ajax=on&page=1' ).reply( 200, '1' )
+            .get( '/foo?ajax=on&page=2' ).reply( 200, '2' );
+            
+
+        requests.paginate( 'foo', {
+
+            parser: function( $, flags ) {
+
+                if ( $.html() === '1' ) {
+
+                    expect( flags ).toBeDefined();
+                    expect( flags ).not.toBeNull();
+                    expect( flags.first ).toBeTruthy();
+
+                } else {
+
+                    expect( flags && flags.first ).toBeFalsy();
+
+                }
+
+            },
+
+            callback: function() { done(); }
+
+        });
+
+    });
+
+    it( 'should pass an empty array if limit < offset', function( done ) {
+
+        _n();
+
+        requests.paginate( 'foo', {
+            parser: noop, limit: 10, offset: 12,
+
+            callback: function( r ) {
+
+                expect( r ).toEqual( [] );
+                done();
+
+            }
+        
+        });
+
+    });
+
+    it( 'should pass an empty array if limit = offset', function( done ) {
+
+        _n();
+
+        requests.paginate( 'foo', {
+            parser: noop, limit: 10, offset: 10,
+
+            callback: function( r ) {
+
+                expect( r ).toEqual( [] );
+                done();
+
+            }
+        
+        });
+
+    });
+
+    it(  'should not request the second page '
+       + 'if there’re enough books on the first one', function( done ) {
+
+        _n().get( '/foo?ajax=on&page=1' ).reply( 200, '1' )
+            .get( '/foo?ajax=on&page=2' ).reply( 200, '2' );
+
+        var _2nd_page_requested = false;
+
+        requests.paginate( 'foo', {
+            limit: 2,
+            parser: function( $ ) {
+
+                if ( $.html() === '1' ) {
+
+                    return [ 'foo', 'bar' ];
+
+                }
+                else {
+
+                    _2nd_page_requested = true;
+                    return [];
+                    
+                }
+
+            },
+
+            callback: function( r ) {
+
+                expect( r ).toEqual( [ 'foo', 'bar' ] );
+                expect( _2nd_page_requested ).toBeFalsy();
+                done();
+
+            }
+        
+        });
+
+    });
+
+    it(  'should truncate the first page’s results '
+       + 'if there’re more books than needed', function( done ) {
+
+        _n().get( '/foo?ajax=on&page=1' ).reply( 200, '-' );
+
+        requests.paginate( 'foo', {
+            limit: 2,
+            parser: function( $ ) {
+
+                return [ 'foo', 'bar', 'moo' ];
+
+            },
+
+            callback: function( r ) {
+
+                expect( r ).toEqual( [ 'foo', 'bar' ] );
+                done();
+
+            }
+        
+        });
+
+    });
+
+    it(  'should truncate the first page’s results '
+       + 'according to the offset', function( done ) {
+
+        _n().get( '/foo?ajax=on&page=1' ).reply( 200, '-' );
+
+        requests.paginate( 'foo', {
+            limit: 2, offset: 1,
+            parser: function( $ ) {
+
+                return [ 'foo', 'bar', 'moo' ];
+
+            },
+
+            callback: function( r ) {
+
+                expect( r ).toEqual( [ 'bar' ] );
+                done();
+
+            }
+        
+        });
+
+    });
+
+    it( 'should work with no offset', function( done ) {
+
+        _n().get( '/foo?ajax=on&page=1' ).reply( 200, '1' )
+            .get( '/foo?ajax=on&page=2' ).reply( 200, '2' )
+            .get( '/foo?ajax=on&page=3' ).reply( 200, '3' );
+
+        requests.paginate( 'foo', {
+
+            limit: 5,
+
+            parser: function( $ ) {
+
+
+                var n = $.html();
+
+                return [ n+'1', n+'2' ];
+
+            },
+
+            callback: function( r ) {
+
+                expect( r ).toEqual([ '11', '12', '21', '22', '31' ]);
+                done();
+
+            }
+
+
+        });
+
+    });
+
+    it( 'should work with an offset < nb of books per page', function( done ) {
+
+        _n().get( '/foo?ajax=on&page=1' ).reply( 200, '1' )
+            .get( '/foo?ajax=on&page=2' ).reply( 200, '2' )
+            .get( '/foo?ajax=on&page=3' ).reply( 200, '3' );
+
+        requests.paginate( 'foo', {
+
+            limit: 5, offset: 1,
+
+            parser: function( $ ) {
+
+
+                var n = $.html();
+
+                return [ n+'1', n+'2' ];
+
+            },
+
+            callback: function( r ) {
+
+                expect( r ).toEqual([ '12', '21', '22', '31' ]);
+                done();
+
+            }
+
+
+        });
+
+    });
+
+});
+

@@ -1,4 +1,3 @@
-
 var cheerio    = require( 'cheerio' ),
     request    = require( 'request' ),
     config     = require( './config' ).variables,
@@ -149,128 +148,155 @@ function parseBodies( urls, parser, callback, error_callback ) {
 }
 
 /**
- * Handle pagination on an url.
+ * Handle pagination on an URL.
  * @url: URL of the content (books list)
- * @opts: Mandatory parameter, must provide a `parser`
- * key which is a function which get one argument, a cheerio object on
- * a page, and must return an array. The `paginate` function will call
- * this parser on each page, and concatenate the arrays. It will then
- * call opts.callback and pass it the results array.
- * It allows a few more arguments:
- * - error_callback: called on each page where there’s an error (e.g.: 404)
- * - limit: the results limit (default: 20)
- * - offset
- * - bpp: number of books per page (default: 20)
- * - $: A cheerio object loaded with the current page's body (optional)
+ * @opts: set of key/value parameters:
+ * - parser [Function] (mandatory): takes a cheerio object,
+ *   return a list of books. An object may be passed as a second argument,
+ *   to set some flags:
+ *   - 'first' [Boolean]: truthy if it’s the first page of the pages set. This
+ *     is useful if some informations need to be parsed on the first page only.
+ *   if the parser return an empty array, or if the `bpp` option (see below)
+ *   is set and the parser returns less than `bpp` books, we assume that
+ *   there’s no more resumts
+ * - callback [Function]: called with the whole list of books
+ * - error [Function]: called with each page it fails to retrieve. Two
+ *   arguments are passed: the error code and the page’s indice (starts at 0)
+ * - limit [Number]: the maximum number of books to retrieve (default: 20)
+ * - offset [Number]: the offset
+ * - bpp [Number]: number of books per page. If this option is not set, it’s
+ *   gessed from the first page.
  **/
 function paginate( url, opts ) {
 
-    opts = opts || {};
-
-    var callback     = opts.callback || noop,
-        error_cb     = opts.error_callback || noop,
-        limit        = opts.limit >= 0 ? opts.limit : 20,
-        offset       = opts.offset > 0 ? opts.offset : 0,
-        parser       = opts.parser,
-        bpp          = opts.bpp || 20,
-        params       = getParams( url ),
-
-        total_count  = null,
-        
-        pages_count  = Math.ceil( limit / bpp ),
-        // current page
-        page         = Math.floor( offset / bpp ),
-        // current page offset
-        page_offset  = offset % bpp,
-        page_limit   = pages_count,
-
-        // lists of books (will be concatenated)
-        parts        = [], i;
-    
-    if ( !parser ) { throw new Error( 'No parser provided!' ); }
-
-    if ( limit - offset <= 0 ) {
-        
-        return callback([]);
-    
+    if (!( typeof opts === 'object' )) {
+        opts = {};
     }
 
-    params.nb   = bpp;
+    var params   = getParams( url ),
+        
+        parser   = opts.parser,
+        final_cb = opts.callback || noop,
+        error_cb = opts.error || noop,
+        limit    = opts.limit > 0 ? opts.limit : 20,
+        offset   = opts.offset > 0 ? opts.offset : 0,
+        bpp      = opts.bpp > 0 ? opts.bpp : null;
+
+
+    if (!( typeof parser === 'function' )) {
+
+        throw new Error( 'No parser provided!' );
+
+    }
+
+    if ( limit <= offset ) {
+
+        return final_cb( [] );
+
+    }
+
+    params.page = 1;
     params.ajax = 'on';
 
-    for ( i = page; i < pages_count; i++ ) {
+    // first page
+    parseBody( makeParams( params, url ), function( $ ) {
 
-        (function( i, page_limit ) {
+        var books = parser( $, { first: true } ),
+            len, len2,
+            page_min = 2,
+            page_max,
+            first_page_offset = 0,
+            page, pages, i, j, p;
 
-            var p = utils.clone( params );
+        if ( !utils.isArray( books ) ) {
+            return final_cb( [] );
+        }
 
-            p.page = i + 1;
+        len = books.length;
 
-            function parse( $ ) {
+        if (( bpp !== null && len < bpp ) || len === 0) {
 
-                var total_count_str = re_list_len.exec( $( '.gauche' ).first() ),
+            return final_cb( books );
 
-                    books           = parser( $, opts ),
+        } else if ( bpp === null ) {
 
-                    total_count = total_count_str ? total_count_str[0] : 0;
+            bpp = len;
 
+        }
 
-                if ( i === page ) {
+        if ( len >= limit ) {
 
-                    books = books.slice( page_offset );
-                    page_offset = 0;
+            return final_cb( books.slice( offset, limit ) );
 
-                }
+        }
 
-                parts[ i ] = books.slice( 0, limit );
+        if ( offset > 0 ) {
 
-                if ( parts.length === pages_count) {
+            limit -= offset;
 
-                    for ( var j=0; j<pages_count; j++ ) {
-                        
-                        if ( parts[ j ] === undefined ) {
+            if ( offset < bpp ) {
 
-                            return;
+                books  = books.slice( offset );
+                offset = 0;
 
-                        }
+            } else {
 
-                    }
+                books.length = 0; // more efficient than `books = []`
 
+                if ( offset > bpp ) {
 
-                    var all = [], j = 0;
+                    page_min = Math.ceil( offset / bpp );
+                    offset   = offset % bpp;
 
-                    for (; j < pages_count; j++ ) {
-
-                        all = all.concat( parts[j] );
-
-                    }
-
-                    return callback( all );
-
-                }
-
-            }
-
-            // if this is the first page and we have the body in opts.$,
-            // we don't need to request it again
-            if ( i === page ) {
-    
-                if ( '$' in opts ) {
-
-                    parse( opts.$ );
-                    delete opts.$;
-
-                    return;
                 }
 
             }
 
-            parseBody( makeParams( p, url ), parse, error_cb);
+        }
 
-        })( i, limit - i * bpp);
+        // other pages
+        pages = [];
+        page_max = Math.floor( limit / bpp ) + 1;
 
-    }
+        for ( i = page_min; i <= page_max; i++ ) {
 
+            p = utils.clone( params );
+            p.page = i;
+
+            pages.push( makeParams( p, url ) );
+
+        }
+
+        parseBodies( pages, parser, function( results ) {
+
+            for ( i = 0, len = results.length; i<len; i++ ) {
+
+                if ( !utils.isArray( results[ i ] ) ) { continue; }
+
+                page = ( i === 0 )
+                            ? results[ i ].slice( offset )
+                            : results[ i ];
+
+                for ( j=0, len2=page.length; j<len2; j++ ) {
+
+                    books.push( page[j] );
+
+                }
+
+
+            }
+
+            final_cb( books.slice( 0, limit - offset ) );
+
+        }, error_cb );
+
+
+    }, function( err ) {
+
+        error_cb( err, 0 );
+        final_cb( [] );
+
+    });
 }
 
 exports.parseBody   = parseBody;
