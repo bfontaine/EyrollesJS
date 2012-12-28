@@ -8,4 +8,31 @@ function clone( target ) {
     
 }
 
-exports.clone = clone;
+function _extends( target ) {
+
+    var i = 1,
+        l = arguments.length,
+        o;
+
+    for ( ; i<l; i++ ) {
+
+        o = arguments[ i ];
+
+        for ( k in o ) {
+            
+            if (o.hasOwnProperty( k )) {
+
+                target[ k ] = o[ k ];
+
+            }
+
+        }
+
+    }
+
+    return target;
+
+}
+
+exports.clone   = clone;
+exports.extends = _extends;
