@@ -116,6 +116,12 @@ describe( 'getParams function', function() {
 
 describe( 'parseBodies function', function() {
 
+    afterEach(function() {
+
+        nock.cleanAll();
+
+    });
+
     it( 'should pass an empty array if there’s no URL', function( done ) {
 
         requests.parseBodies( [], noop, function( r ) {
@@ -238,6 +244,12 @@ describe( 'parseBodies function', function() {
 });
 
 describe( 'paginate function', function() {
+
+    afterEach(function() {
+
+        nock.cleanAll();
+
+    });
 
     it( 'should fail if no parser is provided', function() {
 
@@ -525,5 +537,100 @@ describe( 'paginate function', function() {
 
     });
 
-});
+    it( 'should skip pages if the offset is too high', function( done ) {
 
+        _n().get( '/foo?ajax=on&page=1' ).reply( 200, '1' )
+            .get( '/foo?ajax=on&page=2' ).reply( 200, '2' )
+            .get( '/foo?ajax=on&page=3' ).reply( 200, '3' )
+            .get( '/foo?ajax=on&page=4' ).reply( 200, '4' );
+
+        var _2nd_page_requested = false,
+            _4th_page_requested = false;
+
+        requests.paginate( 'foo', {
+
+            offset: 5,
+            limit: 6,
+
+            parser: function( $ ) {
+
+                var n = $.html();
+
+                if ( n === '2' ) {
+                    _2nd_page_requested = true;
+                }
+                else if ( n === '4' ) {
+                    _4th_page_requested = true;
+                }
+
+                return [ n+'1', n+'2' ];
+
+            },
+
+            callback: function( r ) {
+
+                expect( _2nd_page_requested ).toBeFalsy();
+                expect( _4th_page_requested ).toBeFalsy();
+
+                expect( r ).toEqual([ '32' ]);
+
+                done();
+
+            }
+
+
+        });
+
+    });
+
+    it(  'should stop when there’re no more results '
+       + 'if the limit is too high', function( done ) {
+
+        _n().get( '/foo?ajax=on&page=1' ).reply( 200, '<p>1</p>'
+                                                    + '<i class="gauche">: 1'
+                                                    + ' à 2 sur 5 livres</i>' )
+            .get( '/foo?ajax=on&page=2' ).reply( 200, '<p>2</p>' )
+            .get( '/foo?ajax=on&page=3' ).reply( 200, '<p>3</p>' )
+            .get( '/foo?ajax=on&page=4' ).reply( 200, '<p>4</p>' );
+
+        var _4th_page_requested = false;
+
+        requests.paginate( 'foo', {
+
+            limit: 50,
+
+            parser: function( $ ) {
+
+                var n = $( 'p' ).html();
+
+                if ( n === '3' ) {
+
+                    return [ 'end' ];
+
+                } else if ( n === '4' ) {
+                    
+                    _4th_page_requested = true;
+                    return [];
+
+                }
+
+                return [ n+'1', n+'2' ];
+
+            },
+
+            callback: function( r ) {
+
+                expect( _4th_page_requested ).toBeFalsy();
+
+                expect( r ).toEqual([ '11', '12', '21', '22', 'end' ]);
+
+                done();
+
+            }
+
+
+        });
+
+    });
+
+});
