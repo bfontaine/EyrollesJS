@@ -4,7 +4,6 @@ var cheerio    = require( 'cheerio' ),
     utils      = require( './utils' ),
 
     re_http     = /^https?:\/\//,
-    re_list_len = /: \d+ à \d+ sur (\d+) livres/,
 
     noop = function(){};
 
