@@ -1,11 +1,12 @@
-var cheerio    = require( 'cheerio' ),
-    request    = require( 'request' ),
-    config     = require( './config' ).variables,
-    utils      = require( './utils' ),
+var cheerio     = require( 'cheerio' ),
+    request     = require( 'request' ),
+    config      = require( './config' ).variables,
+    utils       = require( './utils' ),
 
     re_http     = /^https?:\/\//,
+    re_list_len = /: \d+ à \d+ sur (\d+) livres/,
 
-    noop = function(){};
+    noop        = function(){};
 
 
 function makeParams( params, url ) {
@@ -91,11 +92,6 @@ function parseBody( url, callback, error_callback ) {
         var code  = response && response.statusCode;
 
         if ( error || code !== 200 ) {
-            //console.log( 'Error requesting ' + url ); 
-
-            if ( code === 404 ) {
-                //console.log( 'E404: ' + url )
-            }
 
             return ( error_callback || noop )( error || code );
         }
@@ -204,7 +200,6 @@ function paginate( url, opts ) {
             len, len2,
             page_min = 2,
             page_max,
-            first_page_offset = 0,
             page, pages, i, j, p;
 
         if ( !utils.isArray( books ) ) {
@@ -229,6 +224,19 @@ function paginate( url, opts ) {
 
         }
 
+        // max results
+        var results_len = re_list_len.exec( $( '.gauche' ).first().text() );
+
+        if ( results_len && (results_len = +results_len[1]) < limit ) {
+
+            limit = results_len;
+
+        }
+
+        // other pages
+        pages = [];
+        page_max = Math.ceil( limit / bpp );
+
         if ( offset > 0 ) {
 
             limit -= offset;
@@ -252,10 +260,6 @@ function paginate( url, opts ) {
             }
 
         }
-
-        // other pages
-        pages = [];
-        page_max = Math.floor( limit / bpp ) + 1;
 
         for ( i = page_min; i <= page_max; i++ ) {
 
@@ -285,7 +289,7 @@ function paginate( url, opts ) {
 
             }
 
-            final_cb( books.slice( 0, limit - offset ) );
+            final_cb( books.slice( 0, limit ) );
 
         }, error_cb );
 
