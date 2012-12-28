@@ -69,3 +69,38 @@ describe( 'extends function', function() {
     });
 
 });
+
+describe( 'isArray function', function() {
+
+    it( 'should return `false` for non-arrays', function() {
+
+        expect( utils.isArray( 42 ) ).toBeFalsy();
+        expect( utils.isArray( false ) ).toBeFalsy();
+        expect( utils.isArray( true ) ).toBeFalsy();
+        expect( utils.isArray( undefined ) ).toBeFalsy();
+        expect( utils.isArray( null ) ).toBeFalsy();
+        expect( utils.isArray( {} ) ).toBeFalsy();
+        expect( utils.isArray( /e/ ) ).toBeFalsy();
+        expect( utils.isArray( function(){} ) ).toBeFalsy();
+
+    });
+
+    it( 'should return `true` for arrays', function() {
+
+        expect( utils.isArray( [] ) ).toBeTruthy();
+        expect( utils.isArray( new Array() ) ).toBeTruthy();
+
+
+    });
+
+    it( 'should return `true` for fake arrays', function() {
+
+        expect( utils.isArray({
+            length: 12,
+            splice: function(){}
+        }) ).toBeTruthy();
+
+
+    });
+
+});

@@ -34,5 +34,12 @@ function _extends( target ) {
 
 }
 
+function isArray( o ) {
+
+    return o && o.hasOwnProperty('length') && typeof o.splice === 'function';
+
+}
+
 exports.clone   = clone;
 exports.extends = _extends;
+exports.isArray = isArray;
