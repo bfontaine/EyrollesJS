@@ -1,0 +1,645 @@
+<div id="pageListeThematiques">
+  <div id="sidebar-themes">
+    <div class="titreGauche">
+      <h1>Affinez votre recherche</h1>
+      <div></div>
+    </div>
+    <form id="rechercheFiltre" action="/Accueil/Recherche/">
+      <div>
+        <div>
+          <label for="rechercheQ"><span>Recherche</span></label><br />
+          <input id="rechercheQ" class="rechercheFiltre" type="text" name="q" value="foo" />
+        </div>
+        <br />
+              <div>
+          <span>Rayon</span>
+          <ul id="rechercheFiltreRayon">
+            <li>
+              <input id="rechercheFiltreRayonAcc" class="rechercheFiltre rechercheFiltreRayon main" name="Rayon[ACC]" type="checkbox" checked="checked" />
+              <label for="rechercheFiltreRayonAcc">Tous</label>
+            </li>
+                        <li>
+              <input id="rechercheFiltreRayonVIE" class="rechercheFiltre rechercheFiltreRayon" name="Rayon[VIE]" type="checkbox" />
+              <label for="rechercheFiltreRayonVIE">Vie pratique</label> (83)
+            </li>
+                        <li>
+              <input id="rechercheFiltreRayonDRO" class="rechercheFiltre rechercheFiltreRayon" name="Rayon[DRO]" type="checkbox" />
+              <label for="rechercheFiltreRayonDRO">Droit</label> (12)
+            </li>
+                        <li>
+              <input id="rechercheFiltreRayonMAN" class="rechercheFiltre rechercheFiltreRayon" name="Rayon[MAN]" type="checkbox" />
+              <label for="rechercheFiltreRayonMAN">Entreprise</label> (9)
+            </li>
+                        <li>
+              <input id="rechercheFiltreRayonSCI" class="rechercheFiltre rechercheFiltreRayon" name="Rayon[SCI]" type="checkbox" />
+              <label for="rechercheFiltreRayonSCI">Sciences</label> (8)
+            </li>
+                        <li>
+              <input id="rechercheFiltreRayonVID" class="rechercheFiltre rechercheFiltreRayon" name="Rayon[VID]" type="checkbox" />
+              <label for="rechercheFiltreRayonVID">Graphisme &amp; Photo</label> (6)
+            </li>
+                        <li>
+              <input id="rechercheFiltreRayonINF" class="rechercheFiltre rechercheFiltreRayon" name="Rayon[INF]" type="checkbox" />
+              <label for="rechercheFiltreRayonINF">Informatique</label> (1)
+            </li>
+                      </ul>
+        </div>
+        <div>
+          <span>Contenu dans</span>
+                    <ul id="rechercheFiltreCritere">
+                        <li>
+            <input id="rechercheFiltreCritereTout" class="rechercheFiltre rechercheFiltreCritere main" name="Critere[Tout]" type="checkbox" checked="checked" />
+            <label for="rechercheFiltreCritereTout">Tout</label> (91)
+            </li>
+                        <li>
+            <input id="rechercheFiltreCritereTitre" class="rechercheFiltre rechercheFiltreCritere" name="Critere[Titre]" type="checkbox"  />
+            <label for="rechercheFiltreCritereTitre">Titre</label> (39)
+            </li>
+                        <li>
+            <input id="rechercheFiltreCritereTitre_-_Sous-Titre" class="rechercheFiltre rechercheFiltreCritere" name="Critere[Titre + Sous-Titre]" type="checkbox"  />
+            <label for="rechercheFiltreCritereTitre_-_Sous-Titre">Titre + Sous-Titre</label> (51)
+            </li>
+                        <li>
+            <input id="rechercheFiltreCritereAuteur" class="rechercheFiltre rechercheFiltreCritere" name="Critere[Auteur]" type="checkbox"  />
+            <label for="rechercheFiltreCritereAuteur">Auteur</label> (2)
+            </li>
+                      </ul>
+                  </div>
+        <div>
+          <span>Type</span>
+          <ul id="rechercheFiltreType">
+            <li>
+              <input id="rechercheFiltreTypeAll" class="rechercheFiltre rechercheFiltreType main" name="Type[ALL]" type="checkbox" checked="checked" />
+              <label for="rechercheFiltreTypeAll">Tous</label>
+            </li>
+                        <li>
+              <input id="rechercheFiltreType0" class="rechercheFiltre rechercheFiltreType" name="Type[0]" type="checkbox" />
+              <label for="rechercheFiltreType0">Ouvrage</label> (90)
+            </li>
+                        <li>
+              <input id="rechercheFiltreType1" class="rechercheFiltre rechercheFiltreType" name="Type[1]" type="checkbox" />
+              <label for="rechercheFiltreType1">CD-ROM</label> (1)
+            </li>
+                      </ul>
+        </div>
+        <div>
+          <span>Langue</span>
+          <ul id="rechercheFiltreLangue">
+            <li>
+              <input id="rechercheFiltreLangueAll" class="rechercheFiltre rechercheFiltreLangue main" name="Langue[ALL]" type="checkbox" checked="checked" />
+              <label for="rechercheFiltreLangueAll">Tous</label>
+            </li>
+                        <li>
+              <input id="rechercheFiltreLangue0" class="rechercheFiltre rechercheFiltreLangue" name="Langue[0]" type="checkbox" />
+              <label for="rechercheFiltreLangue0">Français</label> (82)
+            </li>
+                        <li>
+              <input id="rechercheFiltreLangue1" class="rechercheFiltre rechercheFiltreLangue" name="Langue[1]" type="checkbox" />
+              <label for="rechercheFiltreLangue1">Anglais</label> (3)
+            </li>
+                        <li>
+              <input id="rechercheFiltreLangue4" class="rechercheFiltre rechercheFiltreLangue" name="Langue[4]" type="checkbox" />
+              <label for="rechercheFiltreLangue4">Multilingue</label> (6)
+            </li>
+                      </ul>
+        </div>
+        <div>
+          <span>Disponibilité</span>
+          <ul id="rechercheFiltreDispo">
+            <li>
+              <input id="rechercheFiltreDispoAll"  class="rechercheFiltre rechercheFiltreDispo main" name="Dispo[ALL]" type="checkbox" checked="checked" />
+              <label for="rechercheFiltreDispoAll">Tous</label>
+            </li>
+                        <li>
+              <input id="rechercheFiltreDispoEyrolles.com"  class="rechercheFiltre rechercheFiltreDispo" name="Dispo[Eyrolles.com]" type="checkbox" />
+              <label for="rechercheFiltreDispoEyrolles.com">Eyrolles.com</label> (89)
+            </li>
+                        <li>
+              <input id="rechercheFiltreDispoLibrairie"  class="rechercheFiltre rechercheFiltreDispo" name="Dispo[Librairie]" type="checkbox" />
+              <label for="rechercheFiltreDispoLibrairie">Librairie</label> (14)
+            </li>
+                        <li>
+              <input id="rechercheFiltreDispoEbook"  class="rechercheFiltre rechercheFiltreDispo" name="Dispo[Ebook]" type="checkbox" />
+              <label for="rechercheFiltreDispoEbook">Ebook</label> (1)
+            </li>
+                      </ul>
+        </div>
+        
+        
+        <input class="bouton_vert" type="submit" value="Mettre à jour" />
+      </div>
+    </form>
+  </div>
+    
+  <div id="contenu">
+    <h1>Recherche : foo</h1>
+    
+    <div class="clear"></div>
+    
+        <div class="listeHautBas" id="listeHaut">
+      <div class="gauche">Résultats : 1 à 20 sur 91 livres</div>
+      <div class="droite">Pages : <span class="actif">1</span> | <a href="/Accueil/Recherche/?q=foo&page=2">2</a> | <a href="/Accueil/Recherche/?q=foo&page=3">3</a> | <a href="/Accueil/Recherche/?q=foo&page=4">4</a> | <a href="/Accueil/Recherche/?q=foo&page=5">5</a>&nbsp;<a href="/Accueil/Recherche/?q=foo&page=2">&gt;</a></div>
+      <div class="centre">
+        <form action="/Accueil/Recherche/" method="get">
+          <div>
+                              <input type="hidden" name="q" value="foo" />
+                            <label for="sort">Trier par :</label>
+            <select name="sort" id="sort" class="autosubmit"  >
+<option value="auteur">Auteur</option>
+<option value="editeur">Editeur</option>
+<option value="dtparution" selected="selected">Date de parution</option>
+<option value="prixasc">Prix croissant</option>
+<option value="prixdesc">Prix décroissant</option>
+<option value="titre">Titre</option>
+<option value="nbcom">Meilleures ventes</option>
+<option value="pertinence">Pertinence</option>
+</select>
+                        <input type="submit" class="nojs" value="OK" />
+          </div>
+        </form>
+      </div>
+    </div>
+    <ul class="listePrincipale">
+            <li class="listePrincipale">
+        <div class="gauche"><a href="/Loisirs/Livre/tout-seul-9782081264472"><img src="http://static.eyrolles.com/img/2/0/8/1/2/6/4/4/9782081264472_h80.gif" alt="" title="Tout seul" class="livre" /></a></div>
+        <div class="droite roundCorner">
+          <div><div class="prix">18,91 &euro;</div> <div class="delai disponible">expédié sous 4 jours</div></div>
+          <div class="boutonAlignCenter"><a id="ean13-9782081264472" class="ajoutPanier" title="Tout seul" href="/Accueil/Panier/index_a.php?ouv_ean13=9782081264472&amp;add=1"><img src="/images/layout/boutonPanier.png" alt="ajouter au panier" title="Tout seul"  /></a></div>
+          <div class="stocks">
+            Librairie Eyrolles, Paris : en stock <br />
+            
+          </div>
+        </div>
+        <div class="centre">
+          <h2><a href="/Loisirs/Livre/tout-seul-9782081264472">Tout seul</a></h2>
+          <div class="sousTitre">Souvenirs</div>
+          <span class="format">    </span>
+          <div class="infos">
+            <ul>
+              <li><span class="titre">Auteur : </span>Raymond Domenech</li>
+              <li><span class="titre">Editeur : </span>Flammarion</li>
+              <li><span class="titre">Date de parution : </span>Novembre 2012</li>
+            </ul>
+          </div>
+        </div>
+        <div class="clear"></div>
+      </li>      <li class="listePrincipale">
+        <div class="gauche"><a href="/Loisirs/Livre/anthologie-mondiale-du-rugby-9782081279834"><img src="http://static.eyrolles.com/img/2/0/8/1/2/7/9/8/9782081279834_h80.gif" alt="" title="Anthologie mondiale du rugby" class="livre" /></a></div>
+        <div class="droite roundCorner">
+          <div><div class="prix">47,41 &euro;</div> <div class="delai disponible">expédié sous 24h</div></div>
+          <div class="boutonAlignCenter"><a id="ean13-9782081279834" class="ajoutPanier" title="Anthologie mondiale du rugby" href="/Accueil/Panier/index_a.php?ouv_ean13=9782081279834&amp;add=1"><img src="/images/layout/boutonPanier.png" alt="ajouter au panier" title="Anthologie mondiale du rugby"  /></a></div>
+          <div class="stocks">
+            Librairie Eyrolles, Paris : indisponible <br />
+            
+          </div>
+        </div>
+        <div class="centre">
+          <h2><a href="/Loisirs/Livre/anthologie-mondiale-du-rugby-9782081279834">Anthologie mondiale du rugby</a></h2>
+          <div class="sousTitre"></div>
+          <span class="format">    </span>
+          <div class="infos">
+            <ul>
+              <li><span class="titre">Auteur : </span>Jacques Verdier</li>
+              <li><span class="titre">Editeur : </span>Flammarion</li>
+              <li><span class="titre">Date de parution : </span>Octobre 2012</li>
+            </ul>
+          </div>
+        </div>
+        <div class="clear"></div>
+      </li>      <li class="listePrincipale">
+        <div class="gauche"><a href="/Loisirs/Livre/les-cahiers-du-football-9782263057892"><img src="http://static.eyrolles.com/img/2/2/6/3/0/5/7/8/9782263057892_h80.gif" alt="" title="Les cahiers du football" class="livre" /></a></div>
+        <div class="droite roundCorner">
+          <div><div class="prix">30,40 &euro;</div> <div class="delai disponible">expédié sous 24h</div></div>
+          <div class="boutonAlignCenter"><a id="ean13-9782263057892" class="ajoutPanier" title="Les cahiers du football" href="/Accueil/Panier/index_a.php?ouv_ean13=9782263057892&amp;add=1"><img src="/images/layout/boutonPanier.png" alt="ajouter au panier" title="Les cahiers du football"  /></a></div>
+          <div class="stocks">
+            Librairie Eyrolles, Paris : stock limité <br />
+            
+          </div>
+        </div>
+        <div class="centre">
+          <h2><a href="/Loisirs/Livre/les-cahiers-du-football-9782263057892">Les cahiers du football</a></h2>
+          <div class="sousTitre">De foot et d'eau fraîche</div>
+          <span class="format">    </span>
+          <div class="infos">
+            <ul>
+              <li><span class="titre">Auteur : </span>Collectif Solar</li>
+              <li><span class="titre">Editeur : </span>Solar</li>
+              <li><span class="titre">Date de parution : </span>Octobre 2012</li>
+            </ul>
+          </div>
+        </div>
+        <div class="clear"></div>
+      </li>      <li class="listePrincipale">
+        <div class="gauche"><a href="/Loisirs/Livre/vocabulaire-technique-de-l-industrie-de-la-chaussure-9782953566512"><img src="http://static.eyrolles.com/img/2/9/5/3/5/6/6/5/9782953566512_h80.gif" alt="" title="Vocabulaire technique de l'industrie de la chaussure" class="livre" /></a></div>
+        <div class="droite roundCorner">
+          <div><div class="prix">28,41 &euro;</div> <div class="delai disponible">expédié sous 24h</div></div>
+          <div class="boutonAlignCenter"><a id="ean13-9782953566512" class="ajoutPanier" title="Vocabulaire technique de l'industrie de la chaussure" href="/Accueil/Panier/index_a.php?ouv_ean13=9782953566512&amp;add=1"><img src="/images/layout/boutonPanier.png" alt="ajouter au panier" title="Vocabulaire technique de l'industrie de la chaussure"  /></a></div>
+          <div class="stocks">
+            Librairie Eyrolles, Paris : stock limité <br />
+            
+          </div>
+        </div>
+        <div class="centre">
+          <h2><a href="/Loisirs/Livre/vocabulaire-technique-de-l-industrie-de-la-chaussure-9782953566512">Vocabulaire technique de l'industrie de la chaussure</a></h2>
+          <div class="sousTitre">Technical vocabulary of the footwear industry - Français/anglais - Traduction en allemand, espagnol et italien.</div>
+          <span class="format">    </span>
+          <div class="infos">
+            <ul>
+              <li><span class="titre">Auteur : </span>Collectif CTC</li>
+              <li><span class="titre">Editeur : </span>CTC</li>
+              <li><span class="titre">Date de parution : </span>Septembre 2012</li>
+            </ul>
+          </div>
+        </div>
+        <div class="clear"></div>
+      </li>      <li class="listePrincipale">
+        <div class="gauche"><a href="/Loisirs/Livre/les-attaquants-les-plus-chers-ne-sont-pas-ceux-qui-marquent-le-plus-9782804171537"><img src="http://static.eyrolles.com/img/2/8/0/4/1/7/1/5/9782804171537_h80.gif" alt="" title="Les attaquants les plus chers ne sont pas ceux qui marquent le plus" class="livre" /></a></div>
+        <div class="droite roundCorner">
+          <div><div class="prix">25,65 &euro;</div> <div class="delai disponible">expédié sous 24h</div></div>
+          <div class="boutonAlignCenter"><a id="ean13-9782804171537" class="ajoutPanier" title="Les attaquants les plus chers ne sont pas ceux qui marquent le plus" href="/Accueil/Panier/index_a.php?ouv_ean13=9782804171537&amp;add=1"><img src="/images/layout/boutonPanier.png" alt="ajouter au panier" title="Les attaquants les plus chers ne sont pas ceux qui marquent le plus"  /></a></div>
+          <div class="stocks">
+            Librairie Eyrolles, Paris : stock limité <br />
+            
+          </div>
+        </div>
+        <div class="centre">
+          <h2><a href="/Loisirs/Livre/les-attaquants-les-plus-chers-ne-sont-pas-ceux-qui-marquent-le-plus-9782804171537">Les attaquants les plus chers ne sont pas ceux qui marquent le plus</a></h2>
+          <div class="sousTitre">Et autres mystères du football décryptés</div>
+          <span class="format">    </span>
+          <div class="infos">
+            <ul>
+              <li><span class="titre">Auteurs : </span>Simon Kuper et Stefan Szymanski</li>
+              <li><span class="titre">Editeur : </span>De Boeck</li>
+              <li><span class="titre">Date de parution : </span>Juin 2012</li>
+            </ul>
+          </div>
+        </div>
+        <div class="clear"></div>
+      </li>      <li class="listePrincipale">
+        <div class="gauche"><a href="/Loisirs/Livre/mes-plus-grands-moments-de-football-9782035874542"><img src="http://static.eyrolles.com/img/2/0/3/5/8/7/4/5/9782035874542_h80.gif" alt="" title="Mes plus grands moments de football" class="livre" /></a></div>
+        <div class="droite roundCorner">
+          <div><div class="prix">19,86 &euro;</div> <div class="delai disponible">expédié sous 24h</div></div>
+          <div class="boutonAlignCenter"><a id="ean13-9782035874542" class="ajoutPanier" title="Mes plus grands moments de football" href="/Accueil/Panier/index_a.php?ouv_ean13=9782035874542&amp;add=1"><img src="/images/layout/boutonPanier.png" alt="ajouter au panier" title="Mes plus grands moments de football"  /></a></div>
+          <div class="stocks">
+            Librairie Eyrolles, Paris : stock limité <br />
+            
+          </div>
+        </div>
+        <div class="centre">
+          <h2><a href="/Loisirs/Livre/mes-plus-grands-moments-de-football-9782035874542">Mes plus grands moments de football</a></h2>
+          <div class="sousTitre"></div>
+          <span class="format">    </span>
+          <div class="infos">
+            <ul>
+              <li><span class="titre">Auteurs : </span>Thierry Roland et Jean-Michel Larqué</li>
+              <li><span class="titre">Editeur : </span>Larousse</li>
+              <li><span class="titre">Date de parution : </span>Mai 2012</li>
+            </ul>
+          </div>
+        </div>
+        <div class="clear"></div>
+      </li>      <li class="listePrincipale">
+        <div class="gauche"><a href="/Loisirs/Livre/foot-le-grand-quiz-9782359331585"><img src="http://static.eyrolles.com/img/2/3/5/9/3/3/1/5/9782359331585_h80.gif" alt="" title="Foot - Le grand quiz" class="livre" /></a></div>
+        <div class="droite roundCorner">
+          <div><div class="prix">7,56 &euro;</div> <div class="delai disponible">expédié sous 24h</div></div>
+          <div class="boutonAlignCenter"><a id="ean13-9782359331585" class="ajoutPanier" title="Foot - Le grand quiz" href="/Accueil/Panier/index_a.php?ouv_ean13=9782359331585&amp;add=1"><img src="/images/layout/boutonPanier.png" alt="ajouter au panier" title="Foot - Le grand quiz"  /></a></div>
+          <div class="stocks">
+            Librairie Eyrolles, Paris : indisponible <br />
+            
+          </div>
+        </div>
+        <div class="centre">
+          <h2><a href="/Loisirs/Livre/foot-le-grand-quiz-9782359331585">Foot - Le grand quiz</a></h2>
+          <div class="sousTitre">120 questions</div>
+          <span class="format">    </span>
+          <div class="infos">
+            <ul>
+              <li><span class="titre">Auteur : </span>Collectif Edigo</li>
+              <li><span class="titre">Editeur : </span>Edigo</li>
+              <li><span class="titre">Date de parution : </span>Mai 2012</li>
+            </ul>
+          </div>
+        </div>
+        <div class="clear"></div>
+      </li>      <li class="listePrincipale">
+        <div class="gauche"><a href="/Loisirs/Livre/le-mystere-messi-9782350133119"><img src="http://static.eyrolles.com/img/2/3/5/0/1/3/3/1/9782350133119_h80.gif" alt="" title="Le mystère Messi" class="livre" /></a></div>
+        <div class="droite roundCorner">
+          <div><div class="prix">18,91 &euro;</div> <div class="delai bientotdisponible">en cours de réimpression</div></div>
+          <div class="boutonAlignCenter"></div>
+          <div class="stocks">
+            Librairie Eyrolles, Paris : stock limité <br />
+            
+          </div>
+        </div>
+        <div class="centre">
+          <h2><a href="/Loisirs/Livre/le-mystere-messi-9782350133119">Le mystère Messi</a></h2>
+          <div class="sousTitre">Enquête sur la légende du football</div>
+          <span class="format">    </span>
+          <div class="infos">
+            <ul>
+              <li><span class="titre">Auteurs : </span>Alexandre Juillard et Sebastian Fest</li>
+              <li><span class="titre">Editeur : </span>Jean-Claude Gawsewitch</li>
+              <li><span class="titre">Date de parution : </span>Mai 2012</li>
+            </ul>
+          </div>
+        </div>
+        <div class="clear"></div>
+      </li>      <li class="listePrincipale">
+        <div class="gauche"><a href="/Loisirs/Livre/laurent-blanc-la-face-cachee-du-president-9782354253097"><img src="http://static.eyrolles.com/img/2/3/5/4/2/5/3/0/9782354253097_h80.gif" alt="" title="Laurent Blanc - La face cachée du Président" class="livre" /></a></div>
+        <div class="droite roundCorner">
+          <div><div class="prix">15,20 &euro;</div> <div class="delai disponible">expédié sous 24h</div></div>
+          <div class="boutonAlignCenter"><a id="ean13-9782354253097" class="ajoutPanier" title="Laurent Blanc - La face cachée du Président" href="/Accueil/Panier/index_a.php?ouv_ean13=9782354253097&amp;add=1"><img src="/images/layout/boutonPanier.png" alt="ajouter au panier" title="Laurent Blanc - La face cachée du Président"  /></a></div>
+          <div class="stocks">
+            Librairie Eyrolles, Paris : indisponible <br />
+            
+          </div>
+        </div>
+        <div class="centre">
+          <h2><a href="/Loisirs/Livre/laurent-blanc-la-face-cachee-du-president-9782354253097">Laurent Blanc - La face cachée du Président</a></h2>
+          <div class="sousTitre"></div>
+          <span class="format">    </span>
+          <div class="infos">
+            <ul>
+              <li><span class="titre">Auteur : </span>Arnaud Ramsay</li>
+              <li><span class="titre">Editeur : </span>Fetjaine</li>
+              <li><span class="titre">Date de parution : </span>Avril 2012</li>
+            </ul>
+          </div>
+        </div>
+        <div class="clear"></div>
+      </li>      <li class="listePrincipale">
+        <div class="gauche"><a href="/Loisirs/Livre/fast-food-sante-9782895236764"><img src="http://static.eyrolles.com/img/2/8/9/5/2/3/6/7/9782895236764_h80.gif" alt="" title="Fast Food santé" class="livre" /></a></div>
+        <div class="droite roundCorner">
+          <div><div class="prix">24,05 &euro;</div> <div class="delai disponible">expédié sous 48h</div></div>
+          <div class="boutonAlignCenter"><a id="ean13-9782895236764" class="ajoutPanier" title="Fast Food santé" href="/Accueil/Panier/index_a.php?ouv_ean13=9782895236764&amp;add=1"><img src="/images/layout/boutonPanier.png" alt="ajouter au panier" title="Fast Food santé"  /></a></div>
+          <div class="stocks">
+            Librairie Eyrolles, Paris : indisponible <br />
+            
+          </div>
+        </div>
+        <div class="centre">
+          <h2><a href="/Loisirs/Livre/fast-food-sante-9782895236764">Fast Food santé</a></h2>
+          <div class="sousTitre">Plus de 80 recettes de vos plats favoris en version santé</div>
+          <span class="format">    </span>
+          <div class="infos">
+            <ul>
+              <li><span class="titre">Auteurs : </span>Marise Charron et Mélissa Pépin</li>
+              <li><span class="titre">Editeur : </span>Modus Vivendi</li>
+              <li><span class="titre">Date de parution : </span>Mars 2012</li>
+            </ul>
+          </div>
+        </div>
+        <div class="clear"></div>
+      </li>      <li class="listePrincipale">
+        <div class="gauche"><a href="/Loisirs/Livre/cadrages-et-debordements-9782732451954"><img src="http://static.eyrolles.com/img/2/7/3/2/4/5/1/9/9782732451954_h80.gif" alt="" title="Cadrages et débordements" class="livre" /></a></div>
+        <div class="droite roundCorner">
+          <div><div class="prix">17,34 &euro;</div> <div class="delai disponible">expédié sous 24h</div></div>
+          <div class="boutonAlignCenter"><a id="ean13-9782732451954" class="ajoutPanier" title="Cadrages et débordements" href="/Accueil/Panier/index_a.php?ouv_ean13=9782732451954&amp;add=1"><img src="/images/layout/boutonPanier.png" alt="ajouter au panier" title="Cadrages et débordements"  /></a></div>
+          <div class="stocks">
+            Librairie Eyrolles, Paris : indisponible <br />
+            
+          </div>
+        </div>
+        <div class="centre">
+          <h2><a href="/Loisirs/Livre/cadrages-et-debordements-9782732451954">Cadrages et débordements</a></h2>
+          <div class="sousTitre"></div>
+          <span class="format">    </span>
+          <div class="infos">
+            <ul>
+              <li><span class="titre">Auteurs : </span>Marc Lièvremont, Pierre Ballester et Jean Dujardin</li>
+              <li><span class="titre">Editeur : </span>La Martinière</li>
+              <li><span class="titre">Date de parution : </span>Février 2012</li>
+            </ul>
+          </div>
+        </div>
+        <div class="clear"></div>
+      </li>      <li class="listePrincipale">
+        <div class="gauche"><a href="/Sciences/Livre/rugby-quantique-9782722509283"><img src="http://static.eyrolles.com/img/2/7/2/2/5/0/9/2/9782722509283_h80.gif" alt="" title="Rugby quantique" class="livre" /></a></div>
+        <div class="droite roundCorner">
+          <div><div class="prix">5,80 &euro;</div> <div class="delai disponible">expédié sous 24h</div></div>
+          <div class="boutonAlignCenter"><a id="ean13-9782722509283" class="ajoutPanier" title="Rugby quantique" href="/Accueil/Panier/index_a.php?ouv_ean13=9782722509283&amp;add=1"><img src="/images/layout/boutonPanier.png" alt="ajouter au panier" title="Rugby quantique"  /></a></div>
+          <div class="stocks">
+            Librairie Eyrolles, Paris : stock limité <br />
+            
+          </div>
+        </div>
+        <div class="centre">
+          <h2><a href="/Sciences/Livre/rugby-quantique-9782722509283">Rugby quantique</a></h2>
+          <div class="sousTitre"></div>
+          <span class="format">    </span>
+          <div class="infos">
+            <ul>
+              <li><span class="titre">Auteurs : </span>Jonny Wilkinson, Etienne Klein et Jean Iliopoulos</li>
+              <li><span class="titre">Editeur : </span>Les presses de l'Ecole Nationale Supérieure de Techniques Avancées (ENSTA)</li>
+              <li><span class="titre">Date de parution : </span>Novembre 2011</li>
+            </ul>
+          </div>
+        </div>
+        <div class="clear"></div>
+      </li>      <li class="listePrincipale">
+        <div class="gauche"><a href="/Loisirs/Livre/les-grandes-annees-du-football-9782847243611"><img src="http://static.eyrolles.com/img/2/8/4/7/2/4/3/6/9782847243611_h80.gif" alt="" title="Les grandes années du football" class="livre" /></a></div>
+        <div class="droite roundCorner">
+          <div><div class="prix">24,23 &euro;</div> <div class="delai disponible">expédié sous 24h</div></div>
+          <div class="boutonAlignCenter"><a id="ean13-9782847243611" class="ajoutPanier" title="Les grandes années du football" href="/Accueil/Panier/index_a.php?ouv_ean13=9782847243611&amp;add=1"><img src="/images/layout/boutonPanier.png" alt="ajouter au panier" title="Les grandes années du football"  /></a></div>
+          <div class="stocks">
+            Librairie Eyrolles, Paris : indisponible <br />
+            
+          </div>
+        </div>
+        <div class="centre">
+          <h2><a href="/Loisirs/Livre/les-grandes-annees-du-football-9782847243611">Les grandes années du football</a></h2>
+          <div class="sousTitre">Les années 80</div>
+          <span class="format">    </span>
+          <div class="infos">
+            <ul>
+              <li><span class="titre">Auteurs : </span>Thierry Roland et Jean-Paul Vespini</li>
+              <li><span class="titre">Editeur : </span>Jacob Duvernet</li>
+              <li><span class="titre">Date de parution : </span>Novembre 2011</li>
+            </ul>
+          </div>
+        </div>
+        <div class="clear"></div>
+      </li>      <li class="listePrincipale">
+        <div class="gauche"><a href="/Loisirs/Livre/ne-tirez-pas-sur-le-foot-9782709638289"><img src="http://static.eyrolles.com/img/2/7/0/9/6/3/8/2/9782709638289_h80.gif" alt="" title="Ne tirez pas sur le foot" class="livre" /></a></div>
+        <div class="droite roundCorner">
+          <div><div class="prix">12,54 &euro;</div> <div class="delai disponible">expédié sous 10 jours</div></div>
+          <div class="boutonAlignCenter"><a id="ean13-9782709638289" class="ajoutPanier" title="Ne tirez pas sur le foot" href="/Accueil/Panier/index_a.php?ouv_ean13=9782709638289&amp;add=1"><img src="/images/layout/boutonPanier.png" alt="ajouter au panier" title="Ne tirez pas sur le foot"  /></a></div>
+          <div class="stocks">
+            Librairie Eyrolles, Paris : indisponible <br />
+            
+          </div>
+        </div>
+        <div class="centre">
+          <h2><a href="/Loisirs/Livre/ne-tirez-pas-sur-le-foot-9782709638289">Ne tirez pas sur le foot</a></h2>
+          <div class="sousTitre">Contre les idées reçues</div>
+          <span class="format">    </span>
+          <div class="infos">
+            <ul>
+              <li><span class="titre">Auteur : </span>Pascal Perri</li>
+              <li><span class="titre">Editeur : </span>JC Lattès</li>
+              <li><span class="titre">Date de parution : </span>Novembre 2011</li>
+            </ul>
+          </div>
+        </div>
+        <div class="clear"></div>
+      </li>      <li class="listePrincipale">
+        <div class="gauche"><a href="/Loisirs/Livre/essais-et-transformations-9782354252519"><img src="http://static.eyrolles.com/img/2/3/5/4/2/5/2/5/9782354252519_h80.gif" alt="" title="Essais et transformations" class="livre" /></a></div>
+        <div class="droite roundCorner">
+          <div><div class="prix">14,35 &euro;</div> <div class="delai disponible">expédié sous 24h</div></div>
+          <div class="boutonAlignCenter"><a id="ean13-9782354252519" class="ajoutPanier" title="Essais et transformations" href="/Accueil/Panier/index_a.php?ouv_ean13=9782354252519&amp;add=1"><img src="/images/layout/boutonPanier.png" alt="ajouter au panier" title="Essais et transformations"  /></a></div>
+          <div class="stocks">
+            Librairie Eyrolles, Paris : indisponible <br />
+            
+          </div>
+        </div>
+        <div class="centre">
+          <h2><a href="/Loisirs/Livre/essais-et-transformations-9782354252519">Essais et transformations</a></h2>
+          <div class="sousTitre">25 ans de rugby en coupe</div>
+          <span class="format">    </span>
+          <div class="infos">
+            <ul>
+              <li><span class="titre">Auteurs : </span>Gervais Loock et Jean-Luc Labourdette</li>
+              <li><span class="titre">Editeur : </span>Fetjaine</li>
+              <li><span class="titre">Date de parution : </span>Mai 2011</li>
+            </ul>
+          </div>
+        </div>
+        <div class="clear"></div>
+      </li>      <li class="listePrincipale">
+        <div class="gauche"><a href="/Loisirs/Livre/food-photography-9789020996265"><img src="http://static.eyrolles.com/img/9/0/2/0/9/9/6/2/9789020996265_h80.gif" alt="" title="Food Photography" class="livre" /></a></div>
+        <div class="droite roundCorner">
+          <div><div class="prix">43,32 &euro;</div> <div class="delai disponible">expédié sous 24h</div></div>
+          <div class="boutonAlignCenter"><a id="ean13-9789020996265" class="ajoutPanier" title="Food Photography" href="/Accueil/Panier/index_a.php?ouv_ean13=9789020996265&amp;add=1"><img src="/images/layout/boutonPanier.png" alt="ajouter au panier" title="Food Photography"  /></a></div>
+          <div class="stocks">
+            Librairie Eyrolles, Paris : stock limité <br />
+            
+          </div>
+        </div>
+        <div class="centre">
+          <h2><a href="/Loisirs/Livre/food-photography-9789020996265">Food Photography</a></h2>
+          <div class="sousTitre">Since 1985</div>
+          <span class="format">    </span>
+          <div class="infos">
+            <ul>
+              <li><span class="titre">Auteur : </span>Tony Le Duc</li>
+              <li><span class="titre">Editeur : </span>Lannoo</li>
+              <li><span class="titre">Date de parution : </span>Mai 2011</li>
+            </ul>
+          </div>
+        </div>
+        <div class="clear"></div>
+      </li>      <li class="listePrincipale">
+        <div class="gauche"><a href="/Loisirs/Livre/le-patron-le-footballeur-et-le-smicard-9782918135241"><img src="http://static.eyrolles.com/img/2/9/1/8/1/3/5/2/9782918135241_h80.gif" alt="" title="Le patron, le footballeur et le smicard" class="livre" /></a></div>
+        <div class="droite roundCorner">
+          <div><div class="prix">19,19 &euro;</div> <div class="delai disponible">expédié sous 24h</div></div>
+          <div class="boutonAlignCenter"><a id="ean13-9782918135241" class="ajoutPanier" title="Le patron, le footballeur et le smicard" href="/Accueil/Panier/index_a.php?ouv_ean13=9782918135241&amp;add=1"><img src="/images/layout/boutonPanier.png" alt="ajouter au panier" title="Le patron, le footballeur et le smicard"  /></a></div>
+          <div class="stocks">
+            Librairie Eyrolles, Paris : indisponible <br />
+            
+          </div>
+        </div>
+        <div class="centre">
+          <h2><a href="/Loisirs/Livre/le-patron-le-footballeur-et-le-smicard-9782918135241">Le patron, le footballeur et le smicard</a></h2>
+          <div class="sousTitre">Des rémunérations indécentes</div>
+          <span class="format">    </span>
+          <div class="infos">
+            <ul>
+              <li><span class="titre">Auteur : </span>Philippe Villemus</li>
+              <li><span class="titre">Editeur : </span>Editions dialogues</li>
+              <li><span class="titre">Date de parution : </span>Mai 2011</li>
+            </ul>
+          </div>
+        </div>
+        <div class="clear"></div>
+      </li>      <li class="listePrincipale">
+        <div class="gauche"><a href="/Loisirs/Livre/ma-petite-etoile-9782081241480"><img src="http://static.eyrolles.com/img/2/0/8/1/2/4/1/4/9782081241480_h80.gif" alt="" title="Ma petite étoile" class="livre" /></a></div>
+        <div class="droite roundCorner">
+          <div><div class="prix">19,19 &euro;</div> <div class="delai disponible">expédié sous 4 jours</div></div>
+          <div class="boutonAlignCenter"><a id="ean13-9782081241480" class="ajoutPanier" title="Ma petite étoile" href="/Accueil/Panier/index_a.php?ouv_ean13=9782081241480&amp;add=1"><img src="/images/layout/boutonPanier.png" alt="ajouter au panier" title="Ma petite étoile"  /></a></div>
+          <div class="stocks">
+            Librairie Eyrolles, Paris : indisponible <br />
+            
+          </div>
+        </div>
+        <div class="centre">
+          <h2><a href="/Loisirs/Livre/ma-petite-etoile-9782081241480">Ma petite étoile</a></h2>
+          <div class="sousTitre"></div>
+          <span class="format">    </span>
+          <div class="infos">
+            <ul>
+              <li><span class="titre">Auteur : </span>Sébastien Chabal</li>
+              <li><span class="titre">Editeur : </span>Flammarion</li>
+              <li><span class="titre">Date de parution : </span>Avril 2011</li>
+            </ul>
+          </div>
+        </div>
+        <div class="clear"></div>
+      </li>      <li class="listePrincipale">
+        <div class="gauche"><a href="/Loisirs/Livre/economie-du-football-professionnel-9782707166951"><img src="http://static.eyrolles.com/img/2/7/0/7/1/6/6/9/9782707166951_h80.gif" alt="" title="Economie du football professionnel" class="livre" /></a></div>
+        <div class="droite roundCorner">
+          <div><div class="prix">9,50 &euro;</div> <div class="delai disponible">expédié sous 24h</div></div>
+          <div class="boutonAlignCenter"><a id="ean13-9782707166951" class="ajoutPanier" title="Economie du football professionnel" href="/Accueil/Panier/index_a.php?ouv_ean13=9782707166951&amp;add=1"><img src="/images/layout/boutonPanier.png" alt="ajouter au panier" title="Economie du football professionnel"  /></a></div>
+          <div class="stocks">
+            Librairie Eyrolles, Paris : indisponible <br />
+            
+          </div>
+        </div>
+        <div class="centre">
+          <h2><a href="/Loisirs/Livre/economie-du-football-professionnel-9782707166951">Economie du football professionnel</a></h2>
+          <div class="sousTitre"></div>
+          <span class="format">    </span>
+          <div class="infos">
+            <ul>
+              <li><span class="titre">Auteur : </span>Bastien Drut</li>
+              <li><span class="titre">Editeur : </span>La Découverte</li>
+              <li><span class="titre">Date de parution : </span>Avril 2011</li>
+            </ul>
+          </div>
+        </div>
+        <div class="clear"></div>
+      </li>      <li class="listePrincipale">
+        <div class="gauche"><a href="/Loisirs/Livre/christian-karembeu-kanak-9782359490244"><img src="http://static.eyrolles.com/img/2/3/5/9/4/9/0/2/9782359490244_h80.gif" alt="" title="Christian Karembeu, Kanak" class="livre" /></a></div>
+        <div class="droite roundCorner">
+          <div><div class="prix">17,29 &euro;</div> <div class="delai disponible">expédié sous 24h</div></div>
+          <div class="boutonAlignCenter"><a id="ean13-9782359490244" class="ajoutPanier" title="Christian Karembeu, Kanak" href="/Accueil/Panier/index_a.php?ouv_ean13=9782359490244&amp;add=1"><img src="/images/layout/boutonPanier.png" alt="ajouter au panier" title="Christian Karembeu, Kanak"  /></a></div>
+          <div class="stocks">
+            Librairie Eyrolles, Paris : indisponible <br />
+            
+          </div>
+        </div>
+        <div class="centre">
+          <h2><a href="/Loisirs/Livre/christian-karembeu-kanak-9782359490244">Christian Karembeu, Kanak</a></h2>
+          <div class="sousTitre"></div>
+          <span class="format">    </span>
+          <div class="infos">
+            <ul>
+              <li><span class="titre">Auteurs : </span>Anne Pitoiset, Claudine Wéry et Christian Karembeu</li>
+              <li><span class="titre">Editeur : </span>Don Quichotte éditions</li>
+              <li><span class="titre">Date de parution : </span>Février 2011</li>
+            </ul>
+          </div>
+        </div>
+        <div class="clear"></div>
+      </li>    </ul>
+    <div class="listeHautBas" id="listeBas">
+      <div class="gauche">Résultats : 1 à 20 sur 91 livres</div>
+      <div class="droite">Pages : <span class="actif">1</span> | <a href="/Accueil/Recherche/?q=foo&page=2">2</a> | <a href="/Accueil/Recherche/?q=foo&page=3">3</a> | <a href="/Accueil/Recherche/?q=foo&page=4">4</a> | <a href="/Accueil/Recherche/?q=foo&page=5">5</a>&nbsp;<a href="/Accueil/Recherche/?q=foo&page=2">&gt;</a></div>
+      <div class="centre">
+        <form action="/Accueil/Recherche/" method="get">  
+          <div>
+                              <input type="hidden" name="q" value="foo" />
+                            <label for="nb">Afficher : </label>
+            <select name="nb" id="nb" class="autosubmit"  >
+<option value="10">10</option>
+<option value="20" selected="selected">20</option>
+<option value="50">50</option>
+<option value="100">100</option>
+</select>
+                        <input type="submit" class="nojs" value="OK" />
+             par page
+          </div>
+        </form>
+      </div>
+    </div>
+      </div>     
+</div>

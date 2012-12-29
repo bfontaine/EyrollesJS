@@ -1,0 +1,645 @@
+<div id="pageListeThematiques">
+  <div id="sidebar-themes">
+    <div class="titreGauche">
+      <h1>Affinez votre recherche</h1>
+      <div></div>
+    </div>
+    <form id="rechercheFiltre" action="/Accueil/Recherche/">
+      <div>
+        <div>
+          <label for="rechercheQ"><span>Recherche</span></label><br />
+          <input id="rechercheQ" class="rechercheFiltre" type="text" name="q" value="foo" />
+        </div>
+        <br />
+              <div>
+          <span>Rayon</span>
+          <ul id="rechercheFiltreRayon">
+            <li>
+              <input id="rechercheFiltreRayonAcc" class="rechercheFiltre rechercheFiltreRayon main" name="Rayon[ACC]" type="checkbox" checked="checked" />
+              <label for="rechercheFiltreRayonAcc">Tous</label>
+            </li>
+                        <li>
+              <input id="rechercheFiltreRayonVIE" class="rechercheFiltre rechercheFiltreRayon" name="Rayon[VIE]" type="checkbox" />
+              <label for="rechercheFiltreRayonVIE">Vie pratique</label> (83)
+            </li>
+                        <li>
+              <input id="rechercheFiltreRayonDRO" class="rechercheFiltre rechercheFiltreRayon" name="Rayon[DRO]" type="checkbox" />
+              <label for="rechercheFiltreRayonDRO">Droit</label> (12)
+            </li>
+                        <li>
+              <input id="rechercheFiltreRayonMAN" class="rechercheFiltre rechercheFiltreRayon" name="Rayon[MAN]" type="checkbox" />
+              <label for="rechercheFiltreRayonMAN">Entreprise</label> (9)
+            </li>
+                        <li>
+              <input id="rechercheFiltreRayonSCI" class="rechercheFiltre rechercheFiltreRayon" name="Rayon[SCI]" type="checkbox" />
+              <label for="rechercheFiltreRayonSCI">Sciences</label> (8)
+            </li>
+                        <li>
+              <input id="rechercheFiltreRayonVID" class="rechercheFiltre rechercheFiltreRayon" name="Rayon[VID]" type="checkbox" />
+              <label for="rechercheFiltreRayonVID">Graphisme &amp; Photo</label> (6)
+            </li>
+                        <li>
+              <input id="rechercheFiltreRayonINF" class="rechercheFiltre rechercheFiltreRayon" name="Rayon[INF]" type="checkbox" />
+              <label for="rechercheFiltreRayonINF">Informatique</label> (1)
+            </li>
+                      </ul>
+        </div>
+        <div>
+          <span>Contenu dans</span>
+                    <ul id="rechercheFiltreCritere">
+                        <li>
+            <input id="rechercheFiltreCritereTout" class="rechercheFiltre rechercheFiltreCritere main" name="Critere[Tout]" type="checkbox" checked="checked" />
+            <label for="rechercheFiltreCritereTout">Tout</label> (91)
+            </li>
+                        <li>
+            <input id="rechercheFiltreCritereTitre" class="rechercheFiltre rechercheFiltreCritere" name="Critere[Titre]" type="checkbox"  />
+            <label for="rechercheFiltreCritereTitre">Titre</label> (39)
+            </li>
+                        <li>
+            <input id="rechercheFiltreCritereTitre_-_Sous-Titre" class="rechercheFiltre rechercheFiltreCritere" name="Critere[Titre + Sous-Titre]" type="checkbox"  />
+            <label for="rechercheFiltreCritereTitre_-_Sous-Titre">Titre + Sous-Titre</label> (51)
+            </li>
+                        <li>
+            <input id="rechercheFiltreCritereAuteur" class="rechercheFiltre rechercheFiltreCritere" name="Critere[Auteur]" type="checkbox"  />
+            <label for="rechercheFiltreCritereAuteur">Auteur</label> (2)
+            </li>
+                      </ul>
+                  </div>
+        <div>
+          <span>Type</span>
+          <ul id="rechercheFiltreType">
+            <li>
+              <input id="rechercheFiltreTypeAll" class="rechercheFiltre rechercheFiltreType main" name="Type[ALL]" type="checkbox" checked="checked" />
+              <label for="rechercheFiltreTypeAll">Tous</label>
+            </li>
+                        <li>
+              <input id="rechercheFiltreType0" class="rechercheFiltre rechercheFiltreType" name="Type[0]" type="checkbox" />
+              <label for="rechercheFiltreType0">Ouvrage</label> (90)
+            </li>
+                        <li>
+              <input id="rechercheFiltreType1" class="rechercheFiltre rechercheFiltreType" name="Type[1]" type="checkbox" />
+              <label for="rechercheFiltreType1">CD-ROM</label> (1)
+            </li>
+                      </ul>
+        </div>
+        <div>
+          <span>Langue</span>
+          <ul id="rechercheFiltreLangue">
+            <li>
+              <input id="rechercheFiltreLangueAll" class="rechercheFiltre rechercheFiltreLangue main" name="Langue[ALL]" type="checkbox" checked="checked" />
+              <label for="rechercheFiltreLangueAll">Tous</label>
+            </li>
+                        <li>
+              <input id="rechercheFiltreLangue0" class="rechercheFiltre rechercheFiltreLangue" name="Langue[0]" type="checkbox" />
+              <label for="rechercheFiltreLangue0">Français</label> (82)
+            </li>
+                        <li>
+              <input id="rechercheFiltreLangue1" class="rechercheFiltre rechercheFiltreLangue" name="Langue[1]" type="checkbox" />
+              <label for="rechercheFiltreLangue1">Anglais</label> (3)
+            </li>
+                        <li>
+              <input id="rechercheFiltreLangue4" class="rechercheFiltre rechercheFiltreLangue" name="Langue[4]" type="checkbox" />
+              <label for="rechercheFiltreLangue4">Multilingue</label> (6)
+            </li>
+                      </ul>
+        </div>
+        <div>
+          <span>Disponibilité</span>
+          <ul id="rechercheFiltreDispo">
+            <li>
+              <input id="rechercheFiltreDispoAll"  class="rechercheFiltre rechercheFiltreDispo main" name="Dispo[ALL]" type="checkbox" checked="checked" />
+              <label for="rechercheFiltreDispoAll">Tous</label>
+            </li>
+                        <li>
+              <input id="rechercheFiltreDispoEyrolles.com"  class="rechercheFiltre rechercheFiltreDispo" name="Dispo[Eyrolles.com]" type="checkbox" />
+              <label for="rechercheFiltreDispoEyrolles.com">Eyrolles.com</label> (89)
+            </li>
+                        <li>
+              <input id="rechercheFiltreDispoLibrairie"  class="rechercheFiltre rechercheFiltreDispo" name="Dispo[Librairie]" type="checkbox" />
+              <label for="rechercheFiltreDispoLibrairie">Librairie</label> (14)
+            </li>
+                        <li>
+              <input id="rechercheFiltreDispoEbook"  class="rechercheFiltre rechercheFiltreDispo" name="Dispo[Ebook]" type="checkbox" />
+              <label for="rechercheFiltreDispoEbook">Ebook</label> (1)
+            </li>
+                      </ul>
+        </div>
+        
+        
+        <input class="bouton_vert" type="submit" value="Mettre à jour" />
+      </div>
+    </form>
+  </div>
+    
+  <div id="contenu">
+    <h1>Recherche : foo</h1>
+    
+    <div class="clear"></div>
+    
+        <div class="listeHautBas" id="listeHaut">
+      <div class="gauche">Résultats : 21 à 40 sur 91 livres</div>
+      <div class="droite">Pages : <a href="/Accueil/Recherche/?q=foo&page=1">&lt;</a>&nbsp;<a href="/Accueil/Recherche/?q=foo&page=1">1</a> | <span class="actif">2</span> | <a href="/Accueil/Recherche/?q=foo&page=3">3</a> | <a href="/Accueil/Recherche/?q=foo&page=4">4</a> | <a href="/Accueil/Recherche/?q=foo&page=5">5</a>&nbsp;<a href="/Accueil/Recherche/?q=foo&page=3">&gt;</a></div>
+      <div class="centre">
+        <form action="/Accueil/Recherche/" method="get">
+          <div>
+                              <input type="hidden" name="q" value="foo" />
+                            <label for="sort">Trier par :</label>
+            <select name="sort" id="sort" class="autosubmit"  >
+<option value="auteur">Auteur</option>
+<option value="editeur">Editeur</option>
+<option value="dtparution" selected="selected">Date de parution</option>
+<option value="prixasc">Prix croissant</option>
+<option value="prixdesc">Prix décroissant</option>
+<option value="titre">Titre</option>
+<option value="nbcom">Meilleures ventes</option>
+<option value="pertinence">Pertinence</option>
+</select>
+                        <input type="submit" class="nojs" value="OK" />
+          </div>
+        </form>
+      </div>
+    </div>
+    <ul class="listePrincipale">
+            <li class="listePrincipale">
+        <div class="gauche"><a href="/Loisirs/Livre/la-legende-du-xv-de-france-9782361040260"><img src="http://static.eyrolles.com/img/2/3/6/1/0/4/0/2/9782361040260_h80.gif" alt="" title="La légende du XV de France" class="livre" /></a></div>
+        <div class="droite roundCorner">
+          <div><div class="prix">28,79 &euro;</div> <div class="delai disponible">expédié sous 24h</div></div>
+          <div class="boutonAlignCenter"><a id="ean13-9782361040260" class="ajoutPanier" title="La légende du XV de France" href="/Accueil/Panier/index_a.php?ouv_ean13=9782361040260&amp;add=1"><img src="/images/layout/boutonPanier.png" alt="ajouter au panier" title="La légende du XV de France"  /></a></div>
+          <div class="stocks">
+            Librairie Eyrolles, Paris : indisponible <br />
+            
+          </div>
+        </div>
+        <div class="centre">
+          <h2><a href="/Loisirs/Livre/la-legende-du-xv-de-france-9782361040260">La légende du XV de France</a></h2>
+          <div class="sousTitre"></div>
+          <span class="format">    </span>
+          <div class="infos">
+            <ul>
+              <li><span class="titre">Auteur : </span>Charles Gaudin</li>
+              <li><span class="titre">Editeur : </span>Democratic Books</li>
+              <li><span class="titre">Date de parution : </span>Janvier 2011</li>
+            </ul>
+          </div>
+        </div>
+        <div class="clear"></div>
+      </li>      <li class="listePrincipale">
+        <div class="gauche"><a href="/Audiovisuel/Livre/petits-riens-et-nothing-more-9782352551546"><img src="http://static.eyrolles.com/img/2/3/5/2/5/5/1/5/9782352551546_h80.gif" alt="" title="Petits riens... et nothing more" class="livre" /></a></div>
+        <div class="droite roundCorner">
+          <div><div class="prix">23,18 &euro;</div> <div class="delai disponible">expédié sous 48h</div></div>
+          <div class="boutonAlignCenter"><a id="ean13-9782352551546" class="ajoutPanier" title="Petits riens... et nothing more" href="/Accueil/Panier/index_a.php?ouv_ean13=9782352551546&amp;add=1"><img src="/images/layout/boutonPanier.png" alt="ajouter au panier" title="Petits riens... et nothing more"  /></a></div>
+          <div class="stocks">
+            Librairie Eyrolles, Paris : stock limité <br />
+            
+          </div>
+        </div>
+        <div class="centre">
+          <h2><a href="/Audiovisuel/Livre/petits-riens-et-nothing-more-9782352551546">Petits riens... et nothing more</a></h2>
+          <div class="sousTitre"></div>
+          <span class="format">    </span>
+          <div class="infos">
+            <ul>
+              <li><span class="titre">Auteurs : </span>Martine Camillieri et Marie Gayet</li>
+              <li><span class="titre">Editeur : </span>Les éditions de l'Epure</li>
+              <li><span class="titre">Date de parution : </span>Octobre 2010</li>
+            </ul>
+          </div>
+        </div>
+        <div class="clear"></div>
+      </li>      <li class="listePrincipale">
+        <div class="gauche"><a href="/Loisirs/Livre/so-foot-9782263050664"><img src="http://static.eyrolles.com/img/2/2/6/3/0/5/0/6/9782263050664_h80.gif" alt="" title="So Foot" class="livre" /></a></div>
+        <div class="droite roundCorner">
+          <div><div class="prix">28,79 &euro;</div> <div class="delai disponible">expédié sous 24h</div></div>
+          <div class="boutonAlignCenter"><a id="ean13-9782263050664" class="ajoutPanier" title="So Foot" href="/Accueil/Panier/index_a.php?ouv_ean13=9782263050664&amp;add=1"><img src="/images/layout/boutonPanier.png" alt="ajouter au panier" title="So Foot"  /></a></div>
+          <div class="stocks">
+            Librairie Eyrolles, Paris : indisponible <br />
+            
+          </div>
+        </div>
+        <div class="centre">
+          <h2><a href="/Loisirs/Livre/so-foot-9782263050664">So Foot</a></h2>
+          <div class="sousTitre">Football total et contre-culture</div>
+          <span class="format">    </span>
+          <div class="infos">
+            <ul>
+              <li><span class="titre">Auteur : </span>Collectif Solar</li>
+              <li><span class="titre">Editeur : </span>Solar</li>
+              <li><span class="titre">Date de parution : </span>Octobre 2010</li>
+            </ul>
+          </div>
+        </div>
+        <div class="clear"></div>
+      </li>      <li class="listePrincipale">
+        <div class="gauche"><a href="/Loisirs/Livre/le-livre-noir-des-bleus-9782221123201"><img src="http://static.eyrolles.com/img/2/2/2/1/1/2/3/2/9782221123201_h80.gif" alt="" title="Le livre noir des bleus" class="livre" /></a></div>
+        <div class="droite roundCorner">
+          <div><div class="prix">18,34 &euro;</div> <div class="delai disponible">expédié sous 24h</div></div>
+          <div class="boutonAlignCenter"><a id="ean13-9782221123201" class="ajoutPanier" title="Le livre noir des bleus" href="/Accueil/Panier/index_a.php?ouv_ean13=9782221123201&amp;add=1"><img src="/images/layout/boutonPanier.png" alt="ajouter au panier" title="Le livre noir des bleus"  /></a></div>
+          <div class="stocks">
+            Librairie Eyrolles, Paris : indisponible <br />
+            
+          </div>
+        </div>
+        <div class="centre">
+          <h2><a href="/Loisirs/Livre/le-livre-noir-des-bleus-9782221123201">Le livre noir des bleus</a></h2>
+          <div class="sousTitre">Chronique d'un désastre annoncé</div>
+          <span class="format">    </span>
+          <div class="infos">
+            <ul>
+              <li><span class="titre">Auteur : </span>Vincent Duluc</li>
+              <li><span class="titre">Editeur : </span>Robert Laffont</li>
+              <li><span class="titre">Date de parution : </span>Septembre 2010</li>
+            </ul>
+          </div>
+        </div>
+        <div class="clear"></div>
+      </li>      <li class="listePrincipale">
+        <div class="gauche"><a href="/Loisirs/Livre/l-implosion-9782749913414"><img src="http://static.eyrolles.com/img/2/7/4/9/9/1/3/4/9782749913414_h80.gif" alt="" title="L'implosion" class="livre" /></a></div>
+        <div class="droite roundCorner">
+          <div><div class="prix">16,29 &euro;</div> <div class="delai disponible">expédié sous 24h</div></div>
+          <div class="boutonAlignCenter"><a id="ean13-9782749913414" class="ajoutPanier" title="L'implosion" href="/Accueil/Panier/index_a.php?ouv_ean13=9782749913414&amp;add=1"><img src="/images/layout/boutonPanier.png" alt="ajouter au panier" title="L'implosion"  /></a></div>
+          <div class="stocks">
+            Librairie Eyrolles, Paris : indisponible <br />
+            
+          </div>
+        </div>
+        <div class="centre">
+          <h2><a href="/Loisirs/Livre/l-implosion-9782749913414">L'implosion</a></h2>
+          <div class="sousTitre"></div>
+          <span class="format">    </span>
+          <div class="infos">
+            <ul>
+              <li><span class="titre">Auteurs : </span>Jean-Pierre Paclet</li>
+              <li><span class="titre">Editeur : </span>Michel Lafon</li>
+              <li><span class="titre">Date de parution : </span>Août 2010</li>
+            </ul>
+          </div>
+        </div>
+        <div class="clear"></div>
+      </li>      <li class="listePrincipale">
+        <div class="gauche"><a href="/Loisirs/Livre/carton-rouge-pour-les-bleus-9782268070339"><img src="http://static.eyrolles.com/img/2/2/6/8/0/7/0/3/9782268070339_h80.gif" alt="" title="Carton rouge pour les Bleus" class="livre" /></a></div>
+        <div class="droite roundCorner">
+          <div><div class="prix">12,54 &euro;</div> <div class="delai disponible">expédié sous 24h</div></div>
+          <div class="boutonAlignCenter"><a id="ean13-9782268070339" class="ajoutPanier" title="Carton rouge pour les Bleus" href="/Accueil/Panier/index_a.php?ouv_ean13=9782268070339&amp;add=1"><img src="/images/layout/boutonPanier.png" alt="ajouter au panier" title="Carton rouge pour les Bleus"  /></a></div>
+          <div class="stocks">
+            Librairie Eyrolles, Paris : indisponible <br />
+            
+          </div>
+        </div>
+        <div class="centre">
+          <h2><a href="/Loisirs/Livre/carton-rouge-pour-les-bleus-9782268070339">Carton rouge pour les Bleus</a></h2>
+          <div class="sousTitre"></div>
+          <span class="format">    </span>
+          <div class="infos">
+            <ul>
+              <li><span class="titre">Auteur : </span>Pierre Ménès</li>
+              <li><span class="titre">Editeur : </span>Editions du Rocher</li>
+              <li><span class="titre">Date de parution : </span>Juillet 2010</li>
+            </ul>
+          </div>
+        </div>
+        <div class="clear"></div>
+      </li>      <li class="listePrincipale">
+        <div class="gauche"><a href="/Loisirs/Livre/le-roman-noir-des-bleus-9782732444383"><img src="http://static.eyrolles.com/img/2/7/3/2/4/4/4/3/9782732444383_h80.gif" alt="" title="Le roman noir des bleus" class="livre" /></a></div>
+        <div class="droite roundCorner">
+          <div><div class="prix">14,44 &euro;</div> <div class="delai disponible">expédié sous 24h</div></div>
+          <div class="boutonAlignCenter"><a id="ean13-9782732444383" class="ajoutPanier" title="Le roman noir des bleus" href="/Accueil/Panier/index_a.php?ouv_ean13=9782732444383&amp;add=1"><img src="/images/layout/boutonPanier.png" alt="ajouter au panier" title="Le roman noir des bleus"  /></a></div>
+          <div class="stocks">
+            Librairie Eyrolles, Paris : indisponible <br />
+            
+          </div>
+        </div>
+        <div class="centre">
+          <h2><a href="/Loisirs/Livre/le-roman-noir-des-bleus-9782732444383">Le roman noir des bleus</a></h2>
+          <div class="sousTitre"></div>
+          <span class="format">    </span>
+          <div class="infos">
+            <ul>
+              <li><span class="titre">Auteurs : </span>Eugène Saccomano et Gilles Verdez</li>
+              <li><span class="titre">Editeur : </span>La Martinière</li>
+              <li><span class="titre">Date de parution : </span>Juillet 2010</li>
+            </ul>
+          </div>
+        </div>
+        <div class="clear"></div>
+      </li>      <li class="listePrincipale">
+        <div class="gauche"><a href="/Loisirs/Livre/les-secrets-d-un-fiasco-9782810003891"><img src="http://static.eyrolles.com/img/2/8/1/0/0/0/3/8/9782810003891_h80.gif" alt="" title="Les secrets d'un fiasco" class="livre" /></a></div>
+        <div class="droite roundCorner">
+          <div><div class="prix">9,50 &euro;</div> <div class="delai disponible">expédié sous 24h</div></div>
+          <div class="boutonAlignCenter"><a id="ean13-9782810003891" class="ajoutPanier" title="Les secrets d'un fiasco" href="/Accueil/Panier/index_a.php?ouv_ean13=9782810003891&amp;add=1"><img src="/images/layout/boutonPanier.png" alt="ajouter au panier" title="Les secrets d'un fiasco"  /></a></div>
+          <div class="stocks">
+            Librairie Eyrolles, Paris : indisponible <br />
+            
+          </div>
+        </div>
+        <div class="centre">
+          <h2><a href="/Loisirs/Livre/les-secrets-d-un-fiasco-9782810003891">Les secrets d'un fiasco</a></h2>
+          <div class="sousTitre"></div>
+          <span class="format">    </span>
+          <div class="infos">
+            <ul>
+              <li><span class="titre">Auteur : </span>Jean-Michel Larqué</li>
+              <li><span class="titre">Editeur : </span>Editions du Toucan</li>
+              <li><span class="titre">Date de parution : </span>Juillet 2010</li>
+            </ul>
+          </div>
+        </div>
+        <div class="clear"></div>
+      </li>      <li class="listePrincipale">
+        <div class="gauche"><a href="/Loisirs/Livre/plus-jamais-ca-9782755606645"><img src="http://static.eyrolles.com/img/2/7/5/5/6/0/6/6/9782755606645_h80.gif" alt="" title="Plus jamais ça !" class="livre" /></a></div>
+        <div class="droite roundCorner">
+          <div><div class="prix">6,65 &euro;</div> <div class="delai disponible">expédié sous 4 jours</div></div>
+          <div class="boutonAlignCenter"><a id="ean13-9782755606645" class="ajoutPanier" title="Plus jamais ça !" href="/Accueil/Panier/index_a.php?ouv_ean13=9782755606645&amp;add=1"><img src="/images/layout/boutonPanier.png" alt="ajouter au panier" title="Plus jamais ça !"  /></a></div>
+          <div class="stocks">
+            Librairie Eyrolles, Paris : indisponible <br />
+            
+          </div>
+        </div>
+        <div class="centre">
+          <h2><a href="/Loisirs/Livre/plus-jamais-ca-9782755606645">Plus jamais ça !</a></h2>
+          <div class="sousTitre">L'échec des bleus</div>
+          <span class="format">    </span>
+          <div class="infos">
+            <ul>
+              <li><span class="titre">Auteurs : </span>Collectif Hugo et compagnie</li>
+              <li><span class="titre">Editeur : </span>Hugo et compagnie</li>
+              <li><span class="titre">Date de parution : </span>Juillet 2010</li>
+            </ul>
+          </div>
+        </div>
+        <div class="clear"></div>
+      </li>      <li class="listePrincipale">
+        <div class="gauche"><a href="/Loisirs/Livre/allez-la-france-football-et-immigration-9782070129638"><img src="http://static.eyrolles.com/img/2/0/7/0/1/2/9/6/9782070129638_h80.gif" alt="" title="Allez la France ! - Football et immigration" class="livre" /></a></div>
+        <div class="droite roundCorner">
+          <div><div class="prix">25,08 &euro;</div> <div class="delai disponible">expédié sous 4 jours</div></div>
+          <div class="boutonAlignCenter"><a id="ean13-9782070129638" class="ajoutPanier" title="Allez la France ! - Football et immigration" href="/Accueil/Panier/index_a.php?ouv_ean13=9782070129638&amp;add=1"><img src="/images/layout/boutonPanier.png" alt="ajouter au panier" title="Allez la France ! - Football et immigration"  /></a></div>
+          <div class="stocks">
+            Librairie Eyrolles, Paris : indisponible <br />
+            
+          </div>
+        </div>
+        <div class="centre">
+          <h2><a href="/Loisirs/Livre/allez-la-france-football-et-immigration-9782070129638">Allez la France ! - Football et immigration</a></h2>
+          <div class="sousTitre"></div>
+          <span class="format">    </span>
+          <div class="infos">
+            <ul>
+              <li><span class="titre">Auteurs : </span>Claude Boli, Yvan Gastaut, Fabrice Grognet et  Collectif Gallimard</li>
+              <li><span class="titre">Editeur : </span>Gallimard</li>
+              <li><span class="titre">Date de parution : </span>Juin 2010</li>
+            </ul>
+          </div>
+        </div>
+        <div class="clear"></div>
+      </li>      <li class="listePrincipale">
+        <div class="gauche"><a href="/Loisirs/Livre/footafric-coupe-du-monde-capitalisme-et-neocolonialisme-9782915830460"><img src="http://static.eyrolles.com/img/2/9/1/5/8/3/0/4/9782915830460_h80.gif" alt="" title="Footafric - Coupe du monde, capitalisme et néocolonialisme" class="livre" /></a></div>
+        <div class="droite roundCorner">
+          <div><div class="prix">10,64 &euro;</div> <div class="delai disponible">expédié sous 48h</div></div>
+          <div class="boutonAlignCenter"><a id="ean13-9782915830460" class="ajoutPanier" title="Footafric - Coupe du monde, capitalisme et néocolonialisme" href="/Accueil/Panier/index_a.php?ouv_ean13=9782915830460&amp;add=1"><img src="/images/layout/boutonPanier.png" alt="ajouter au panier" title="Footafric - Coupe du monde, capitalisme et néocolonialisme"  /></a></div>
+          <div class="stocks">
+            Librairie Eyrolles, Paris : indisponible <br />
+            
+          </div>
+        </div>
+        <div class="centre">
+          <h2><a href="/Loisirs/Livre/footafric-coupe-du-monde-capitalisme-et-neocolonialisme-9782915830460">Footafric - Coupe du monde, capitalisme et néocolonialisme</a></h2>
+          <div class="sousTitre"></div>
+          <span class="format">    </span>
+          <div class="infos">
+            <ul>
+              <li><span class="titre">Auteurs : </span>Ronan David, Fabien Lebrun et Patrick Vassort</li>
+              <li><span class="titre">Editeur : </span>Editions l'Echappée</li>
+              <li><span class="titre">Date de parution : </span>Mai 2010</li>
+            </ul>
+          </div>
+        </div>
+        <div class="clear"></div>
+      </li>      <li class="listePrincipale">
+        <div class="gauche"><a href="/Loisirs/Livre/l-histoire-de-l-olympique-lyonnais-9788873016977"><img src="http://static.eyrolles.com/img/8/8/7/3/0/1/6/9/9788873016977_h80.gif" alt="" title="L'histoire de l'Olympique Lyonnais" class="livre" /></a></div>
+        <div class="droite roundCorner">
+          <div><div class="prix">3,71 &euro;</div> <div class="delai disponible">expédié sous 24h</div></div>
+          <div class="boutonAlignCenter"><a id="ean13-9788873016977" class="ajoutPanier" title="L'histoire de l'Olympique Lyonnais" href="/Accueil/Panier/index_a.php?ouv_ean13=9788873016977&amp;add=1"><img src="/images/layout/boutonPanier.png" alt="ajouter au panier" title="L'histoire de l'Olympique Lyonnais"  /></a></div>
+          <div class="stocks">
+            Librairie Eyrolles, Paris : indisponible <br />
+            
+          </div>
+        </div>
+        <div class="centre">
+          <h2><a href="/Loisirs/Livre/l-histoire-de-l-olympique-lyonnais-9788873016977">L'histoire de l'Olympique Lyonnais</a></h2>
+          <div class="sousTitre"></div>
+          <span class="format">    </span>
+          <div class="infos">
+            <ul>
+              <li><span class="titre">Auteur : </span>Matthias Galante</li>
+              <li><span class="titre">Editeur : </span>Gremese</li>
+              <li><span class="titre">Date de parution : </span>Février 2010</li>
+            </ul>
+          </div>
+        </div>
+        <div class="clear"></div>
+      </li>      <li class="listePrincipale">
+        <div class="gauche"><a href="/Loisirs/Livre/l-histoire-du-fc-girondins-de-bordeaux-9788873016984"><img src="http://static.eyrolles.com/img/8/8/7/3/0/1/6/9/9788873016984_h80.gif" alt="" title="L'histoire du FC Girondins de Bordeaux" class="livre" /></a></div>
+        <div class="droite roundCorner">
+          <div><div class="prix">3,71 &euro;</div> <div class="delai disponible">expédié sous 24h</div></div>
+          <div class="boutonAlignCenter"><a id="ean13-9788873016984" class="ajoutPanier" title="L'histoire du FC Girondins de Bordeaux" href="/Accueil/Panier/index_a.php?ouv_ean13=9788873016984&amp;add=1"><img src="/images/layout/boutonPanier.png" alt="ajouter au panier" title="L'histoire du FC Girondins de Bordeaux"  /></a></div>
+          <div class="stocks">
+            Librairie Eyrolles, Paris : indisponible <br />
+            
+          </div>
+        </div>
+        <div class="centre">
+          <h2><a href="/Loisirs/Livre/l-histoire-du-fc-girondins-de-bordeaux-9788873016984">L'histoire du FC Girondins de Bordeaux</a></h2>
+          <div class="sousTitre"></div>
+          <span class="format">    </span>
+          <div class="infos">
+            <ul>
+              <li><span class="titre">Auteur : </span>Matthias Galante</li>
+              <li><span class="titre">Editeur : </span>Gremese</li>
+              <li><span class="titre">Date de parution : </span>Février 2010</li>
+            </ul>
+          </div>
+        </div>
+        <div class="clear"></div>
+      </li>      <li class="listePrincipale">
+        <div class="gauche"><a href="/Loisirs/Livre/l-histoire-du-psg-9788873016953"><img src="http://static.eyrolles.com/img/8/8/7/3/0/1/6/9/9788873016953_h80.gif" alt="" title="L'histoire du PSG" class="livre" /></a></div>
+        <div class="droite roundCorner">
+          <div><div class="prix">3,71 &euro;</div> <div class="delai disponible">expédié sous 24h</div></div>
+          <div class="boutonAlignCenter"><a id="ean13-9788873016953" class="ajoutPanier" title="L'histoire du PSG" href="/Accueil/Panier/index_a.php?ouv_ean13=9788873016953&amp;add=1"><img src="/images/layout/boutonPanier.png" alt="ajouter au panier" title="L'histoire du PSG"  /></a></div>
+          <div class="stocks">
+            Librairie Eyrolles, Paris : indisponible <br />
+            
+          </div>
+        </div>
+        <div class="centre">
+          <h2><a href="/Loisirs/Livre/l-histoire-du-psg-9788873016953">L'histoire du PSG</a></h2>
+          <div class="sousTitre"></div>
+          <span class="format">    </span>
+          <div class="infos">
+            <ul>
+              <li><span class="titre">Auteur : </span>Matthias Galante</li>
+              <li><span class="titre">Editeur : </span>Gremese</li>
+              <li><span class="titre">Date de parution : </span>Février 2010</li>
+            </ul>
+          </div>
+        </div>
+        <div class="clear"></div>
+      </li>      <li class="listePrincipale">
+        <div class="gauche"><a href="/Loisirs/Livre/l-histoire-de-l-olympique-de-marseille-9788873016960"><img src="http://static.eyrolles.com/img/8/8/7/3/0/1/6/9/9788873016960_h80.gif" alt="" title="L'histoire de l'Olympique de Marseille" class="livre" /></a></div>
+        <div class="droite roundCorner">
+          <div><div class="prix">3,71 &euro;</div> <div class="delai disponible">expédié sous 24h</div></div>
+          <div class="boutonAlignCenter"><a id="ean13-9788873016960" class="ajoutPanier" title="L'histoire de l'Olympique de Marseille" href="/Accueil/Panier/index_a.php?ouv_ean13=9788873016960&amp;add=1"><img src="/images/layout/boutonPanier.png" alt="ajouter au panier" title="L'histoire de l'Olympique de Marseille"  /></a></div>
+          <div class="stocks">
+            Librairie Eyrolles, Paris : indisponible <br />
+            
+          </div>
+        </div>
+        <div class="centre">
+          <h2><a href="/Loisirs/Livre/l-histoire-de-l-olympique-de-marseille-9788873016960">L'histoire de l'Olympique de Marseille</a></h2>
+          <div class="sousTitre"></div>
+          <span class="format">    </span>
+          <div class="infos">
+            <ul>
+              <li><span class="titre">Auteur : </span>Matthias Galante</li>
+              <li><span class="titre">Editeur : </span>Gremese</li>
+              <li><span class="titre">Date de parution : </span>Février 2010</li>
+            </ul>
+          </div>
+        </div>
+        <div class="clear"></div>
+      </li>      <li class="listePrincipale">
+        <div class="gauche"><a href="/Loisirs/Livre/vert-de-rage-9782702141038"><img src="http://static.eyrolles.com/img/2/7/0/2/1/4/1/0/9782702141038_h80.gif" alt="" title="Vert de rage" class="livre" /></a></div>
+        <div class="droite roundCorner">
+          <div><div class="prix">19,29 &euro;</div> <div class="delai disponible">expédié sous 24h</div></div>
+          <div class="boutonAlignCenter"><a id="ean13-9782702141038" class="ajoutPanier" title="Vert de rage" href="/Accueil/Panier/index_a.php?ouv_ean13=9782702141038&amp;add=1"><img src="/images/layout/boutonPanier.png" alt="ajouter au panier" title="Vert de rage"  /></a></div>
+          <div class="stocks">
+            Librairie Eyrolles, Paris : indisponible <br />
+            
+          </div>
+        </div>
+        <div class="centre">
+          <h2><a href="/Loisirs/Livre/vert-de-rage-9782702141038">Vert de rage</a></h2>
+          <div class="sousTitre"></div>
+          <span class="format">    </span>
+          <div class="infos">
+            <ul>
+              <li><span class="titre">Auteur : </span>Jean-Michel Larqué</li>
+              <li><span class="titre">Editeur : </span>Calmann-Lévy</li>
+              <li><span class="titre">Date de parution : </span>Janvier 2010</li>
+            </ul>
+          </div>
+        </div>
+        <div class="clear"></div>
+      </li>      <li class="listePrincipale">
+        <div class="gauche"><a href="/Loisirs/Livre/domenech-histoires-secretes-d-une-imposture-9782350132082"><img src="http://static.eyrolles.com/img/2/3/5/0/1/3/2/0/9782350132082_h80.gif" alt="" title="Domenech - Histoires secrètes d'une imposture" class="livre" /></a></div>
+        <div class="droite roundCorner">
+          <div><div class="prix">19,19 &euro;</div> <div class="delai disponible">expédié sous 24h</div></div>
+          <div class="boutonAlignCenter"><a id="ean13-9782350132082" class="ajoutPanier" title="Domenech - Histoires secrètes d'une imposture" href="/Accueil/Panier/index_a.php?ouv_ean13=9782350132082&amp;add=1"><img src="/images/layout/boutonPanier.png" alt="ajouter au panier" title="Domenech - Histoires secrètes d'une imposture"  /></a></div>
+          <div class="stocks">
+            Librairie Eyrolles, Paris : indisponible <br />
+            
+          </div>
+        </div>
+        <div class="centre">
+          <h2><a href="/Loisirs/Livre/domenech-histoires-secretes-d-une-imposture-9782350132082">Domenech - Histoires secrètes d'une imposture</a></h2>
+          <div class="sousTitre"></div>
+          <span class="format">    </span>
+          <div class="infos">
+            <ul>
+              <li><span class="titre">Auteur : </span>Bruno Godard</li>
+              <li><span class="titre">Editeur : </span>Jean-Claude Gawsewitch</li>
+              <li><span class="titre">Date de parution : </span>Janvier 2010</li>
+            </ul>
+          </div>
+        </div>
+        <div class="clear"></div>
+      </li>      <li class="listePrincipale">
+        <div class="gauche"><a href="/Loisirs/Livre/toxic-food-9782081214392"><img src="http://static.eyrolles.com/img/2/0/8/1/2/1/4/3/9782081214392_h80.gif" alt="" title="Toxic Food" class="livre" /></a></div>
+        <div class="droite roundCorner">
+          <div><div class="prix">19,29 &euro;</div> <div class="delai disponible">expédié sous 24h</div></div>
+          <div class="boutonAlignCenter"><a id="ean13-9782081214392" class="ajoutPanier" title="Toxic Food" href="/Accueil/Panier/index_a.php?ouv_ean13=9782081214392&amp;add=1"><img src="/images/layout/boutonPanier.png" alt="ajouter au panier" title="Toxic Food"  /></a></div>
+          <div class="stocks">
+            Librairie Eyrolles, Paris : indisponible <br />
+            
+          </div>
+        </div>
+        <div class="centre">
+          <h2><a href="/Loisirs/Livre/toxic-food-9782081214392">Toxic Food</a></h2>
+          <div class="sousTitre">Enquête sur les secrets de la nouvelle malbouffe</div>
+          <span class="format">    </span>
+          <div class="infos">
+            <ul>
+              <li><span class="titre">Auteur : </span>William Reymond</li>
+              <li><span class="titre">Editeur : </span>Flammarion</li>
+              <li><span class="titre">Date de parution : </span>Novembre 2009</li>
+            </ul>
+          </div>
+        </div>
+        <div class="clear"></div>
+      </li>      <li class="listePrincipale">
+        <div class="gauche"><a href="/Loisirs/Livre/le-foot-vu-par-christophe-dugarry-9782755604276"><img src="http://static.eyrolles.com/img/2/7/5/5/6/0/4/2/9782755604276_h80.gif" alt="" title="Le foot vu par Christophe Dugarry" class="livre" /></a></div>
+        <div class="droite roundCorner">
+          <div><div class="prix">23,75 &euro;</div> <div class="delai disponible">expédié sous 24h</div></div>
+          <div class="boutonAlignCenter"><a id="ean13-9782755604276" class="ajoutPanier" title="Le foot vu par Christophe Dugarry" href="/Accueil/Panier/index_a.php?ouv_ean13=9782755604276&amp;add=1"><img src="/images/layout/boutonPanier.png" alt="ajouter au panier" title="Le foot vu par Christophe Dugarry"  /></a></div>
+          <div class="stocks">
+            Librairie Eyrolles, Paris : stock limité <br />
+            
+          </div>
+        </div>
+        <div class="centre">
+          <h2><a href="/Loisirs/Livre/le-foot-vu-par-christophe-dugarry-9782755604276">Le foot vu par Christophe Dugarry</a></h2>
+          <div class="sousTitre"></div>
+          <span class="format">    </span>
+          <div class="infos">
+            <ul>
+              <li><span class="titre">Auteurs : </span>Christophe Dugarry et Daniel Riolo</li>
+              <li><span class="titre">Editeur : </span>Hugo Image</li>
+              <li><span class="titre">Date de parution : </span>Novembre 2009</li>
+            </ul>
+          </div>
+        </div>
+        <div class="clear"></div>
+      </li>      <li class="listePrincipale">
+        <div class="gauche"><a href="/Loisirs/Livre/food-colour-red-9789079761128"><img src="http://static.eyrolles.com/img/9/0/7/9/7/6/1/1/9789079761128_h80.gif" alt="" title="Food colour - Red" class="livre" /></a></div>
+        <div class="droite roundCorner">
+          <div><div class="prix">9,59 &euro;</div> <div class="delai disponible">expédié sous 24h</div></div>
+          <div class="boutonAlignCenter"><a id="ean13-9789079761128" class="ajoutPanier" title="Food colour - Red" href="/Accueil/Panier/index_a.php?ouv_ean13=9789079761128&amp;add=1"><img src="/images/layout/boutonPanier.png" alt="ajouter au panier" title="Food colour - Red"  /></a></div>
+          <div class="stocks">
+            Librairie Eyrolles, Paris : indisponible <br />
+            
+          </div>
+        </div>
+        <div class="centre">
+          <h2><a href="/Loisirs/Livre/food-colour-red-9789079761128">Food colour - Red</a></h2>
+          <div class="sousTitre"></div>
+          <span class="format">    </span>
+          <div class="infos">
+            <ul>
+              <li><span class="titre">Auteurs : </span>Giuliana Cagna et Fabrizio Esposito</li>
+              <li><span class="titre">Editeur : </span>Tectum</li>
+              <li><span class="titre">Date de parution : </span>Novembre 2009</li>
+            </ul>
+          </div>
+        </div>
+        <div class="clear"></div>
+      </li>    </ul>
+    <div class="listeHautBas" id="listeBas">
+      <div class="gauche">Résultats : 21 à 40 sur 91 livres</div>
+      <div class="droite">Pages : <a href="/Accueil/Recherche/?q=foo&page=1">&lt;</a>&nbsp;<a href="/Accueil/Recherche/?q=foo&page=1">1</a> | <span class="actif">2</span> | <a href="/Accueil/Recherche/?q=foo&page=3">3</a> | <a href="/Accueil/Recherche/?q=foo&page=4">4</a> | <a href="/Accueil/Recherche/?q=foo&page=5">5</a>&nbsp;<a href="/Accueil/Recherche/?q=foo&page=3">&gt;</a></div>
+      <div class="centre">
+        <form action="/Accueil/Recherche/" method="get">  
+          <div>
+                              <input type="hidden" name="q" value="foo" />
+                            <label for="nb">Afficher : </label>
+            <select name="nb" id="nb" class="autosubmit"  >
+<option value="10">10</option>
+<option value="20" selected="selected">20</option>
+<option value="50">50</option>
+<option value="100">100</option>
+</select>
+                        <input type="submit" class="nojs" value="OK" />
+             par page
+          </div>
+        </form>
+      </div>
+    </div>
+      </div>     
+</div>

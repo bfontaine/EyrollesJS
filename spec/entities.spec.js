@@ -1,41 +1,45 @@
 var entities = require( '../src/entities' ),
+    nock     = require( 'nock' );
 
-    expected_entities = [
-    'Author', 'Book', 'BooksList', 'Publisher' ],
-    i, len = expected_entities.length, e;
+describe( 'BooksList', function() {
 
-describe( 'Exported objects', function() {
+    it( 'should have a .fetch method', function() {
 
-    for ( i = 0; i < len; i++ ) {
+            var bl = new entities.BooksList();
 
-        e = expected_entities[ i ];
+            expect( typeof bl.fetch ).toEqual( 'function' );
 
-        it( 'should include `' + e + '`', function() {
-            
-            expect( entities[ e ] ).toBeDefined();        
-            expect( entities[ e ] ).not.toBeNull();
+    });
 
-        });
+    it( 'should use pagination to fetch large results', function( done ) {
 
-    }
+        var _n = nock( 'http://www.eyrolles.com' ), p;
 
-});
+        // the following two lines should be removed when BooksList
+        // pagination will be implemented.
+        _n = _n.get( '//Accueil/Recherche/?q=foo' )
+                .replyWithFile( 200, __dirname + '/mocks/search-for-foo-p1.html' );
 
-for ( i = 0; i < len; i++ ) {
 
-    e = expected_entities[ i ];
+        for ( p = 1; p <= 5; p++ ) {
 
-    describe( e, function() {
+            _n = _n.get( '/Accueil/Recherche/?ajax=on&q=foo&page=' + p )
+                    .replyWithFile( 200,
+                        __dirname + '/mocks/search-for-foo-p' + p + '.html' );
 
-        it( 'should have a .fetch method', function() {
+        }
 
-            var o = new entities[ e ]();
+        var bl = new entities.BooksList( '?q=foo' );
 
-            expect( o ).toBeDefined();
-            expect( o ).not.toBeNull();
+        bl.fetch(function() {
+
+            expect( bl.results ).toBeDefined();
+            expect( bl.results.length ).toEqual( 91 );
+
+            done();
 
         });
 
     });
 
-}
+});

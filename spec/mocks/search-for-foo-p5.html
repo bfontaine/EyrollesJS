@@ -1,0 +1,438 @@
+<div id="pageListeThematiques">
+  <div id="sidebar-themes">
+    <div class="titreGauche">
+      <h1>Affinez votre recherche</h1>
+      <div></div>
+    </div>
+    <form id="rechercheFiltre" action="/Accueil/Recherche/">
+      <div>
+        <div>
+          <label for="rechercheQ"><span>Recherche</span></label><br />
+          <input id="rechercheQ" class="rechercheFiltre" type="text" name="q" value="foo" />
+        </div>
+        <br />
+              <div>
+          <span>Rayon</span>
+          <ul id="rechercheFiltreRayon">
+            <li>
+              <input id="rechercheFiltreRayonAcc" class="rechercheFiltre rechercheFiltreRayon main" name="Rayon[ACC]" type="checkbox" checked="checked" />
+              <label for="rechercheFiltreRayonAcc">Tous</label>
+            </li>
+                        <li>
+              <input id="rechercheFiltreRayonVIE" class="rechercheFiltre rechercheFiltreRayon" name="Rayon[VIE]" type="checkbox" />
+              <label for="rechercheFiltreRayonVIE">Vie pratique</label> (83)
+            </li>
+                        <li>
+              <input id="rechercheFiltreRayonDRO" class="rechercheFiltre rechercheFiltreRayon" name="Rayon[DRO]" type="checkbox" />
+              <label for="rechercheFiltreRayonDRO">Droit</label> (12)
+            </li>
+                        <li>
+              <input id="rechercheFiltreRayonMAN" class="rechercheFiltre rechercheFiltreRayon" name="Rayon[MAN]" type="checkbox" />
+              <label for="rechercheFiltreRayonMAN">Entreprise</label> (9)
+            </li>
+                        <li>
+              <input id="rechercheFiltreRayonSCI" class="rechercheFiltre rechercheFiltreRayon" name="Rayon[SCI]" type="checkbox" />
+              <label for="rechercheFiltreRayonSCI">Sciences</label> (8)
+            </li>
+                        <li>
+              <input id="rechercheFiltreRayonVID" class="rechercheFiltre rechercheFiltreRayon" name="Rayon[VID]" type="checkbox" />
+              <label for="rechercheFiltreRayonVID">Graphisme &amp; Photo</label> (6)
+            </li>
+                        <li>
+              <input id="rechercheFiltreRayonINF" class="rechercheFiltre rechercheFiltreRayon" name="Rayon[INF]" type="checkbox" />
+              <label for="rechercheFiltreRayonINF">Informatique</label> (1)
+            </li>
+                      </ul>
+        </div>
+        <div>
+          <span>Contenu dans</span>
+                    <ul id="rechercheFiltreCritere">
+                        <li>
+            <input id="rechercheFiltreCritereTout" class="rechercheFiltre rechercheFiltreCritere main" name="Critere[Tout]" type="checkbox" checked="checked" />
+            <label for="rechercheFiltreCritereTout">Tout</label> (91)
+            </li>
+                        <li>
+            <input id="rechercheFiltreCritereTitre" class="rechercheFiltre rechercheFiltreCritere" name="Critere[Titre]" type="checkbox"  />
+            <label for="rechercheFiltreCritereTitre">Titre</label> (39)
+            </li>
+                        <li>
+            <input id="rechercheFiltreCritereTitre_-_Sous-Titre" class="rechercheFiltre rechercheFiltreCritere" name="Critere[Titre + Sous-Titre]" type="checkbox"  />
+            <label for="rechercheFiltreCritereTitre_-_Sous-Titre">Titre + Sous-Titre</label> (51)
+            </li>
+                        <li>
+            <input id="rechercheFiltreCritereAuteur" class="rechercheFiltre rechercheFiltreCritere" name="Critere[Auteur]" type="checkbox"  />
+            <label for="rechercheFiltreCritereAuteur">Auteur</label> (2)
+            </li>
+                      </ul>
+                  </div>
+        <div>
+          <span>Type</span>
+          <ul id="rechercheFiltreType">
+            <li>
+              <input id="rechercheFiltreTypeAll" class="rechercheFiltre rechercheFiltreType main" name="Type[ALL]" type="checkbox" checked="checked" />
+              <label for="rechercheFiltreTypeAll">Tous</label>
+            </li>
+                        <li>
+              <input id="rechercheFiltreType0" class="rechercheFiltre rechercheFiltreType" name="Type[0]" type="checkbox" />
+              <label for="rechercheFiltreType0">Ouvrage</label> (90)
+            </li>
+                        <li>
+              <input id="rechercheFiltreType1" class="rechercheFiltre rechercheFiltreType" name="Type[1]" type="checkbox" />
+              <label for="rechercheFiltreType1">CD-ROM</label> (1)
+            </li>
+                      </ul>
+        </div>
+        <div>
+          <span>Langue</span>
+          <ul id="rechercheFiltreLangue">
+            <li>
+              <input id="rechercheFiltreLangueAll" class="rechercheFiltre rechercheFiltreLangue main" name="Langue[ALL]" type="checkbox" checked="checked" />
+              <label for="rechercheFiltreLangueAll">Tous</label>
+            </li>
+                        <li>
+              <input id="rechercheFiltreLangue0" class="rechercheFiltre rechercheFiltreLangue" name="Langue[0]" type="checkbox" />
+              <label for="rechercheFiltreLangue0">Français</label> (82)
+            </li>
+                        <li>
+              <input id="rechercheFiltreLangue1" class="rechercheFiltre rechercheFiltreLangue" name="Langue[1]" type="checkbox" />
+              <label for="rechercheFiltreLangue1">Anglais</label> (3)
+            </li>
+                        <li>
+              <input id="rechercheFiltreLangue4" class="rechercheFiltre rechercheFiltreLangue" name="Langue[4]" type="checkbox" />
+              <label for="rechercheFiltreLangue4">Multilingue</label> (6)
+            </li>
+                      </ul>
+        </div>
+        <div>
+          <span>Disponibilité</span>
+          <ul id="rechercheFiltreDispo">
+            <li>
+              <input id="rechercheFiltreDispoAll"  class="rechercheFiltre rechercheFiltreDispo main" name="Dispo[ALL]" type="checkbox" checked="checked" />
+              <label for="rechercheFiltreDispoAll">Tous</label>
+            </li>
+                        <li>
+              <input id="rechercheFiltreDispoEyrolles.com"  class="rechercheFiltre rechercheFiltreDispo" name="Dispo[Eyrolles.com]" type="checkbox" />
+              <label for="rechercheFiltreDispoEyrolles.com">Eyrolles.com</label> (89)
+            </li>
+                        <li>
+              <input id="rechercheFiltreDispoLibrairie"  class="rechercheFiltre rechercheFiltreDispo" name="Dispo[Librairie]" type="checkbox" />
+              <label for="rechercheFiltreDispoLibrairie">Librairie</label> (14)
+            </li>
+                        <li>
+              <input id="rechercheFiltreDispoEbook"  class="rechercheFiltre rechercheFiltreDispo" name="Dispo[Ebook]" type="checkbox" />
+              <label for="rechercheFiltreDispoEbook">Ebook</label> (1)
+            </li>
+                      </ul>
+        </div>
+        
+        
+        <input class="bouton_vert" type="submit" value="Mettre à jour" />
+      </div>
+    </form>
+  </div>
+    
+  <div id="contenu">
+    <h1>Recherche : foo</h1>
+    
+    <div class="clear"></div>
+    
+        <div class="listeHautBas" id="listeHaut">
+      <div class="gauche">Résultats : 81 à 91 sur 91 livres</div>
+      <div class="droite">Pages : <a href="/Accueil/Recherche/?q=foo&page=4">&lt;</a>&nbsp;<a href="/Accueil/Recherche/?q=foo&page=1">1</a> | <a href="/Accueil/Recherche/?q=foo&page=2">2</a> | <a href="/Accueil/Recherche/?q=foo&page=3">3</a> | <a href="/Accueil/Recherche/?q=foo&page=4">4</a> | <span class="actif">5</span></div>
+      <div class="centre">
+        <form action="/Accueil/Recherche/" method="get">
+          <div>
+                              <input type="hidden" name="q" value="foo" />
+                            <label for="sort">Trier par :</label>
+            <select name="sort" id="sort" class="autosubmit"  >
+<option value="auteur">Auteur</option>
+<option value="editeur">Editeur</option>
+<option value="dtparution" selected="selected">Date de parution</option>
+<option value="prixasc">Prix croissant</option>
+<option value="prixdesc">Prix décroissant</option>
+<option value="titre">Titre</option>
+<option value="nbcom">Meilleures ventes</option>
+<option value="pertinence">Pertinence</option>
+</select>
+                        <input type="submit" class="nojs" value="OK" />
+          </div>
+        </form>
+      </div>
+    </div>
+    <ul class="listePrincipale">
+            <li class="listePrincipale">
+        <div class="gauche"><a href="/Sciences/Livre/comment-marquer-un-but-9782709628365"><img src="http://static.eyrolles.com/img/2/7/0/9/6/2/8/3/9782709628365_h80.gif" alt="" title="Comment marquer un but" class="livre" /></a></div>
+        <div class="droite roundCorner">
+          <div><div class="prix">18,34 &euro;</div> <div class="delai disponible">expédié sous 24h</div></div>
+          <div class="boutonAlignCenter"><a id="ean13-9782709628365" class="ajoutPanier" title="Comment marquer un but" href="/Accueil/Panier/index_a.php?ouv_ean13=9782709628365&amp;add=1"><img src="/images/layout/boutonPanier.png" alt="ajouter au panier" title="Comment marquer un but"  /></a></div>
+          <div class="stocks">
+            Librairie Eyrolles, Paris : indisponible <br />
+            
+          </div>
+        </div>
+        <div class="centre">
+          <h2><a href="/Sciences/Livre/comment-marquer-un-but-9782709628365">Comment marquer un but</a></h2>
+          <div class="sousTitre">Les lois secrètes du football</div>
+          <span class="format">    </span>
+          <div class="infos">
+            <ul>
+              <li><span class="titre">Auteur : </span>Ken Bray</li>
+              <li><span class="titre">Editeur : </span>JC Lattès</li>
+              <li><span class="titre">Date de parution : </span>Mai 2006</li>
+            </ul>
+          </div>
+        </div>
+        <div class="clear"></div>
+      </li>      <li class="listePrincipale">
+        <div class="gauche"><a href="/Loisirs/Livre/foot-2-rue-volume-2-goal-surprise-9782012011137"><img src="http://static.eyrolles.com/img/2/0/1/2/0/1/1/1/9782012011137_h80.gif" alt="" title="Foot 2 rue - Volume 2 - Goal surprise" class="livre" /></a></div>
+        <div class="droite roundCorner">
+          <div><div class="prix">4,75 &euro;</div> <div class="delai disponible">expédié sous 24h</div></div>
+          <div class="boutonAlignCenter"><a id="ean13-9782012011137" class="ajoutPanier" title="Foot 2 rue - Volume 2 - Goal surprise" href="/Accueil/Panier/index_a.php?ouv_ean13=9782012011137&amp;add=1"><img src="/images/layout/boutonPanier.png" alt="ajouter au panier" title="Foot 2 rue - Volume 2 - Goal surprise"  /></a></div>
+          <div class="stocks">
+            Librairie Eyrolles, Paris : indisponible <br />
+            
+          </div>
+        </div>
+        <div class="centre">
+          <h2><a href="/Loisirs/Livre/foot-2-rue-volume-2-goal-surprise-9782012011137">Foot 2 rue - Volume 2 - Goal surprise</a></h2>
+          <div class="sousTitre"></div>
+          <span class="format">    </span>
+          <div class="infos">
+            <ul>
+              <li><span class="titre">Auteur : </span>Michel Leydier</li>
+              <li><span class="titre">Editeur : </span>Hachette</li>
+              <li><span class="titre">Date de parution : </span>Février 2006</li>
+            </ul>
+          </div>
+        </div>
+        <div class="clear"></div>
+      </li>      <li class="listePrincipale">
+        <div class="gauche"><a href="/Loisirs/Livre/le-dieu-football-9782708134669"><img src="http://static.eyrolles.com/img/2/7/0/8/1/3/4/6/9782708134669_h80.gif" alt="" title="Le Dieu football" class="livre" /></a></div>
+        <div class="droite roundCorner">
+          <div><div class="prix">14,44 &euro;</div> <div class="delai disponible">expédié sous 24h</div></div>
+          <div class="boutonAlignCenter"><a id="ean13-9782708134669" class="ajoutPanier" title="Le Dieu football" href="/Accueil/Panier/index_a.php?ouv_ean13=9782708134669&amp;add=1"><img src="/images/layout/boutonPanier.png" alt="ajouter au panier" title="Le Dieu football"  /></a></div>
+          <div class="stocks">
+            Librairie Eyrolles, Paris : indisponible <br />
+            
+          </div>
+        </div>
+        <div class="centre">
+          <h2><a href="/Loisirs/Livre/le-dieu-football-9782708134669">Le Dieu football</a></h2>
+          <div class="sousTitre">Ses origines - Ses rites - Ses symboles</div>
+          <span class="format">    </span>
+          <div class="infos">
+            <ul>
+              <li><span class="titre">Auteur : </span>Philippe Villemus</li>
+              <li><span class="titre">Editeur : </span>Eyrolles</li>
+              <li><span class="titre">Date de parution : </span>Février 2006</li>
+            </ul>
+          </div>
+        </div>
+        <div class="clear"></div>
+      </li>      <li class="listePrincipale">
+        <div class="gauche"><a href="/Sciences/Livre/modern-food-microbiology-9780387231808"><img src="http://static.eyrolles.com/img/0/3/8/7/2/3/1/8/9780387231808_h80.gif" alt="" title="Modern Food Microbiology" class="livre" /></a></div>
+        <div class="droite roundCorner">
+          <div><div class="prix">67,36 &euro;</div> <div class="delai disponible">expédié sous 4 jours</div></div>
+          <div class="boutonAlignCenter"><a id="ean13-9780387231808" class="ajoutPanier" title="Modern Food Microbiology" href="/Accueil/Panier/index_a.php?ouv_ean13=9780387231808&amp;add=1"><img src="/images/layout/boutonPanier.png" alt="ajouter au panier" title="Modern Food Microbiology"  /></a></div>
+          <div class="stocks">
+            Librairie Eyrolles, Paris : indisponible <br />
+            
+          </div>
+        </div>
+        <div class="centre">
+          <h2><a href="/Sciences/Livre/modern-food-microbiology-9780387231808">Modern Food Microbiology</a></h2>
+          <div class="sousTitre"></div>
+          <span class="format">  <img src="/images/uk.png" alt="drapeau anglais" title="Livre en langue anglaise" />&nbsp;&nbsp;  </span>
+          <div class="infos">
+            <ul>
+              <li><span class="titre">Auteurs : </span>James M. Jay, Martin J. Loessner et David A. Golden</li>
+              <li><span class="titre">Editeur : </span>Springer</li>
+              <li><span class="titre">Date de parution : </span>Juin 2005</li>
+            </ul>
+          </div>
+        </div>
+        <div class="clear"></div>
+      </li>      <li class="listePrincipale">
+        <div class="gauche"><a href="/Loisirs/Livre/les-mots-du-football-9782701141978"><img src="http://static.eyrolles.com/img/2/7/0/1/1/4/1/9/9782701141978_h80.gif" alt="" title="Les mots du football" class="livre" /></a></div>
+        <div class="droite roundCorner">
+          <div><div class="prix">15,20 &euro;</div> <div class="delai disponible">expédié sous 24h</div></div>
+          <div class="boutonAlignCenter"><a id="ean13-9782701141978" class="ajoutPanier" title="Les mots du football" href="/Accueil/Panier/index_a.php?ouv_ean13=9782701141978&amp;add=1"><img src="/images/layout/boutonPanier.png" alt="ajouter au panier" title="Les mots du football"  /></a></div>
+          <div class="stocks">
+            Librairie Eyrolles, Paris : indisponible <br />
+            
+          </div>
+        </div>
+        <div class="centre">
+          <h2><a href="/Loisirs/Livre/les-mots-du-football-9782701141978">Les mots du football</a></h2>
+          <div class="sousTitre"></div>
+          <span class="format">    </span>
+          <div class="infos">
+            <ul>
+              <li><span class="titre">Auteur : </span>Jean-Damien Lesay</li>
+              <li><span class="titre">Editeur : </span>Belin</li>
+              <li><span class="titre">Date de parution : </span>Mai 2005</li>
+            </ul>
+          </div>
+        </div>
+        <div class="clear"></div>
+      </li>      <li class="listePrincipale">
+        <div class="gauche"><a href="/Loisirs/Livre/il-n-y-aura-pas-de-paradis-9782266138093"><img src="http://static.eyrolles.com/img/2/2/6/6/1/3/8/0/9782266138093_h80.gif" alt="" title="Il n'y aura pas de paradis" class="livre" /></a></div>
+        <div class="droite roundCorner">
+          <div><div class="prix">6,37 &euro;</div> <div class="delai disponible">expédié sous 24h</div></div>
+          <div class="boutonAlignCenter"><a id="ean13-9782266138093" class="ajoutPanier" title="Il n'y aura pas de paradis" href="/Accueil/Panier/index_a.php?ouv_ean13=9782266138093&amp;add=1"><img src="/images/layout/boutonPanier.png" alt="ajouter au panier" title="Il n'y aura pas de paradis"  /></a></div>
+          <div class="stocks">
+            Librairie Eyrolles, Paris : indisponible <br />
+            
+          </div>
+        </div>
+        <div class="centre">
+          <h2><a href="/Loisirs/Livre/il-n-y-aura-pas-de-paradis-9782266138093">Il n'y aura pas de paradis</a></h2>
+          <div class="sousTitre">La guerre du foot et autres guerres et aventures</div>
+          <span class="format">    </span>
+          <div class="infos">
+            <ul>
+              <li><span class="titre">Auteur : </span>Ryszard Kapuscinski</li>
+              <li><span class="titre">Editeur : </span>Pocket</li>
+              <li><span class="titre">Date de parution : </span>Septembre 2004</li>
+            </ul>
+          </div>
+        </div>
+        <div class="clear"></div>
+      </li>      <li class="listePrincipale">
+        <div class="gauche"><a href="/Sciences/Livre/la-science-du-football-9782701136004"><img src="http://static.eyrolles.com/img/2/7/0/1/1/3/6/0/9782701136004_h80.gif" alt="" title="La science du football" class="livre" /></a></div>
+        <div class="droite roundCorner">
+          <div><div class="prix">15,44 &euro;</div> <div class="delai disponible">expédié sous 24h</div></div>
+          <div class="boutonAlignCenter"><a id="ean13-9782701136004" class="ajoutPanier" title="La science du football" href="/Accueil/Panier/index_a.php?ouv_ean13=9782701136004&amp;add=1"><img src="/images/layout/boutonPanier.png" alt="ajouter au panier" title="La science du football"  /></a></div>
+          <div class="stocks">
+            Librairie Eyrolles, Paris : indisponible <br />
+            
+          </div>
+        </div>
+        <div class="centre">
+          <h2><a href="/Sciences/Livre/la-science-du-football-9782701136004">La science du football</a></h2>
+          <div class="sousTitre"></div>
+          <span class="format">    </span>
+          <div class="infos">
+            <ul>
+              <li><span class="titre">Auteur : </span>John Wesson</li>
+              <li><span class="titre">Editeur : </span>Belin</li>
+              <li><span class="titre">Date de parution : </span>Mars 2004</li>
+            </ul>
+          </div>
+        </div>
+        <div class="clear"></div>
+      </li>      <li class="listePrincipale">
+        <div class="gauche"><a href="/Entreprise/Livre/comptabilite-generale-et-analyse-comptable-9782747202800"><img src="http://static.eyrolles.com/img/2/7/4/7/2/0/2/8/9782747202800_h80.gif" alt="" title="Comptabilité générale et analyse comptable" class="livre" /></a></div>
+        <div class="droite roundCorner">
+          <div><div class="prix">32,30 &euro;</div> <div class="delai disponible">expédié sous 24h</div></div>
+          <div class="boutonAlignCenter"><a id="ean13-9782747202800" class="ajoutPanier" title="Comptabilité générale et analyse comptable" href="/Accueil/Panier/index_a.php?ouv_ean13=9782747202800&amp;add=1"><img src="/images/layout/boutonPanier.png" alt="ajouter au panier" title="Comptabilité générale et analyse comptable"  /></a></div>
+          <div class="stocks">
+            Librairie Eyrolles, Paris : indisponible <br />
+            
+          </div>
+        </div>
+        <div class="centre">
+          <h2><a href="/Entreprise/Livre/comptabilite-generale-et-analyse-comptable-9782747202800">Comptabilité générale et analyse comptable</a></h2>
+          <div class="sousTitre">Une approche pédagogique</div>
+          <span class="format">    </span>
+          <div class="infos">
+            <ul>
+              <li><span class="titre">Auteurs : </span>Yvon Foos et Marie-Pierre Vermoyal</li>
+              <li><span class="titre">Editeur : </span>Eska</li>
+              <li><span class="titre">Date de parution : </span>Février 2002</li>
+            </ul>
+          </div>
+        </div>
+        <div class="clear"></div>
+      </li>      <li class="listePrincipale">
+        <div class="gauche"><a href="/Sciences/Livre/gestion-de-la-securite-des-aliments-dans-les-pays-en-developpement-9782876144873"><img src="http://static.eyrolles.com/img/2/8/7/6/1/4/4/8/9782876144873_h80.gif" alt="" title="Gestion de la sécurité des aliments dans les pays en développement" class="livre" /></a></div>
+        <div class="droite roundCorner">
+          <div><div class="prix">15,24 &euro;</div> <div class="delai disponible">expédié sous 24h</div></div>
+          <div class="boutonAlignCenter"><a id="ean13-9782876144873" class="ajoutPanier" title="Gestion de la sécurité des aliments dans les pays en développement" href="/Accueil/Panier/index_a.php?ouv_ean13=9782876144873&amp;add=1"><img src="/images/layout/boutonPanier.png" alt="ajouter au panier" title="Gestion de la sécurité des aliments dans les pays en développement"  /></a></div>
+          <div class="stocks">
+            Librairie Eyrolles, Paris : stock limité <br />
+            
+          </div>
+        </div>
+        <div class="centre">
+          <h2><a href="/Sciences/Livre/gestion-de-la-securite-des-aliments-dans-les-pays-en-developpement-9782876144873">Gestion de la sécurité des aliments dans les pays en développement</a></h2>
+          <div class="sousTitre">Food Safety Management in Developing Countries</div>
+          <span class="format"> <img src="/images/cdrom16.png" alt="cd" title="Ce produit contient un cd" />&nbsp;&nbsp;   </span>
+          <div class="infos">
+            <ul>
+              <li><span class="titre">Auteur : </span>Collectif CIRAD</li>
+              <li><span class="titre">Editeur : </span>CIRAD</li>
+              <li><span class="titre">Date de parution : </span>Janvier 2002</li>
+            </ul>
+          </div>
+        </div>
+        <div class="clear"></div>
+      </li>      <li class="listePrincipale">
+        <div class="gauche"><a href="/Loisirs/Livre/foot-business-9782012355736"><img src="http://static.eyrolles.com/img/2/0/1/2/3/5/5/7/9782012355736_h80.gif" alt="" title="Foot business" class="livre" /></a></div>
+        <div class="droite roundCorner">
+          <div><div class="prix">13,68 &euro;</div> <div class="delai disponible">expédié sous 48h</div></div>
+          <div class="boutonAlignCenter"><a id="ean13-9782012355736" class="ajoutPanier" title="Foot business" href="/Accueil/Panier/index_a.php?ouv_ean13=9782012355736&amp;add=1"><img src="/images/layout/boutonPanier.png" alt="ajouter au panier" title="Foot business"  /></a></div>
+          <div class="stocks">
+            Librairie Eyrolles, Paris : indisponible <br />
+            
+          </div>
+        </div>
+        <div class="centre">
+          <h2><a href="/Loisirs/Livre/foot-business-9782012355736">Foot business</a></h2>
+          <div class="sousTitre"></div>
+          <span class="format">    </span>
+          <div class="infos">
+            <ul>
+              <li><span class="titre">Auteur : </span>Christine Gauthier</li>
+              <li><span class="titre">Editeur : </span>Hachette</li>
+              <li><span class="titre">Date de parution : </span>Mars 2001</li>
+            </ul>
+          </div>
+        </div>
+        <div class="clear"></div>
+      </li>      <li class="listePrincipale">
+        <div class="gauche"><a href="/Entreprise/Livre/ouvrir-un-fast-food-et-le-gerer-9782857080053"><img src="http://static.eyrolles.com/img/2/8/5/7/0/8/0/0/9782857080053_h80.gif" alt="" title="Ouvrir un Fast-Food et le gérer" class="livre" /></a></div>
+        <div class="droite roundCorner">
+          <div><div class="prix">28,69 &euro;</div> <div class="delai disponible">expédié sous 24h</div></div>
+          <div class="boutonAlignCenter"><a id="ean13-9782857080053" class="ajoutPanier" title="Ouvrir un Fast-Food et le gérer" href="/Accueil/Panier/index_a.php?ouv_ean13=9782857080053&amp;add=1"><img src="/images/layout/boutonPanier.png" alt="ajouter au panier" title="Ouvrir un Fast-Food et le gérer"  /></a></div>
+          <div class="stocks">
+            Librairie Eyrolles, Paris : indisponible <br />
+            
+          </div>
+        </div>
+        <div class="centre">
+          <h2><a href="/Entreprise/Livre/ouvrir-un-fast-food-et-le-gerer-9782857080053">Ouvrir un Fast-Food et le gérer</a></h2>
+          <div class="sousTitre"></div>
+          <span class="format">    </span>
+          <div class="infos">
+            <ul>
+              <li><span class="titre">Auteur : </span>Yves Van de Calseyde</li>
+              <li><span class="titre">Editeur : </span>BPI</li>
+              <li><span class="titre">Date de parution : </span>Décembre 1994</li>
+            </ul>
+          </div>
+        </div>
+        <div class="clear"></div>
+      </li>    </ul>
+    <div class="listeHautBas" id="listeBas">
+      <div class="gauche">Résultats : 81 à 91 sur 91 livres</div>
+      <div class="droite">Pages : <a href="/Accueil/Recherche/?q=foo&page=4">&lt;</a>&nbsp;<a href="/Accueil/Recherche/?q=foo&page=1">1</a> | <a href="/Accueil/Recherche/?q=foo&page=2">2</a> | <a href="/Accueil/Recherche/?q=foo&page=3">3</a> | <a href="/Accueil/Recherche/?q=foo&page=4">4</a> | <span class="actif">5</span></div>
+      <div class="centre">
+        <form action="/Accueil/Recherche/" method="get">  
+          <div>
+                              <input type="hidden" name="q" value="foo" />
+                            <label for="nb">Afficher : </label>
+            <select name="nb" id="nb" class="autosubmit"  >
+<option value="10">10</option>
+<option value="20" selected="selected">20</option>
+<option value="50">50</option>
+<option value="100">100</option>
+</select>
+                        <input type="submit" class="nojs" value="OK" />
+             par page
+          </div>
+        </form>
+      </div>
+    </div>
+      </div>     
+</div>
