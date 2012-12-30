@@ -30,6 +30,35 @@ describe( 'clone function', function() {
 
 });
 
+describe( 'copy function', function() {
+
+    it( 'should work on every type', function() {
+
+        expect( utils.copy( null ) ).toEqual( {} );
+        expect( utils.copy( undefined ) ).toEqual( {} );
+        expect( utils.copy( 0 ) ).toEqual( {} );
+        expect( utils.copy( true ) ).toEqual( {} );
+        expect( utils.copy( false ) ).toEqual( {} );
+        expect( utils.copy( [ 42 ] ) ).toEqual( { 0: 42 } );
+        expect( utils.copy( { a:'b' } ) ).toEqual( { a:'b' } );
+        expect( utils.copy( /e/ ) ).toEqual( {} );
+        expect( utils.copy( function(){} ) ).toEqual( {} );
+
+    });
+
+    it( 'should copy object’s vars', function() {
+
+        var original = { a: 42 },
+            copy     = utils.copy( original );
+
+        expect( 'a' in copy ).toBeTruthy();
+        expect( copy.a ).toEqual( original.a );
+        expect( copy.hasOwnProperty( 'a' ) ).toBeTruthy();
+
+    });
+
+});
+
 describe( 'extends function', function() {
 
     it( 'should work on very type', function() {

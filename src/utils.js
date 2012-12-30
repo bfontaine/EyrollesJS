@@ -8,6 +8,24 @@ function clone( target ) {
     
 }
 
+function copy( target ) {
+
+    var k, copy = {};
+
+    for ( k in target ) {
+
+        if ( target.hasOwnProperty( k ) ) {
+
+            copy[ k ] = target[ k ];
+
+        }
+
+    }
+
+    return copy;
+
+}
+
 function _extends( target ) {
 
     var i = 1,
@@ -41,5 +59,6 @@ function isArray( o ) {
 }
 
 exports.clone   = clone;
+exports.copy    = copy;
 exports.extends = _extends;
 exports.isArray = isArray;
