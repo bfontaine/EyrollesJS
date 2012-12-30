@@ -29,14 +29,20 @@ describe( 'BooksList', function() {
 
         }
 
-        var bl = new entities.BooksList( '?q=foo' );
+        var bl = new entities.BooksList( 'Accueil/Recherche/?q=foo' );
 
-        bl.fetch(function() {
+        bl.fetch({
 
-            expect( bl.results ).toBeDefined();
-            expect( bl.results.length ).toEqual( 91 );
+            limit: false,
 
-            done();
+            callback: function() {
+
+                expect( bl.books ).toBeDefined();
+                expect( bl.books.length ).toEqual( 91 );
+
+                done();
+
+            }
 
         });
 

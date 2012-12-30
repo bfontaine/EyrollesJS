@@ -1,4 +1,5 @@
 var requests = require( './requests' ),
+    utils    = require( './utils' ),
 
     details_sep = /:|\n|(?:\s{5,})/,
     colon_re    = /\s*:\s*/,
@@ -41,37 +42,49 @@ function parseBooksList( $ ) {
  *      createEntity( '/People/', function($, people){…} )
  *
  **/
-function createEntity( baseUrl, parser ) {
+function createEntity( baseUrl, parser, entity_opts ) {
 
     return function( path, attrs ) {
 
-       var that = this, attr;
+       var that = this;
 
        if (!( that instanceof arguments.callee )) {
            return new arguments.callee( path );
        }
 
-       that.fetch = function( callback ) {
+       that.fetch = function( opts ) {
+
+           if ( opts === undefined ) {
+
+                opts = {};
+
+            } else if ( typeof opts === 'function' ) {
+
+                opts = { callback: opts };
+
+            }
 
            requests.parseBody( baseUrl + path, function( $ ) {
 
-               parser( that, $ );
+               parser( that, $, {
 
-               callback();
+                   limit:  opts.limit,
+                   offset: opts.offset
+
+               });
+
+               if ( typeof opts.callback === 'function' ) {
+
+                    opts.callback();
+
+               }
 
            });
 
            return that;
        }
 
-       for ( attr in attrs ) {
-           if ( attrs.hasOwnProperty( attr ) ) {
-
-                that[ attr ] = attrs[ attr ];
-
-           }
-       }
-
+       utils.extends( that, attrs );
    };
 
 }
@@ -135,11 +148,50 @@ var Book = createEntity( '', function( book, $ ) {
 
 });
 
-var BooksList = createEntity( '/Accueil/Recherche/', function( books, $ ) {
+var BooksList = function BL( path, attrs ) {
 
-    books.results = parseBooksList( $ );
+       var that = this;
 
-});
+       if (!( that instanceof arguments.callee )) {
+           return new arguments.callee( path );
+       }
+
+       that.fetch = function( opts ) {
+
+           if ( opts === undefined ) {
+
+                opts = {};
+
+            } else if ( typeof opts === 'function' ) {
+
+                opts = { callback: opts };
+
+            }
+
+            requests.paginate( path, {
+
+                limit: opts.limit,
+                offset: opts.offset,
+                parser: parseBooksList,
+                callback: function( books ) {
+
+                    that.books = books;
+
+                    if ( typeof opts.callback === 'function' ) {
+
+                        opts.callback();
+
+                    }
+
+                },
+                error: opts.error
+
+            });
+
+       }
+
+}
+
 
 var Publisher = createEntity( '', function( publisher, $ ) {
 
