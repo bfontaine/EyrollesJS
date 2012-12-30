@@ -4,7 +4,7 @@ var cheerio     = require( 'cheerio' ),
     utils       = require( './utils' ),
 
     re_http     = /^https?:\/\//,
-    re_list_len = /: \d+ à \d+ sur (\d+) livres/,
+    re_list_len = /: \d+ . \d+ sur (\d+) livres/,
 
     noop        = function(){};
 
@@ -173,7 +173,7 @@ function paginate( url, opts ) {
         parser   = opts.parser,
         final_cb = opts.callback || noop,
         error_cb = opts.error || noop,
-        limit    = opts.limit > 0 ? opts.limit : 20,
+        limit,
         offset   = opts.offset > 0 ? opts.offset : 0,
         bpp      = opts.bpp > 0 ? opts.bpp : null;
 
@@ -184,7 +184,17 @@ function paginate( url, opts ) {
 
     }
 
-    if ( limit <= offset ) {
+    if ( opts.limit === false ) {
+
+        limit = 10000;
+
+    } else {
+
+        limit = opts.limit >= 0 ? opts.limit : 20;
+
+    }
+
+    if ( limit <= offset || limit === 0 ) {
 
         return final_cb( [] );
 
@@ -225,11 +235,14 @@ function paginate( url, opts ) {
         }
 
         // max results
-        var results_len = re_list_len.exec( $( '.gauche' ).first().text() );
+        var results_len_txt = re_list_len.exec( $( '.gauche' ).first().text() ),
+            results_len;
 
-        if ( results_len && (results_len = +results_len[1]) < limit ) {
+        if ( results_len_txt ) {
 
-            limit = results_len;
+            results_len = +results_len_txt[1];
+
+            if ( limit > results_len ) { limit = results_len; }
 
         }
 
@@ -263,7 +276,7 @@ function paginate( url, opts ) {
 
         for ( i = page_min; i <= page_max; i++ ) {
 
-            p = utils.clone( params );
+            p = utils.copy( params );
             p.page = i;
 
             pages.push( makeParams( p, url ) );
