@@ -75,7 +75,7 @@ function createEntity( baseUrl, parser, entity_opts ) {
 
                if ( typeof opts.callback === 'function' ) {
 
-                    opts.callback();
+                    opts.callback( that );
 
                }
 
@@ -179,7 +179,7 @@ var BooksList = function BL( path, attrs ) {
 
                     if ( typeof opts.callback === 'function' ) {
 
-                        opts.callback();
+                        opts.callback( that );
 
                     }
 
