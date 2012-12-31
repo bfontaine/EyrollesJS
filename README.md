@@ -5,6 +5,13 @@ This is an unofficial JS API for [Eyrolles](http://www.eyrolles.com/)’ website
 
 **[in development]**
 
+Install
+=======
+
+```
+npm install eyrolles-api
+```
+
 Usage
 =====
 
