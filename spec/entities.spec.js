@@ -15,12 +15,6 @@ describe( 'BooksList', function() {
 
         var _n = nock( 'http://www.eyrolles.com' ), p;
 
-        // the following two lines should be removed when BooksList
-        // pagination will be implemented.
-        _n = _n.get( '//Accueil/Recherche/?q=foo' )
-                .replyWithFile( 200, __dirname + '/mocks/search-for-foo-p1.html' );
-
-
         for ( p = 1; p <= 5; p++ ) {
 
             _n = _n.get( '/Accueil/Recherche/?ajax=on&q=foo&page=' + p )
@@ -39,6 +33,67 @@ describe( 'BooksList', function() {
 
                 expect( bl.books ).toBeDefined();
                 expect( bl.books.length ).toEqual( 91 );
+
+                done();
+
+            }
+
+        });
+
+    });
+
+    it( 'can be limited using the "limit" option', function( done ) {
+
+        var _n = nock( 'http://www.eyrolles.com' ), p;
+
+        _n.get( '/Accueil/Recherche/?ajax=on&q=foo&page=1' )
+            .replyWithFile( 200,
+                    __dirname + '/mocks/search-for-foo-p1.html' )
+          .get( '/Accueil/Recherche/?ajax=on&q=foo&page=2' )
+            .replyWithFile( 200,
+                    __dirname + '/mocks/search-for-foo-p2.html' );
+
+        var bl = new entities.BooksList( 'Accueil/Recherche/?q=foo' );
+
+        bl.fetch({
+
+            limit: 30,
+
+            callback: function() {
+
+                expect( bl.books ).toBeDefined();
+                expect( bl.books.length ).toEqual( 30 );
+
+                done();
+
+            }
+
+        });
+
+    });
+
+    it( 'should look at the "offset" option', function( done ) {
+
+        var _n = nock( 'http://www.eyrolles.com' ), p;
+
+        _n.get( '/Accueil/Recherche/?ajax=on&q=foo&page=1' )
+            .replyWithFile( 200,
+                    __dirname + '/mocks/search-for-foo-p1.html' )
+          .get( '/Accueil/Recherche/?ajax=on&q=foo&page=2' )
+            .replyWithFile( 200,
+                    __dirname + '/mocks/search-for-foo-p2.html' );
+
+        var bl = new entities.BooksList( 'Accueil/Recherche/?q=foo' );
+
+        bl.fetch({
+
+            limit: 30,
+            offset: 5,
+
+            callback: function() {
+
+                expect( bl.books ).toBeDefined();
+                expect( bl.books.length ).toEqual( 25 );
 
                 done();
 
