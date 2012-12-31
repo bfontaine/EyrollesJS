@@ -87,7 +87,7 @@ function createEntity( baseUrl, parser, entity_opts ) {
            });
 
            return that;
-       }
+       };
 
        utils.extends( that, attrs );
     };
