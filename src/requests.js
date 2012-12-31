@@ -83,6 +83,12 @@ function getParams( url ) {
  **/
 function parseBody( url, callback, error_callback ) {
 
+    if ( '' + url !== url ) {
+
+        return (error_callback || noop)( 'No URL given.' );
+
+    }
+
     if ( !re_http.test( url ) ) {
         url = config.urls.root + url;
     }
