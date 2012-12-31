@@ -1,0 +1,645 @@
+<div id="pageListeThematiques">
+  <div id="sidebar-themes">
+    <div class="titreGauche">
+      <h1>Affinez votre recherche</h1>
+      <div></div>
+    </div>
+    <form id="rechercheFiltre" action="/Accueil/Recherche/">
+      <div>
+        <div>
+          <label for="rechercheQ"><span>Recherche</span></label><br />
+          <input id="rechercheQ" class="rechercheFiltre" type="text" name="q" value="foo" />
+        </div>
+        <br />
+              <div>
+          <span>Rayon</span>
+          <ul id="rechercheFiltreRayon">
+            <li>
+              <input id="rechercheFiltreRayonAcc" class="rechercheFiltre rechercheFiltreRayon main" name="Rayon[ACC]" type="checkbox" checked="checked" />
+              <label for="rechercheFiltreRayonAcc">Tous</label>
+            </li>
+                        <li>
+              <input id="rechercheFiltreRayonVIE" class="rechercheFiltre rechercheFiltreRayon" name="Rayon[VIE]" type="checkbox" />
+              <label for="rechercheFiltreRayonVIE">Vie pratique</label> (83)
+            </li>
+                        <li>
+              <input id="rechercheFiltreRayonDRO" class="rechercheFiltre rechercheFiltreRayon" name="Rayon[DRO]" type="checkbox" />
+              <label for="rechercheFiltreRayonDRO">Droit</label> (12)
+            </li>
+                        <li>
+              <input id="rechercheFiltreRayonMAN" class="rechercheFiltre rechercheFiltreRayon" name="Rayon[MAN]" type="checkbox" />
+              <label for="rechercheFiltreRayonMAN">Entreprise</label> (9)
+            </li>
+                        <li>
+              <input id="rechercheFiltreRayonSCI" class="rechercheFiltre rechercheFiltreRayon" name="Rayon[SCI]" type="checkbox" />
+              <label for="rechercheFiltreRayonSCI">Sciences</label> (8)
+            </li>
+                        <li>
+              <input id="rechercheFiltreRayonVID" class="rechercheFiltre rechercheFiltreRayon" name="Rayon[VID]" type="checkbox" />
+              <label for="rechercheFiltreRayonVID">Graphisme &amp; Photo</label> (6)
+            </li>
+                        <li>
+              <input id="rechercheFiltreRayonINF" class="rechercheFiltre rechercheFiltreRayon" name="Rayon[INF]" type="checkbox" />
+              <label for="rechercheFiltreRayonINF">Informatique</label> (1)
+            </li>
+                      </ul>
+        </div>
+        <div>
+          <span>Contenu dans</span>
+                    <ul id="rechercheFiltreCritere">
+                        <li>
+            <input id="rechercheFiltreCritereTout" class="rechercheFiltre rechercheFiltreCritere main" name="Critere[Tout]" type="checkbox" checked="checked" />
+            <label for="rechercheFiltreCritereTout">Tout</label> (91)
+            </li>
+                        <li>
+            <input id="rechercheFiltreCritereTitre" class="rechercheFiltre rechercheFiltreCritere" name="Critere[Titre]" type="checkbox"  />
+            <label for="rechercheFiltreCritereTitre">Titre</label> (39)
+            </li>
+                        <li>
+            <input id="rechercheFiltreCritereTitre_-_Sous-Titre" class="rechercheFiltre rechercheFiltreCritere" name="Critere[Titre + Sous-Titre]" type="checkbox"  />
+            <label for="rechercheFiltreCritereTitre_-_Sous-Titre">Titre + Sous-Titre</label> (51)
+            </li>
+                        <li>
+            <input id="rechercheFiltreCritereAuteur" class="rechercheFiltre rechercheFiltreCritere" name="Critere[Auteur]" type="checkbox"  />
+            <label for="rechercheFiltreCritereAuteur">Auteur</label> (2)
+            </li>
+                      </ul>
+                  </div>
+        <div>
+          <span>Type</span>
+          <ul id="rechercheFiltreType">
+            <li>
+              <input id="rechercheFiltreTypeAll" class="rechercheFiltre rechercheFiltreType main" name="Type[ALL]" type="checkbox" checked="checked" />
+              <label for="rechercheFiltreTypeAll">Tous</label>
+            </li>
+                        <li>
+              <input id="rechercheFiltreType0" class="rechercheFiltre rechercheFiltreType" name="Type[0]" type="checkbox" />
+              <label for="rechercheFiltreType0">Ouvrage</label> (90)
+            </li>
+                        <li>
+              <input id="rechercheFiltreType1" class="rechercheFiltre rechercheFiltreType" name="Type[1]" type="checkbox" />
+              <label for="rechercheFiltreType1">CD-ROM</label> (1)
+            </li>
+                      </ul>
+        </div>
+        <div>
+          <span>Langue</span>
+          <ul id="rechercheFiltreLangue">
+            <li>
+              <input id="rechercheFiltreLangueAll" class="rechercheFiltre rechercheFiltreLangue main" name="Langue[ALL]" type="checkbox" checked="checked" />
+              <label for="rechercheFiltreLangueAll">Tous</label>
+            </li>
+                        <li>
+              <input id="rechercheFiltreLangue0" class="rechercheFiltre rechercheFiltreLangue" name="Langue[0]" type="checkbox" />
+              <label for="rechercheFiltreLangue0">Français</label> (82)
+            </li>
+                        <li>
+              <input id="rechercheFiltreLangue1" class="rechercheFiltre rechercheFiltreLangue" name="Langue[1]" type="checkbox" />
+              <label for="rechercheFiltreLangue1">Anglais</label> (3)
+            </li>
+                        <li>
+              <input id="rechercheFiltreLangue4" class="rechercheFiltre rechercheFiltreLangue" name="Langue[4]" type="checkbox" />
+              <label for="rechercheFiltreLangue4">Multilingue</label> (6)
+            </li>
+                      </ul>
+        </div>
+        <div>
+          <span>Disponibilité</span>
+          <ul id="rechercheFiltreDispo">
+            <li>
+              <input id="rechercheFiltreDispoAll"  class="rechercheFiltre rechercheFiltreDispo main" name="Dispo[ALL]" type="checkbox" checked="checked" />
+              <label for="rechercheFiltreDispoAll">Tous</label>
+            </li>
+                        <li>
+              <input id="rechercheFiltreDispoEyrolles.com"  class="rechercheFiltre rechercheFiltreDispo" name="Dispo[Eyrolles.com]" type="checkbox" />
+              <label for="rechercheFiltreDispoEyrolles.com">Eyrolles.com</label> (89)
+            </li>
+                        <li>
+              <input id="rechercheFiltreDispoLibrairie"  class="rechercheFiltre rechercheFiltreDispo" name="Dispo[Librairie]" type="checkbox" />
+              <label for="rechercheFiltreDispoLibrairie">Librairie</label> (14)
+            </li>
+                        <li>
+              <input id="rechercheFiltreDispoEbook"  class="rechercheFiltre rechercheFiltreDispo" name="Dispo[Ebook]" type="checkbox" />
+              <label for="rechercheFiltreDispoEbook">Ebook</label> (1)
+            </li>
+                      </ul>
+        </div>
+        
+        
+        <input class="bouton_vert" type="submit" value="Mettre à jour" />
+      </div>
+    </form>
+  </div>
+    
+  <div id="contenu">
+    <h1>Recherche : foo</h1>
+    
+    <div class="clear"></div>
+    
+        <div class="listeHautBas" id="listeHaut">
+      <div class="gauche">Résultats : 61 à 80 sur 91 livres</div>
+      <div class="droite">Pages : <a href="/Accueil/Recherche/?q=foo&page=3">&lt;</a>&nbsp;<a href="/Accueil/Recherche/?q=foo&page=1">1</a> | <a href="/Accueil/Recherche/?q=foo&page=2">2</a> | <a href="/Accueil/Recherche/?q=foo&page=3">3</a> | <span class="actif">4</span> | <a href="/Accueil/Recherche/?q=foo&page=5">5</a>&nbsp;<a href="/Accueil/Recherche/?q=foo&page=5">&gt;</a></div>
+      <div class="centre">
+        <form action="/Accueil/Recherche/" method="get">
+          <div>
+                              <input type="hidden" name="q" value="foo" />
+                            <label for="sort">Trier par :</label>
+            <select name="sort" id="sort" class="autosubmit"  >
+<option value="auteur">Auteur</option>
+<option value="editeur">Editeur</option>
+<option value="dtparution" selected="selected">Date de parution</option>
+<option value="prixasc">Prix croissant</option>
+<option value="prixdesc">Prix décroissant</option>
+<option value="titre">Titre</option>
+<option value="nbcom">Meilleures ventes</option>
+<option value="pertinence">Pertinence</option>
+</select>
+                        <input type="submit" class="nojs" value="OK" />
+          </div>
+        </form>
+      </div>
+    </div>
+    <ul class="listePrincipale">
+            <li class="listePrincipale">
+        <div class="gauche"><a href="/Loisirs/Livre/apero-9782501057332"><img src="http://static.eyrolles.com/img/2/5/0/1/0/5/7/3/9782501057332_h80.gif" alt="" title="Apéro" class="livre" /></a></div>
+        <div class="droite roundCorner">
+          <div><div class="prix">5,66 &euro;</div> <div class="delai disponible">expédié sous 24h</div></div>
+          <div class="boutonAlignCenter"><a id="ean13-9782501057332" class="ajoutPanier" title="Apéro" href="/Accueil/Panier/index_a.php?ouv_ean13=9782501057332&amp;add=1"><img src="/images/layout/boutonPanier.png" alt="ajouter au panier" title="Apéro"  /></a></div>
+          <div class="stocks">
+            Librairie Eyrolles, Paris : stock limité <br />
+            
+          </div>
+        </div>
+        <div class="centre">
+          <h2><a href="/Loisirs/Livre/apero-9782501057332">Apéro</a></h2>
+          <div class="sousTitre">Finger food, toasts, dips - Plus de 100 recettes et variations</div>
+          <span class="format">    </span>
+          <div class="infos">
+            <ul>
+              <li><span class="titre">Auteur : </span>Collectif Marabout</li>
+              <li><span class="titre">Editeur : </span>Marabout</li>
+              <li><span class="titre">Date de parution : </span>Janvier 2008</li>
+            </ul>
+          </div>
+        </div>
+        <div class="clear"></div>
+      </li>      <li class="listePrincipale">
+        <div class="gauche"><a href="/Loisirs/Livre/l-annee-du-rugby-2007-9782702138199"><img src="http://static.eyrolles.com/img/2/7/0/2/1/3/8/1/9782702138199_h80.gif" alt="" title="L'année du rugby - 2007" class="livre" /></a></div>
+        <div class="droite roundCorner">
+          <div><div class="prix">24,13 &euro;</div> <div class="delai disponible">expédié sous 24h</div></div>
+          <div class="boutonAlignCenter"><a id="ean13-9782702138199" class="ajoutPanier" title="L'année du rugby - 2007" href="/Accueil/Panier/index_a.php?ouv_ean13=9782702138199&amp;add=1"><img src="/images/layout/boutonPanier.png" alt="ajouter au panier" title="L'année du rugby - 2007"  /></a></div>
+          <div class="stocks">
+            Librairie Eyrolles, Paris : indisponible <br />
+            
+          </div>
+        </div>
+        <div class="centre">
+          <h2><a href="/Loisirs/Livre/l-annee-du-rugby-2007-9782702138199">L'année du rugby - 2007</a></h2>
+          <div class="sousTitre">120 pages spéciales coupe du monde</div>
+          <span class="format">    </span>
+          <div class="infos">
+            <ul>
+              <li><span class="titre">Auteur : </span>Christian Montaignac</li>
+              <li><span class="titre">Editeur : </span>Calmann-Lévy</li>
+              <li><span class="titre">Date de parution : </span>Novembre 2007</li>
+            </ul>
+          </div>
+        </div>
+        <div class="clear"></div>
+      </li>      <li class="listePrincipale">
+        <div class="gauche"><a href="/Loisirs/Livre/a-short-guide-to-foodie-french-9782354560027"><img src="http://static.eyrolles.com/img/2/3/5/4/5/6/0/0/9782354560027_h80.gif" alt="" title="A short guide to foodie french" class="livre" /></a></div>
+        <div class="droite roundCorner">
+          <div><div class="prix">18,91 &euro;</div> <div class="delai disponible">expédié sous 24h</div></div>
+          <div class="boutonAlignCenter"><a id="ean13-9782354560027" class="ajoutPanier" title="A short guide to foodie french" href="/Accueil/Panier/index_a.php?ouv_ean13=9782354560027&amp;add=1"><img src="/images/layout/boutonPanier.png" alt="ajouter au panier" title="A short guide to foodie french"  /></a></div>
+          <div class="stocks">
+            Librairie Eyrolles, Paris : indisponible <br />
+            
+          </div>
+        </div>
+        <div class="centre">
+          <h2><a href="/Loisirs/Livre/a-short-guide-to-foodie-french-9782354560027">A short guide to foodie french</a></h2>
+          <div class="sousTitre">...With a touch of salt</div>
+          <span class="format">  <img src="/images/uk.png" alt="drapeau anglais" title="Livre en langue anglaise" />&nbsp;&nbsp;  </span>
+          <div class="infos">
+            <ul>
+              <li><span class="titre">Auteurs : </span>Françoise Blanchard et Jerémy Leven</li>
+              <li><span class="titre">Editeur : </span>Diateino</li>
+              <li><span class="titre">Date de parution : </span>Novembre 2007</li>
+            </ul>
+          </div>
+        </div>
+        <div class="clear"></div>
+      </li>      <li class="listePrincipale">
+        <div class="gauche"><a href="/Loisirs/Livre/le-rugby-francais-existe-t-il-9782746710030"><img src="http://static.eyrolles.com/img/2/7/4/6/7/1/0/0/9782746710030_h80.gif" alt="" title="Le rugby français existe-t-il ?" class="livre" /></a></div>
+        <div class="droite roundCorner">
+          <div><div class="prix">18,34 &euro;</div> <div class="delai disponible">expédié sous 4 jours</div></div>
+          <div class="boutonAlignCenter"><a id="ean13-9782746710030" class="ajoutPanier" title="Le rugby français existe-t-il ?" href="/Accueil/Panier/index_a.php?ouv_ean13=9782746710030&amp;add=1"><img src="/images/layout/boutonPanier.png" alt="ajouter au panier" title="Le rugby français existe-t-il ?"  /></a></div>
+          <div class="stocks">
+            Librairie Eyrolles, Paris : indisponible <br />
+            
+          </div>
+        </div>
+        <div class="centre">
+          <h2><a href="/Loisirs/Livre/le-rugby-francais-existe-t-il-9782746710030">Le rugby français existe-t-il ?</a></h2>
+          <div class="sousTitre"></div>
+          <span class="format">    </span>
+          <div class="infos">
+            <ul>
+              <li><span class="titre">Auteurs : </span>Denis Soula et Olivier Villepreux</li>
+              <li><span class="titre">Editeur : </span>Autrement</li>
+              <li><span class="titre">Date de parution : </span>Septembre 2007</li>
+            </ul>
+          </div>
+        </div>
+        <div class="clear"></div>
+      </li>      <li class="listePrincipale">
+        <div class="gauche"><a href="/Loisirs/Livre/foot-dans-la-tourmente-du-business-9782916628141"><img src="http://static.eyrolles.com/img/2/9/1/6/6/2/8/1/9782916628141_h80.gif" alt="" title="Foot : dans la tourmente du business" class="livre" /></a></div>
+        <div class="droite roundCorner">
+          <div><div class="prix">8,55 &euro;</div> <div class="delai disponible">expédié sous 48h</div></div>
+          <div class="boutonAlignCenter"><a id="ean13-9782916628141" class="ajoutPanier" title="Foot : dans la tourmente du business" href="/Accueil/Panier/index_a.php?ouv_ean13=9782916628141&amp;add=1"><img src="/images/layout/boutonPanier.png" alt="ajouter au panier" title="Foot : dans la tourmente du business"  /></a></div>
+          <div class="stocks">
+            Librairie Eyrolles, Paris : indisponible <br />
+            
+          </div>
+        </div>
+        <div class="centre">
+          <h2><a href="/Loisirs/Livre/foot-dans-la-tourmente-du-business-9782916628141">Foot : dans la tourmente du business</a></h2>
+          <div class="sousTitre"></div>
+          <span class="format">    </span>
+          <div class="infos">
+            <ul>
+              <li><span class="titre">Auteur : </span>Romaric Godin</li>
+              <li><span class="titre">Editeur : </span>Scrineo / Les carnets de l'info</li>
+              <li><span class="titre">Date de parution : </span>Septembre 2007</li>
+            </ul>
+          </div>
+        </div>
+        <div class="clear"></div>
+      </li>      <li class="listePrincipale">
+        <div class="gauche"><a href="/Loisirs/Livre/dictionnaire-amoureux-du-rugby-9782259206518"><img src="http://static.eyrolles.com/img/2/2/5/9/2/0/6/5/9782259206518_h80.gif" alt="" title="Dictionnaire amoureux du rugby" class="livre" /></a></div>
+        <div class="droite roundCorner">
+          <div><div class="prix">23,28 &euro;</div> <div class="delai disponible">expédié sous 48h</div></div>
+          <div class="boutonAlignCenter"><a id="ean13-9782259206518" class="ajoutPanier" title="Dictionnaire amoureux du rugby" href="/Accueil/Panier/index_a.php?ouv_ean13=9782259206518&amp;add=1"><img src="/images/layout/boutonPanier.png" alt="ajouter au panier" title="Dictionnaire amoureux du rugby"  /></a></div>
+          <div class="stocks">
+            Librairie Eyrolles, Paris : indisponible <br />
+            
+          </div>
+        </div>
+        <div class="centre">
+          <h2><a href="/Loisirs/Livre/dictionnaire-amoureux-du-rugby-9782259206518">Dictionnaire amoureux du rugby</a></h2>
+          <div class="sousTitre"></div>
+          <span class="format">    </span>
+          <div class="infos">
+            <ul>
+              <li><span class="titre">Auteur : </span>Daniel Herrero</li>
+              <li><span class="titre">Editeur : </span>Plon</li>
+              <li><span class="titre">Date de parution : </span>Août 2007</li>
+            </ul>
+          </div>
+        </div>
+        <div class="clear"></div>
+      </li>      <li class="listePrincipale">
+        <div class="gauche"><a href="/Loisirs/Livre/parlez-vous-rugby-9782212538762"><img src="http://static.eyrolles.com/img/2/2/1/2/5/3/8/7/9782212538762_h80.gif" alt="" title="Parlez-vous rugby ?" class="livre" /></a></div>
+        <div class="droite roundCorner">
+          <div><div class="prix">9,60 &euro;</div> <div class="delai indisponible">définitivement indisponible</div></div>
+          <div class="boutonAlignCenter"></div>
+          <div class="stocks">
+            Librairie Eyrolles, Paris : stock limité <br />
+            Existe au format numérique
+          </div>
+        </div>
+        <div class="centre">
+          <h2><a href="/Loisirs/Livre/parlez-vous-rugby-9782212538762">Parlez-vous rugby ?</a></h2>
+          <div class="sousTitre"></div>
+          <span class="format">    </span>
+          <div class="infos">
+            <ul>
+              <li><span class="titre">Auteur : </span>Pierre-François Glaymann</li>
+              <li><span class="titre">Editeur : </span>Eyrolles</li>
+              <li><span class="titre">Date de parution : </span>Juillet 2007</li>
+            </ul>
+          </div>
+        </div>
+        <div class="clear"></div>
+      </li>      <li class="listePrincipale">
+        <div class="gauche"><a href="/Loisirs/Livre/lois-et-moeurs-du-rugby-9782247074747"><img src="http://static.eyrolles.com/img/2/2/4/7/0/7/4/7/9782247074747_h80.gif" alt="" title="Lois et moeurs du rugby" class="livre" /></a></div>
+        <div class="droite roundCorner">
+          <div><div class="prix">2,85 &euro;</div> <div class="delai disponible">expédié sous 24h</div></div>
+          <div class="boutonAlignCenter"><a id="ean13-9782247074747" class="ajoutPanier" title="Lois et moeurs du rugby" href="/Accueil/Panier/index_a.php?ouv_ean13=9782247074747&amp;add=1"><img src="/images/layout/boutonPanier.png" alt="ajouter au panier" title="Lois et moeurs du rugby"  /></a></div>
+          <div class="stocks">
+            Librairie Eyrolles, Paris : indisponible <br />
+            
+          </div>
+        </div>
+        <div class="centre">
+          <h2><a href="/Loisirs/Livre/lois-et-moeurs-du-rugby-9782247074747">Lois et moeurs du rugby</a></h2>
+          <div class="sousTitre"></div>
+          <span class="format">    </span>
+          <div class="infos">
+            <ul>
+              <li><span class="titre">Auteurs : </span>Fabien Galthié et Jean Lacouture</li>
+              <li><span class="titre">Editeur : </span>Dalloz</li>
+              <li><span class="titre">Date de parution : </span>Juillet 2007</li>
+            </ul>
+          </div>
+        </div>
+        <div class="clear"></div>
+      </li>      <li class="listePrincipale">
+        <div class="gauche"><a href="/Droit/Livre/la-face-cachee-du-foot-business-9782080690036"><img src="http://static.eyrolles.com/img/2/0/8/0/6/9/0/0/9782080690036_h80.gif" alt="" title="La face cachée du foot business" class="livre" /></a></div>
+        <div class="droite roundCorner">
+          <div><div class="prix">20,33 &euro;</div> <div class="delai disponible">expédié sous 24h</div></div>
+          <div class="boutonAlignCenter"><a id="ean13-9782080690036" class="ajoutPanier" title="La face cachée du foot business" href="/Accueil/Panier/index_a.php?ouv_ean13=9782080690036&amp;add=1"><img src="/images/layout/boutonPanier.png" alt="ajouter au panier" title="La face cachée du foot business"  /></a></div>
+          <div class="stocks">
+            Librairie Eyrolles, Paris : indisponible <br />
+            
+          </div>
+        </div>
+        <div class="centre">
+          <h2><a href="/Droit/Livre/la-face-cachee-du-foot-business-9782080690036">La face cachée du foot business</a></h2>
+          <div class="sousTitre"></div>
+          <span class="format">    </span>
+          <div class="infos">
+            <ul>
+              <li><span class="titre">Auteurs : </span>Jérôme Jessel et Patrick Mendelewitsch</li>
+              <li><span class="titre">Editeur : </span>Flammarion</li>
+              <li><span class="titre">Date de parution : </span>Mai 2007</li>
+            </ul>
+          </div>
+        </div>
+        <div class="clear"></div>
+      </li>      <li class="listePrincipale">
+        <div class="gauche"><a href="/Loisirs/Livre/onze-nouvelles-a-lire-seule-les-soirs-de-match-de-foot-9782266158756"><img src="http://static.eyrolles.com/img/2/2/6/6/1/5/8/7/9782266158756_h80.gif" alt="" title="Onze nouvelles à lire seule les soirs de match de foot..." class="livre" /></a></div>
+        <div class="droite roundCorner">
+          <div><div class="prix">4,94 &euro;</div> <div class="delai disponible">expédié sous 24h</div></div>
+          <div class="boutonAlignCenter"><a id="ean13-9782266158756" class="ajoutPanier" title="Onze nouvelles à lire seule les soirs de match de foot..." href="/Accueil/Panier/index_a.php?ouv_ean13=9782266158756&amp;add=1"><img src="/images/layout/boutonPanier.png" alt="ajouter au panier" title="Onze nouvelles à lire seule les soirs de match de foot..."  /></a></div>
+          <div class="stocks">
+            Librairie Eyrolles, Paris : indisponible <br />
+            
+          </div>
+        </div>
+        <div class="centre">
+          <h2><a href="/Loisirs/Livre/onze-nouvelles-a-lire-seule-les-soirs-de-match-de-foot-9782266158756">Onze nouvelles à lire seule les soirs de match de foot...</a></h2>
+          <div class="sousTitre"></div>
+          <span class="format">    </span>
+          <div class="infos">
+            <ul>
+              <li><span class="titre">Auteur : </span>Emmanuelle Poinger</li>
+              <li><span class="titre">Editeur : </span>Pocket</li>
+              <li><span class="titre">Date de parution : </span>Avril 2007</li>
+            </ul>
+          </div>
+        </div>
+        <div class="clear"></div>
+      </li>      <li class="listePrincipale">
+        <div class="gauche"><a href="/Sciences/Livre/volume-7-biological-heritage-and-food-chains-9782759200108"><img src="http://static.eyrolles.com/img/2/7/5/9/2/0/0/1/9782759200108_h80.gif" alt="" title="Volume 7 - Biological heritage and food chains" class="livre" /></a></div>
+        <div class="droite roundCorner">
+          <div><div class="prix">6,65 &euro;</div> <div class="delai disponible">expédié sous 24h</div></div>
+          <div class="boutonAlignCenter"><a id="ean13-9782759200108" class="ajoutPanier" title="Volume 7 - Biological heritage and food chains" href="/Accueil/Panier/index_a.php?ouv_ean13=9782759200108&amp;add=1"><img src="/images/layout/boutonPanier.png" alt="ajouter au panier" title="Volume 7 - Biological heritage and food chains"  /></a></div>
+          <div class="stocks">
+            Librairie Eyrolles, Paris : indisponible <br />
+            
+          </div>
+        </div>
+        <div class="centre">
+          <h2><a href="/Sciences/Livre/volume-7-biological-heritage-and-food-chains-9782759200108">Volume 7 - Biological heritage and food chains</a></h2>
+          <div class="sousTitre"></div>
+          <span class="format">    </span>
+          <div class="infos">
+            <ul>
+              <li><span class="titre">Auteur : </span>Jean-Claude Dauvin</li>
+              <li><span class="titre">Editeur : </span>Quae, IFREMER</li>
+              <li><span class="titre">Date de parution : </span>Mars 2007</li>
+            </ul>
+          </div>
+        </div>
+        <div class="clear"></div>
+      </li>      <li class="listePrincipale">
+        <div class="gauche"><a href="/Loisirs/Livre/flop-14-9782854287721"><img src="http://static.eyrolles.com/img/2/8/5/4/2/8/7/7/9782854287721_h80.gif" alt="" title="Flop 14" class="livre" /></a></div>
+        <div class="droite roundCorner">
+          <div><div class="prix">9,50 &euro;</div> <div class="delai disponible">expédié sous 48h</div></div>
+          <div class="boutonAlignCenter"><a id="ean13-9782854287721" class="ajoutPanier" title="Flop 14" href="/Accueil/Panier/index_a.php?ouv_ean13=9782854287721&amp;add=1"><img src="/images/layout/boutonPanier.png" alt="ajouter au panier" title="Flop 14"  /></a></div>
+          <div class="stocks">
+            Librairie Eyrolles, Paris : indisponible <br />
+            
+          </div>
+        </div>
+        <div class="centre">
+          <h2><a href="/Loisirs/Livre/flop-14-9782854287721">Flop 14</a></h2>
+          <div class="sousTitre">Le rugby professionnel à la française</div>
+          <span class="format">    </span>
+          <div class="infos">
+            <ul>
+              <li><span class="titre">Auteur : </span>Nicolas Foulquier</li>
+              <li><span class="titre">Editeur : </span>Cépaduès</li>
+              <li><span class="titre">Date de parution : </span>Février 2007</li>
+            </ul>
+          </div>
+        </div>
+        <div class="clear"></div>
+      </li>      <li class="listePrincipale">
+        <div class="gauche"><a href="/Loisirs/Livre/fast-food-nation-9782746709041"><img src="http://static.eyrolles.com/img/2/7/4/6/7/0/9/0/9782746709041_h80.gif" alt="" title="Fast food nation" class="livre" /></a></div>
+        <div class="droite roundCorner">
+          <div><div class="prix">19,29 &euro;</div> <div class="delai disponible">expédié sous 24h</div></div>
+          <div class="boutonAlignCenter"><a id="ean13-9782746709041" class="ajoutPanier" title="Fast food nation" href="/Accueil/Panier/index_a.php?ouv_ean13=9782746709041&amp;add=1"><img src="/images/layout/boutonPanier.png" alt="ajouter au panier" title="Fast food nation"  /></a></div>
+          <div class="stocks">
+            Librairie Eyrolles, Paris : indisponible <br />
+            
+          </div>
+        </div>
+        <div class="centre">
+          <h2><a href="/Loisirs/Livre/fast-food-nation-9782746709041">Fast food nation</a></h2>
+          <div class="sousTitre"></div>
+          <span class="format">    </span>
+          <div class="infos">
+            <ul>
+              <li><span class="titre">Auteur : </span>Eric Schlosser</li>
+              <li><span class="titre">Editeur : </span>Autrement</li>
+              <li><span class="titre">Date de parution : </span>Octobre 2006</li>
+            </ul>
+          </div>
+        </div>
+        <div class="clear"></div>
+      </li>      <li class="listePrincipale">
+        <div class="gauche"><a href="/Sciences/Livre/dictionnaire-agroalimentaire-francais-anglais-9782743009052"><img src="http://static.eyrolles.com/img/2/7/4/3/0/0/9/0/9782743009052_h80.gif" alt="" title="Dictionnaire agroalimentaire français/anglais" class="livre" /></a></div>
+        <div class="droite roundCorner">
+          <div><div class="prix">83,60 &euro;</div> <div class="delai disponible">expédié sous 24h</div></div>
+          <div class="boutonAlignCenter"><a id="ean13-9782743009052" class="ajoutPanier" title="Dictionnaire agroalimentaire français/anglais" href="/Accueil/Panier/index_a.php?ouv_ean13=9782743009052&amp;add=1"><img src="/images/layout/boutonPanier.png" alt="ajouter au panier" title="Dictionnaire agroalimentaire français/anglais"  /></a></div>
+          <div class="stocks">
+            Librairie Eyrolles, Paris : indisponible <br />
+            
+          </div>
+        </div>
+        <div class="centre">
+          <h2><a href="/Sciences/Livre/dictionnaire-agroalimentaire-francais-anglais-9782743009052">Dictionnaire agroalimentaire français/anglais</a></h2>
+          <div class="sousTitre">Dictionary of Food Science and Industry English/French</div>
+          <span class="format">    </span>
+          <div class="infos">
+            <ul>
+              <li><span class="titre">Auteur : </span>Jean Adrian</li>
+              <li><span class="titre">Editeur : </span>Tec et Doc - Lavoisier</li>
+              <li><span class="titre">Date de parution : </span>Octobre 2006</li>
+            </ul>
+          </div>
+        </div>
+        <div class="clear"></div>
+      </li>      <li class="listePrincipale">
+        <div class="gauche"><a href="/Loisirs/Livre/zidane-de-yazid-a-zizou-9782841878901"><img src="http://static.eyrolles.com/img/2/8/4/1/8/7/8/9/9782841878901_h80.gif" alt="" title="Zidane - De Yazid à Zizou" class="livre" /></a></div>
+        <div class="droite roundCorner">
+          <div><div class="prix">22,61 &euro;</div> <div class="delai disponible">expédié sous 48h</div></div>
+          <div class="boutonAlignCenter"><a id="ean13-9782841878901" class="ajoutPanier" title="Zidane - De Yazid à Zizou" href="/Accueil/Panier/index_a.php?ouv_ean13=9782841878901&amp;add=1"><img src="/images/layout/boutonPanier.png" alt="ajouter au panier" title="Zidane - De Yazid à Zizou"  /></a></div>
+          <div class="stocks">
+            Librairie Eyrolles, Paris : indisponible <br />
+            
+          </div>
+        </div>
+        <div class="centre">
+          <h2><a href="/Loisirs/Livre/zidane-de-yazid-a-zizou-9782841878901">Zidane - De Yazid à Zizou</a></h2>
+          <div class="sousTitre"></div>
+          <span class="format">    </span>
+          <div class="infos">
+            <ul>
+              <li><span class="titre">Auteurs : </span>Patrick Fort et Jean Philippe</li>
+              <li><span class="titre">Editeur : </span>L'Archipel</li>
+              <li><span class="titre">Date de parution : </span>Août 2006</li>
+            </ul>
+          </div>
+        </div>
+        <div class="clear"></div>
+      </li>      <li class="listePrincipale">
+        <div class="gauche"><a href="/Loisirs/Livre/zidane-un-portrait-du-xxie-siecle-9782258071971"><img src="http://static.eyrolles.com/img/2/2/5/8/0/7/1/9/9782258071971_h80.gif" alt="" title="Zidane - Un portrait du XXIe siècle" class="livre" /></a></div>
+        <div class="droite roundCorner">
+          <div><div class="prix">14,16 &euro;</div> <div class="delai disponible">expédié sous 24h</div></div>
+          <div class="boutonAlignCenter"><a id="ean13-9782258071971" class="ajoutPanier" title="Zidane - Un portrait du XXIe siècle" href="/Accueil/Panier/index_a.php?ouv_ean13=9782258071971&amp;add=1"><img src="/images/layout/boutonPanier.png" alt="ajouter au panier" title="Zidane - Un portrait du XXIe siècle"  /></a></div>
+          <div class="stocks">
+            Librairie Eyrolles, Paris : indisponible <br />
+            
+          </div>
+        </div>
+        <div class="centre">
+          <h2><a href="/Loisirs/Livre/zidane-un-portrait-du-xxie-siecle-9782258071971">Zidane - Un portrait du XXIe siècle</a></h2>
+          <div class="sousTitre">Un film de Douglas Gordon et Philippe Parreno</div>
+          <span class="format">    </span>
+          <div class="infos">
+            <ul>
+              <li><span class="titre">Auteurs : </span>Anna Lena Films et Frédéric Hermel</li>
+              <li><span class="titre">Editeur : </span>Hors collection</li>
+              <li><span class="titre">Date de parution : </span>Juin 2006</li>
+            </ul>
+          </div>
+        </div>
+        <div class="clear"></div>
+      </li>      <li class="listePrincipale">
+        <div class="gauche"><a href="/Loisirs/Livre/foot-2-rue-volume-4-l-amitie-d-un-capitaine-9782012011359"><img src="http://static.eyrolles.com/img/2/0/1/2/0/1/1/3/9782012011359_h80.gif" alt="" title="Foot 2 rue - Volume 4 - L'amitié d'un capitaine" class="livre" /></a></div>
+        <div class="droite roundCorner">
+          <div><div class="prix">4,75 &euro;</div> <div class="delai disponible">expédié sous 24h</div></div>
+          <div class="boutonAlignCenter"><a id="ean13-9782012011359" class="ajoutPanier" title="Foot 2 rue - Volume 4 - L'amitié d'un capitaine" href="/Accueil/Panier/index_a.php?ouv_ean13=9782012011359&amp;add=1"><img src="/images/layout/boutonPanier.png" alt="ajouter au panier" title="Foot 2 rue - Volume 4 - L'amitié d'un capitaine"  /></a></div>
+          <div class="stocks">
+            Librairie Eyrolles, Paris : indisponible <br />
+            
+          </div>
+        </div>
+        <div class="centre">
+          <h2><a href="/Loisirs/Livre/foot-2-rue-volume-4-l-amitie-d-un-capitaine-9782012011359">Foot 2 rue - Volume 4 - L'amitié d'un capitaine</a></h2>
+          <div class="sousTitre"></div>
+          <span class="format">    </span>
+          <div class="infos">
+            <ul>
+              <li><span class="titre">Auteur : </span>Michel Leydier</li>
+              <li><span class="titre">Editeur : </span>Hachette</li>
+              <li><span class="titre">Date de parution : </span>Juin 2006</li>
+            </ul>
+          </div>
+        </div>
+        <div class="clear"></div>
+      </li>      <li class="listePrincipale">
+        <div class="gauche"><a href="/Audiovisuel/Livre/100-photos-de-foot-pour-la-liberte-de-la-presse-9782915536478"><img src="http://static.eyrolles.com/img/2/9/1/5/5/3/6/4/9782915536478_h80.gif" alt="" title="100 photos de foot pour la liberté de la presse" class="livre" /></a></div>
+        <div class="droite roundCorner">
+          <div><div class="prix">8,46 &euro;</div> <div class="delai disponible">expédié sous 48h</div></div>
+          <div class="boutonAlignCenter"><a id="ean13-9782915536478" class="ajoutPanier" title="100 photos de foot pour la liberté de la presse" href="/Accueil/Panier/index_a.php?ouv_ean13=9782915536478&amp;add=1"><img src="/images/layout/boutonPanier.png" alt="ajouter au panier" title="100 photos de foot pour la liberté de la presse"  /></a></div>
+          <div class="stocks">
+            Librairie Eyrolles, Paris : indisponible <br />
+            
+          </div>
+        </div>
+        <div class="centre">
+          <h2><a href="/Audiovisuel/Livre/100-photos-de-foot-pour-la-liberte-de-la-presse-9782915536478">100 photos de foot pour la liberté de la presse</a></h2>
+          <div class="sousTitre">Avec l'Agence France-Presse</div>
+          <span class="format">    </span>
+          <div class="infos">
+            <ul>
+              <li><span class="titre">Auteurs : </span>Reporters sans frontières et  AFP - Agence France-Presse</li>
+              <li><span class="titre">Editeur : </span>Reporters sans frontières</li>
+              <li><span class="titre">Date de parution : </span>Juin 2006</li>
+            </ul>
+          </div>
+        </div>
+        <div class="clear"></div>
+      </li>      <li class="listePrincipale">
+        <div class="gauche"><a href="/Loisirs/Livre/ma-vie-9782080689122"><img src="http://static.eyrolles.com/img/2/0/8/0/6/8/9/1/9782080689122_h80.gif" alt="" title="Ma vie" class="livre" /></a></div>
+        <div class="droite roundCorner">
+          <div><div class="prix">19,19 &euro;</div> <div class="delai disponible">expédié sous 4 jours</div></div>
+          <div class="boutonAlignCenter"><a id="ean13-9782080689122" class="ajoutPanier" title="Ma vie" href="/Accueil/Panier/index_a.php?ouv_ean13=9782080689122&amp;add=1"><img src="/images/layout/boutonPanier.png" alt="ajouter au panier" title="Ma vie"  /></a></div>
+          <div class="stocks">
+            Librairie Eyrolles, Paris : indisponible <br />
+            
+          </div>
+        </div>
+        <div class="centre">
+          <h2><a href="/Loisirs/Livre/ma-vie-9782080689122">Ma vie</a></h2>
+          <div class="sousTitre"></div>
+          <span class="format">    </span>
+          <div class="infos">
+            <ul>
+              <li><span class="titre">Auteur : </span>Pelé</li>
+              <li><span class="titre">Editeur : </span>Flammarion</li>
+              <li><span class="titre">Date de parution : </span>Juin 2006</li>
+            </ul>
+          </div>
+        </div>
+        <div class="clear"></div>
+      </li>      <li class="listePrincipale">
+        <div class="gauche"><a href="/Loisirs/Livre/le-milieu-du-terrain-9782352040033"><img src="http://static.eyrolles.com/img/2/3/5/2/0/4/0/0/9782352040033_h80.gif" alt="" title="Le milieu du terrain" class="livre" /></a></div>
+        <div class="droite roundCorner">
+          <div><div class="prix">19,19 &euro;</div> <div class="delai disponible">expédié sous 4 jours</div></div>
+          <div class="boutonAlignCenter"><a id="ean13-9782352040033" class="ajoutPanier" title="Le milieu du terrain" href="/Accueil/Panier/index_a.php?ouv_ean13=9782352040033&amp;add=1"><img src="/images/layout/boutonPanier.png" alt="ajouter au panier" title="Le milieu du terrain"  /></a></div>
+          <div class="stocks">
+            Librairie Eyrolles, Paris : indisponible <br />
+            
+          </div>
+        </div>
+        <div class="centre">
+          <h2><a href="/Loisirs/Livre/le-milieu-du-terrain-9782352040033">Le milieu du terrain</a></h2>
+          <div class="sousTitre"></div>
+          <span class="format">    </span>
+          <div class="infos">
+            <ul>
+              <li><span class="titre">Auteur : </span>Denis Robert</li>
+              <li><span class="titre">Editeur : </span>Les Arènes</li>
+              <li><span class="titre">Date de parution : </span>Mai 2006</li>
+            </ul>
+          </div>
+        </div>
+        <div class="clear"></div>
+      </li>    </ul>
+    <div class="listeHautBas" id="listeBas">
+      <div class="gauche">Résultats : 61 à 80 sur 91 livres</div>
+      <div class="droite">Pages : <a href="/Accueil/Recherche/?q=foo&page=3">&lt;</a>&nbsp;<a href="/Accueil/Recherche/?q=foo&page=1">1</a> | <a href="/Accueil/Recherche/?q=foo&page=2">2</a> | <a href="/Accueil/Recherche/?q=foo&page=3">3</a> | <span class="actif">4</span> | <a href="/Accueil/Recherche/?q=foo&page=5">5</a>&nbsp;<a href="/Accueil/Recherche/?q=foo&page=5">&gt;</a></div>
+      <div class="centre">
+        <form action="/Accueil/Recherche/" method="get">  
+          <div>
+                              <input type="hidden" name="q" value="foo" />
+                            <label for="nb">Afficher : </label>
+            <select name="nb" id="nb" class="autosubmit"  >
+<option value="10">10</option>
+<option value="20" selected="selected">20</option>
+<option value="50">50</option>
+<option value="100">100</option>
+</select>
+                        <input type="submit" class="nojs" value="OK" />
+             par page
+          </div>
+        </form>
+      </div>
+    </div>
+      </div>     
+</div>

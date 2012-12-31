@@ -2,9 +2,23 @@ var entities = require( './entities' );
 
 var SearchQuery = function SearchQuery( str ) {
 
-    this.books = new entities.BooksList(
-        '?q=' + encodeURIComponent( str )
-    ).fetch();
+    var that = this;
+
+    that.results = [];
+
+    new entities.BooksList(
+
+        'Accueil/Recherche/?q=' + encodeURIComponent( str )
+
+    ).fetch({
+
+        limit: 20,
+
+        callback: function( bl ) {
+             that.results = bl.books;
+        }
+
+    });
 
 };
 
