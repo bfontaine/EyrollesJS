@@ -12,10 +12,10 @@ task( 'test', function() {
 desc( 'publish the module' );
 task( 'publish', { async: true }, function() {
 
-    jake.exec([ 'npm publish .' ], function() {
+    jake.exec([ 'sudo npm publish .' ], function() {
 
         complete();
 
-    }, { printStdout: true });
+    }, { printStdout: true, printStderr: true });
 
 })
