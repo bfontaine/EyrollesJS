@@ -1,7 +1,30 @@
 {
-  "name": "eyrollesjs",
+  "name": "eyrolles-api",
   "version": "0.0.1",
-  "private": true,
+  "private" :true,
+  "description": "Unofficial API for Eyrolles.com",
+  "main": "src/api.js",
+  "files": [ "src" ],
+  "scripts": {
+      "test": "jake test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/bfontaine/EyrollesJS.git"
+  },
+  "bugs": {
+    "url": "git://github.com/bfontaine/EyrollesJS/issues"
+  },
+  "keywords": [
+    "eyrolles", "api"
+  ],
+  "author": {
+      "name": "Baptiste Fontaine",
+      "url": "http://bfontaine.net"
+  },
+  "license": "MIT",
+  "readmeFilename": "README.md",
+  "homepage": "https://github.com/bfontaine/EyrollesJS.git",
   "dependencies": {
     "cheerio" : "*",
     "request" : "*"
