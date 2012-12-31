@@ -31,7 +31,7 @@ describe( 'parseBody function', function() {
 
                     requests.parseBody( url, noop, function() {
                         done();
-                    }, 100);
+                    });
 
                 }
             );
