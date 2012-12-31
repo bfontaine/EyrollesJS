@@ -46,7 +46,7 @@ function createEntity( baseUrl, parser, entity_opts ) {
 
     return function( path, attrs ) {
 
-       var that = this;
+       var that = this, fetching = false;
 
        if (!( that instanceof arguments.callee )) {
            return new arguments.callee( path );
@@ -54,15 +54,18 @@ function createEntity( baseUrl, parser, entity_opts ) {
 
        that.fetch = function( opts ) {
 
+           if ( fetching ) { return; }
+           else { fetching = true; }
+
            if ( opts === undefined ) {
 
-                opts = {};
+               opts = {};
 
-            } else if ( typeof opts === 'function' ) {
+           } else if ( typeof opts === 'function' ) {
 
-                opts = { callback: opts };
+               opts = { callback: opts };
 
-            }
+           }
 
            requests.parseBody( baseUrl + path, function( $ ) {
 
@@ -73,9 +76,11 @@ function createEntity( baseUrl, parser, entity_opts ) {
 
                });
 
+               fetching = false;
+
                if ( typeof opts.callback === 'function' ) {
 
-                    opts.callback( that );
+                   opts.callback( that );
 
                }
 
@@ -85,7 +90,7 @@ function createEntity( baseUrl, parser, entity_opts ) {
        }
 
        utils.extends( that, attrs );
-   };
+    };
 
 }
 
@@ -97,6 +102,12 @@ var Author = createEntity( '', function( author, $ ) {
 });
 
 var Book = createEntity( '', function( book, $ ) {
+
+    if ( $( '#noSearchResult' ).length > 0 ) {
+
+        return false;
+
+    }
 
     var infos        = $( '#contenu' ),
         desc         = infos.find( '#description' ),
@@ -146,6 +157,7 @@ var Book = createEntity( '', function( book, $ ) {
     book.isAvailable = $( '.period .spacer' )
                                 .text().indexOf( 'indisponible' ) === -1;
 
+    return true;
 });
 
 var BooksList = function BL( path, attrs ) {
