@@ -8,3 +8,14 @@ task( 'test', function() {
     jasmine.executeSpecsInFolder( cwd );
     
 });
+
+desc( 'publish the module' );
+task( 'publish', { async: true }, function() {
+
+    jake.exec([ 'npm publish .' ], function() {
+
+        complete();
+
+    }, { printStdout: true });
+
+})
