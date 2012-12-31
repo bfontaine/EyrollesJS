@@ -65,6 +65,12 @@ exports.getBookByISBN = function( opts ) {
 
     if ( opts === undefined || !opts.query ) { return null; }
 
+    if ( typeof opts === 'string' ) {
+
+        opts = { query: opts };
+
+    }
+
     var isbn = encodeURIComponent( ( '' + opts.query ).trim() );
 
     // The website redirects to the book page if it can find it
