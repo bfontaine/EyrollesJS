@@ -1,4 +1,5 @@
 var cheerio     = require( 'cheerio' ),
+    iconv       = require( 'iconv-lite' ),
     request     = require( 'request' ),
     config      = require( './config' ).variables,
     utils       = require( './utils' ),
@@ -93,16 +94,18 @@ function parseBody( url, callback, error_callback ) {
         url = config.urls.root + url;
     }
 
-    return request( url, function( error, response, body ) {
+    return request({ url: url, encoding: null },
+                        function( error, response, body ) {
 
-        var code  = response && response.statusCode;
+        var code = response && response.statusCode,
+            page = iconv.decode( body, 'latin1' );
 
         if ( error || code !== 200 ) {
 
             return ( error_callback || noop )( error || code );
         }
 
-        return ( callback || noop )( cheerio.load( body ) );
+        return ( callback || noop )( cheerio.load( page ) );
 
     });
 

@@ -26,7 +26,8 @@
   "homepage": "https://github.com/bfontaine/EyrollesJS.git",
   "dependencies": {
     "cheerio" : "*",
-    "request" : "*"
+    "request" : "*",
+    "iconv-lite" : "*"
   },
   "devDependencies": {
       "nock" : "*"

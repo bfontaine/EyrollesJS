@@ -1,5 +1,6 @@
 var requests = require( '../src/requests' ),
     nock     = require( 'nock' ),
+    iconv    = require( 'iconv-lite' ),
 
     BASE_URL = 'http://www.eyrolles.com',
 
@@ -586,9 +587,10 @@ describe( 'paginate function', function() {
     it(  'should stop when there’re no more results '
        + 'if the limit is too high', function( done ) {
 
-        _n().get( '/foo?ajax=on&page=1' ).reply( 200, '<p>1</p>'
-                                                    + '<i class="gauche">: 1'
-                                                    + ' à 2 sur 5 livres</i>' )
+        var firstpage = iconv.encode ( '<p>1</p><i class="gauche">: 1'
+                                        + ' à 2 sur 5 livres</i>', 'latin1' );
+
+        _n().get( '/foo?ajax=on&page=1' ).reply( 200, firstpage )
             .get( '/foo?ajax=on&page=2' ).reply( 200, '<p>2</p>' )
             .get( '/foo?ajax=on&page=3' ).reply( 200, '<p>3</p>' )
             .get( '/foo?ajax=on&page=4' ).reply( 200, '<p>4</p>' );
