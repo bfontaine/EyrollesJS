@@ -63,7 +63,7 @@ exports.search = function( opts ) {
  **/
 exports.getBookByISBN = function( opts ) {
 
-    if ( opts === undefined || !opts.query ) { return null; }
+    if ( opts === undefined || opts === null || !opts.query ) { return null; }
 
     if ( typeof opts === 'string' ) {
 

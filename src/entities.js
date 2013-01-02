@@ -36,7 +36,7 @@ function parseBooksList( $ ) {
 
     }
 
-    return $( 'li.listePrincipale .centre h2 a' ).map(function( i, a ) {
+    return $( 'li.listePrincipale .centre h2 a' ).map(function( _, a ) {
 
         return new Book( a.attribs.href, { title: $(a).text() } );
 
@@ -144,7 +144,7 @@ var Book = createEntity( '', function( book, $ ) {
     book.title       = desc.find( 'h1' ).text();
     book.short_desc  = desc.find( 'h2' ).first().text();
     book.pages_count = parseInt( minis.last().children()
-                                        .first().text().split( ':' )[1] )
+                                        .first().text().split( ':' )[1] );
     book.date        = minis.last().children()[1].children[1].data.trim();
 
     book.publisher   = new Publisher( publisher.attr( 'href' ) );
