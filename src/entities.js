@@ -137,15 +137,22 @@ var Book = createEntity( '', function( book, $ ) {
                                     .map(function( _, e ) {
                                         return $( e ).text().split( colon_re ); }),
 
-        i, len,
+        i, len, last_minis_children,
         d_website_label, d_label, d_value, d_fn;
 
     book.img         = no_img_re.test( img_src ) ? null : img_src;
     book.title       = desc.find( 'h1' ).text();
     book.short_desc  = desc.find( 'h2' ).first().text();
-    book.pages_count = parseInt( minis.last().children()
-                                        .first().text().split( ':' )[1] );
-    book.date        = minis.last().children()[1].children[1].data.trim();
+
+    if ( minis.length > 0 ) {
+
+        last_minis_children = minis.last().children();
+
+        book.pages_count = parseInt( last_minis_children
+                                            .first().text().split( ':' )[1] );
+        book.date        = last_minis_children[1].children[1].data.trim()
+
+    }
 
     book.publisher   = new Publisher( publisher.attr( 'href' ) );
 

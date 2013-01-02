@@ -1,4 +1,5 @@
 var entities = require( '../src/entities' ),
+    iconv    = require( 'iconv-lite' ),
     nock     = require( 'nock' );
 
 describe( 'BooksList', function() {
@@ -181,6 +182,28 @@ describe( 'Book object', function() {
             expect( b.isbn10 ).toEqual( isbn.slice( 3, -1 ) + '0' );
             expect( b.weight ).toEqual( 740 );
 
+            expect( b.exists ).toBeTruthy();
+
+            done();
+
+        }});
+
+    });
+
+    it( 'should not fail '
+      + 'if the website doesn’t have all informations', function( done ) {
+
+        var body = '<p id="contenu"><p id="description"><h1>Foo</h1></p></p>',
+            book = new entities.Book( 'foo' );
+
+        nock( 'http://www.eyrolles.com' )
+            .get( '/foo' )
+            .reply( 200, iconv.encode( body, 'latin1' ) );
+
+        book.fetch({ callback: function( b ) {
+
+            expect( b ).not.toBeNull();
+            expect( b.title ).toEqual( 'Foo' );
             expect( b.exists ).toBeTruthy();
 
             done();
