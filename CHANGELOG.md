@@ -9,6 +9,8 @@ Minor changes
 -------------
 
 - ISBN & EAN codes’ hyphens are now stripped
+- Encoding issue (#3) has been resolved, no more '�' in strings
+- All attributes are now correctly parsed (#1)
 
 
 v0.0.1
