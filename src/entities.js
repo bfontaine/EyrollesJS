@@ -4,6 +4,7 @@ var requests = require( './requests' ),
     details_sep = /:|\n|(?:\s{5,})/,
     colon_re    = /\s*:\s*/,
     no_img_re   = /\/novisuel\.gif$/,
+    hyphen_re   = /-/g,
 
     // Parser shortcuts
     getPrice = function( e ) {
@@ -143,9 +144,9 @@ var Book = createEntity( '', function( book, $ ) {
     }
 
     book.type   = trim(details[3]);
-    book.isbn13 = trim(details[12]);
-    book.ean13  = trim(details[14]);
-    book.isbn10 = trim(details[16]);
+    book.isbn13 = trim(details[12]).replace( hyphen_re, '' );
+    book.ean13  = trim(details[14]).replace( hyphen_re, '' );
+    book.isbn10 = trim(details[16]).replace( hyphen_re, '' );
     book.format = trim(details[24]);
     book.weight = parseInt(details[28]);
 
