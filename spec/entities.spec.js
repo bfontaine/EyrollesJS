@@ -11,6 +11,43 @@ describe( 'BooksList', function() {
 
     });
 
+    it( 'should have a .fetchAll method', function() {
+
+            var bl = new entities.BooksList();
+
+            expect( typeof bl.fetchAll ).toEqual( 'function' );
+        
+    });
+
+    it( 'should behave like an array', function( done ) {
+
+        var bl = new entities.BooksList( 'Accueil/Recherche/?q=foo' );
+
+        expect( entities.BooksList.prototype ).toEqual( [] );
+        expect( bl.length ).toEqual( 0 );
+
+        nock( 'http://www.eyrolles.com' )
+           .get( '/Accueil/Recherche/?ajax=on&q=foo&page=1' )
+               .replyWithFile( 200,
+                   __dirname + '/mocks/search-for-foo-p1.html' );
+
+        bl.fetch({
+
+            limit: 5,
+
+            callback: function() {
+
+                expect( bl.length ).toEqual( 5 );
+                expect( bl[0] instanceof entities.Book ).toBeTruthy();
+
+                done();
+
+            }
+
+        });
+
+    });
+
     it( 'should use pagination to fetch large results', function( done ) {
 
         var _n = nock( 'http://www.eyrolles.com' ), p;
@@ -31,8 +68,7 @@ describe( 'BooksList', function() {
 
             callback: function() {
 
-                expect( bl.books ).toBeDefined();
-                expect( bl.books.length ).toEqual( 91 );
+                expect( bl.length ).toEqual( 91 );
 
                 done();
 
@@ -61,8 +97,7 @@ describe( 'BooksList', function() {
 
             callback: function() {
 
-                expect( bl.books ).toBeDefined();
-                expect( bl.books.length ).toEqual( 30 );
+                expect( bl.length ).toEqual( 30 );
 
                 done();
 
@@ -92,8 +127,7 @@ describe( 'BooksList', function() {
 
             callback: function() {
 
-                expect( bl.books ).toBeDefined();
-                expect( bl.books.length ).toEqual( 25 );
+                expect( bl.length ).toEqual( 25 );
 
                 done();
 

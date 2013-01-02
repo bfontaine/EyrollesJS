@@ -198,41 +198,58 @@ var BooksList = function BL( path, attrs ) {
            return new arguments.callee( path );
        }
 
+       that.length = 0;
+
        that.fetch = function( opts ) {
 
            if ( opts === undefined ) {
 
-                opts = {};
+               opts = {};
 
-            } else if ( typeof opts === 'function' ) {
+           } else if ( typeof opts === 'function' ) {
 
-                opts = { callback: opts };
+               opts = { callback: opts };
 
-            }
+           }
 
-            requests.paginate( path, {
+           requests.paginate( path, {
 
-                limit: opts.limit,
-                offset: opts.offset,
-                parser: parseBooksList,
-                callback: function( books ) {
+               limit: opts.limit,
+               offset: opts.offset,
+               parser: parseBooksList,
+               callback: function( books ) {
 
-                    that.books = books;
+                   var i   = 0,
+                       len = books.length;
 
-                    if ( typeof opts.callback === 'function' ) {
+                   for (; i < len; i++ ) {
 
-                        opts.callback( that );
+                        that[ i ] = books[ i ];
 
-                    }
+                   }
 
-                },
-                error: opts.error
+                   that.length = len;
 
-            });
+                   if ( typeof opts.callback === 'function' ) {
 
-       }
+                       opts.callback( that );
+
+                   }
+
+               },
+               error: opts.error
+
+           });
+
+       };
+
+       that.fetchAll = function( opts ) {
+           //TODO
+       };
 
 }
+
+BooksList.prototype = new Array();
 
 
 var Publisher = createEntity( '', function( publisher, $ ) {
