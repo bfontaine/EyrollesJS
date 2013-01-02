@@ -120,7 +120,7 @@ var Book = createEntity( '', function( book, $ ) {
 
     if ( $( '#noSearchResult' ).length > 0 ) {
 
-        return false;
+        return book.exists = false;
 
     }
 
@@ -187,7 +187,7 @@ var Book = createEntity( '', function( book, $ ) {
     book.isAvailable = $( '.period .spacer' )
                                 .text().indexOf( 'indisponible' ) === -1;
 
-    return true;
+    return book.exists = true;
 });
 
 var BooksList = function BL( path, attrs ) {

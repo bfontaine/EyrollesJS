@@ -147,6 +147,8 @@ describe( 'Book object', function() {
             expect( b.isbn10 ).toEqual( isbn.slice( 3, -1 ) + '0' );
             expect( b.weight ).toEqual( 740 );
 
+            expect( b.exists ).toBeTruthy();
+
             done();
 
         }});
