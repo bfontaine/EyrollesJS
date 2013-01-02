@@ -3,8 +3,8 @@ EyrollesJS
 
 This is an unofficial JS API for [Eyrolles](http://www.eyrolles.com/)’ website.
 
-**Important note**: This is an alpha release, backward compatibility in new
-versions is **not** guaranteed.
+**Important note**: This is an alpha release, backward compatibility in 0.0.x versions
+is **not** guaranteed.
 
 Install
 =======
