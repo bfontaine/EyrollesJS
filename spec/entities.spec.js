@@ -144,7 +144,7 @@ describe( 'Book object', function() {
             expect( b.type ).toEqual( 'Ouvrage' );
             expect( b.isbn13 ).toEqual( isbn );
             expect( b.ean13 ).toEqual( isbn );
-            expect( b.isbn10 ).toEqual( isbn.slice( 3 ) );
+            expect( b.isbn10 ).toEqual( isbn.slice( 3, -1 ) + '0' );
             expect( b.weight ).toEqual( 740 );
 
             done();
