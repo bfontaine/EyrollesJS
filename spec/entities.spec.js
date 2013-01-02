@@ -104,3 +104,54 @@ describe( 'BooksList', function() {
     });
 
 });
+
+describe( 'Book object', function() {
+
+    it( 'should work with the "new" keyword and without it', function() {
+
+        expect( entities.Book() instanceof entities.Book ).toBeTruthy();
+        expect( new entities.Book() instanceof entities.Book ).toBeTruthy();
+
+    });
+
+    it( 'should fetch informations from the website', function( done ) {
+
+        var isbn = '9782212136081',
+            path = 'Informatique/Livre/le-guide-pratique-twitter-' + isbn,
+            book = new entities.Book( path );
+
+        nock( 'http://www.eyrolles.com' )
+            .get( '/' + path )
+                .replyWithFile( 200, __dirname + '/mocks/' + isbn + '.html' );
+
+        book.fetch({ callback: function( b ) {
+
+            expect( b ).not.toBeNull();
+
+            expect( b.title ).toEqual( 'Le guide pratique Twitter' );
+            expect( b.short_desc ).toEqual( 'Publier des tweets, gérer les'
+                                          + ' abonnés - Services et applis'
+                                          + 'pour doper Twitter - Maîtriser'
+                                          + ', échanger, motiver' );
+            expect( b.authors.length ).toEqual( 1 );
+            expect( b.authors[0] ).toEqual( b.author );
+            expect( b.pages_count ).toEqual( 158 );
+            expect( b.date ).toEqual( '30/11/2012' );
+
+            expect( b.img ).toEqual( 'http://static.eyrolles.com/img/2/2/1/'
+                                   + '2/1/3/6/0/9782212136081_h180.gif' );
+
+            expect( b.type ).toEqual( 'Ouvrage' );
+            expect( b.isbn13 ).toEqual( isbn );
+            expect( b.ean13 ).toEqual( isbn );
+            expect( b.isbn10 ).toEqual( isbn.slice( 3 ) );
+            expect( b.weight ).toEqual( 740 );
+
+            done();
+
+        }});
+
+    });
+
+
+});
