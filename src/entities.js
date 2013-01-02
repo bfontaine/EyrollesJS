@@ -1,17 +1,31 @@
 var requests = require( './requests' ),
     utils    = require( './utils' ),
 
-    details_sep = /:|\n|(?:\s{5,})/,
     colon_re    = /\s*:\s*/,
     no_img_re   = /\/novisuel\.gif$/,
     hyphen_re   = /-/g,
+
+    remove_hyphens = function( s ) { return s.replace( hyphen_re, '' ); },
 
     // Parser shortcuts
     getPrice = function( e ) {
         return parseFloat( e.text().replace( ',', '.' ) );
     },
+    
     trim = function( s ) {
         return s ? s.trim() : '';
+    },
+
+    details_labels = {
+
+        // website label: [ api label, map func ]
+        'Type produit': [ 'type',   trim ],
+        'ISBN13':       [ 'isbn13', remove_hyphens ],
+        'EAN13':        [ 'ean13',  remove_hyphens ],
+        'ISBN10':       [ 'isbn10', remove_hyphens ],
+        'Format':       [ 'format', trim ],
+        'Poids':        [ 'weight', function( w ) { return parseInt( w, 10 ); } ]
+
     };
 
 function parseBooksList( $ ) {
@@ -24,7 +38,7 @@ function parseBooksList( $ ) {
 
     return $( 'li.listePrincipale .centre h2 a' ).map(function( i, a ) {
 
-        return new Book( a.attribs.href, { title: a.children[0].data } );
+        return new Book( a.attribs.href, { title: $(a).text() } );
 
     });
 
@@ -119,7 +133,12 @@ var Book = createEntity( '', function( book, $ ) {
         authors      = minis.first().children().first().find( 'a' ),
         publisher    = minis.first().children().last().find( 'a' ),
         details      = $( '.tab-content' ).last()
-                                .find( 'ul' ).text().split( details_sep );
+                                .find( 'ul li' )
+                                    .map(function( _, e ) {
+                                        return $( e ).text().split( colon_re ); }),
+
+        i, len,
+        d_website_label, d_label, d_value, d_fn;
 
     book.img         = no_img_re.test( img_src ) ? null : img_src;
     book.title       = desc.find( 'h1' ).text();
@@ -130,7 +149,7 @@ var Book = createEntity( '', function( book, $ ) {
 
     book.publisher   = new Publisher( publisher.attr( 'href' ) );
 
-    book.authors     = authors.map(function( i, a ) {
+    book.authors     = authors.map(function( _, a ) {
 
         return new Author( a.attribs.href );
 
@@ -143,12 +162,22 @@ var Book = createEntity( '', function( book, $ ) {
 
     }
 
-    book.type   = trim(details[3]);
-    book.isbn13 = trim(details[12]).replace( hyphen_re, '' );
-    book.ean13  = trim(details[14]).replace( hyphen_re, '' );
-    book.isbn10 = trim(details[16]).replace( hyphen_re, '' );
-    book.format = trim(details[24]);
-    book.weight = parseInt(details[28]);
+    for ( i = 0, len = details.length; i < len; i++ ) {
+
+        d_website_label = details[ i ][0];
+        d_value = details[ i ][1]
+
+        if ( details_labels.hasOwnProperty( d_website_label ) ) {
+
+            d_label = details_labels[ d_website_label ][ 0 ];
+            d_fn =    details_labels[ d_website_label ][ 1 ];
+
+            book[ d_label ] = d_fn( d_value );
+
+        }
+
+
+    }
 
     book.prices = {
         website: getPrice( $( '.prixremise' ).children() ),
