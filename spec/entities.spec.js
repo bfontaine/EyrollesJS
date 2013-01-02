@@ -131,7 +131,7 @@ describe( 'Book object', function() {
             expect( b.title ).toEqual( 'Le guide pratique Twitter' );
             expect( b.short_desc ).toEqual( 'Publier des tweets, gérer les'
                                           + ' abonnés - Services et applis'
-                                          + 'pour doper Twitter - Maîtriser'
+                                          + ' pour doper Twitter - Maîtriser'
                                           + ', échanger, motiver' );
             expect( b.authors.length ).toEqual( 1 );
             expect( b.authors[0] ).toEqual( b.author );
