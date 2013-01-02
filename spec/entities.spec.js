@@ -12,11 +12,33 @@ describe( 'BooksList', function() {
 
     });
 
-    it( 'should have a .fetchAll method', function() {
+    it( 'should have a .fetchAll method', function( done ) {
 
-            var bl = new entities.BooksList();
+            var bl   = new entities.BooksList(),
+                book = new entities.Book( 'foo' ),
+                body = '<p id="contenu"><p id="description"><h1>Foo</h1>'
+                     + '<h2>Bar</h2></p></p>';
 
             expect( typeof bl.fetchAll ).toEqual( 'function' );
+
+            bl.push( book );
+
+            nock( 'http://www.eyrolles.com' )
+                .get( '/foo' ).reply( 200, iconv.encode( body, 'latin1' ) );
+
+            bl.fetchAll({
+                callback: function( books ) {
+
+                    expect( books ).toBeDefined();
+                    expect( books ).not.toBeNull();
+                    expect( books.length ).toEqual( 1 );
+
+                    expect( books[0].title ).toEqual( 'Foo' );
+                    expect( books[0].short_desc ).toEqual( 'Bar' );
+                    expect( books[0].exists ).toBeTruthy();
+
+                }
+            });
         
     });
 
