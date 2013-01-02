@@ -75,6 +75,6 @@ exports.getBookByISBN = function( opts ) {
 
     // The website redirects to the book page if it can find it
     return new entities.Book(
-        '/Accueil/Recherche/?q=' + isbn ).fetch( opts.callback );
+        'Accueil/Recherche/?q=' + isbn ).fetch( opts.callback );
 
 }
