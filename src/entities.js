@@ -251,7 +251,42 @@ var BooksList = function BL( path, attrs ) {
        };
 
        that.fetchAll = function( opts ) {
-           //TODO
+
+            if ( !opts ) {
+                opts = {};
+            }
+
+            var count       = that.length,
+
+                check_count = function() {
+
+                    if (   --count <= 0
+                        && typeof opts.callback === 'function' ) {
+
+                            opts.callback( that );
+
+                    }
+
+                },
+                
+                fetch_args = {
+
+                    callback: check_count
+
+                };
+
+            if ( typeof opts.error === 'function' ) {
+
+                    fetch_args.error = opts.error;
+
+            }
+
+            that.forEach(function( b ) {
+
+                b.fetch(fetch_args);
+
+            });
+
        };
 
 }

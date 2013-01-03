@@ -37,6 +37,8 @@ describe( 'BooksList', function() {
                     expect( books[0].short_desc ).toEqual( 'Bar' );
                     expect( books[0].exists ).toBeTruthy();
 
+                    done();
+
                 }
             });
         
