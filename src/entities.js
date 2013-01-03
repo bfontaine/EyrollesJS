@@ -137,15 +137,22 @@ var Book = createEntity( '', function( book, $ ) {
                                     .map(function( _, e ) {
                                         return $( e ).text().split( colon_re ); }),
 
-        i, len,
+        i, len, last_minis_children,
         d_website_label, d_label, d_value, d_fn;
 
     book.img         = no_img_re.test( img_src ) ? null : img_src;
     book.title       = desc.find( 'h1' ).text();
     book.short_desc  = desc.find( 'h2' ).first().text();
-    book.pages_count = parseInt( minis.last().children()
-                                        .first().text().split( ':' )[1] );
-    book.date        = minis.last().children()[1].children[1].data.trim();
+
+    if ( minis.length > 0 ) {
+
+        last_minis_children = minis.last().children();
+
+        book.pages_count = parseInt( last_minis_children
+                                            .first().text().split( ':' )[1] );
+        book.date        = last_minis_children[1].children[1].data.trim()
+
+    }
 
     book.publisher   = new Publisher( publisher.attr( 'href' ) );
 
@@ -198,41 +205,93 @@ var BooksList = function BL( path, attrs ) {
            return new arguments.callee( path );
        }
 
+       that.length = 0;
+
        that.fetch = function( opts ) {
 
            if ( opts === undefined ) {
 
+               opts = {};
+
+           } else if ( typeof opts === 'function' ) {
+
+               opts = { callback: opts };
+
+           }
+
+           requests.paginate( path, {
+
+               limit: opts.limit,
+               offset: opts.offset,
+               parser: parseBooksList,
+               callback: function( books ) {
+
+                   var i   = 0,
+                       len = books.length;
+
+                   for (; i < len; i++ ) {
+
+                        that[ i ] = books[ i ];
+
+                   }
+
+                   that.length = len;
+
+                   if ( typeof opts.callback === 'function' ) {
+
+                       opts.callback( that );
+
+                   }
+
+               },
+               error: opts.error
+
+           });
+
+       };
+
+       that.fetchAll = function( opts ) {
+
+            if ( !opts ) {
                 opts = {};
-
-            } else if ( typeof opts === 'function' ) {
-
-                opts = { callback: opts };
-
             }
 
-            requests.paginate( path, {
+            var count       = that.length,
 
-                limit: opts.limit,
-                offset: opts.offset,
-                parser: parseBooksList,
-                callback: function( books ) {
+                check_count = function() {
 
-                    that.books = books;
+                    if (   --count <= 0
+                        && typeof opts.callback === 'function' ) {
 
-                    if ( typeof opts.callback === 'function' ) {
-
-                        opts.callback( that );
+                            opts.callback( that );
 
                     }
 
                 },
-                error: opts.error
+                
+                fetch_args = {
+
+                    callback: check_count
+
+                };
+
+            if ( typeof opts.error === 'function' ) {
+
+                    fetch_args.error = opts.error;
+
+            }
+
+            that.forEach(function( b ) {
+
+                b.fetch(fetch_args);
 
             });
 
-       }
+       };
 
 }
+
+BooksList.prototype = new Array();
 
 
 var Publisher = createEntity( '', function( publisher, $ ) {
