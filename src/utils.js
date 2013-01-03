@@ -62,3 +62,4 @@ exports.clone   = clone;
 exports.copy    = copy;
 exports.extends = _extends;
 exports.isArray = isArray;
+exports.noop    = function(){};

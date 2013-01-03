@@ -133,3 +133,20 @@ describe( 'isArray function', function() {
     });
 
 });
+
+describe( 'noop function', function() {
+
+    it( 'should exist', function() {
+
+        expect( typeof utils.noop ).toEqual( 'function' );
+
+    });
+
+    it( 'should do nothing', function() {
+
+        expect( utils.noop.length ).toEqual( 0 );
+        expect( utils.noop() ).toBeUndefined();
+
+    });
+
+});

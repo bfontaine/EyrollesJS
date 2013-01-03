@@ -5,9 +5,7 @@ var cheerio     = require( 'cheerio' ),
     utils       = require( './utils' ),
 
     re_http     = /^https?:\/\//,
-    re_list_len = /: \d+ . \d+ sur (\d+) livres/,
-
-    noop        = function(){};
+    re_list_len = /: \d+ . \d+ sur (\d+) livres/;
 
 
 function makeParams( params, url ) {
@@ -86,7 +84,7 @@ function parseBody( url, callback, error_callback ) {
 
     if ( '' + url !== url ) {
 
-        return (error_callback || noop)( 'No URL given.' );
+        return (error_callback || utils.noop)( 'No URL given.' );
 
     }
 
@@ -102,10 +100,10 @@ function parseBody( url, callback, error_callback ) {
 
         if ( error || code !== 200 ) {
 
-            return ( error_callback || noop )( error || code );
+            return ( error_callback || utils.noop )( error || code );
         }
 
-        return ( callback || noop )( cheerio.load( page ) );
+        return ( callback || utils.noop )( cheerio.load( page ) );
 
     });
 
@@ -121,7 +119,7 @@ function parseBodies( urls, parser, callback, error_callback ) {
         results    = [];
 
     if ( urls_count === 0 ) {
-        return ( callback || noop )( results );
+        return ( callback || utils.noop )( results );
     }
 
     urls.forEach( function( url, i ) {
@@ -132,7 +130,7 @@ function parseBodies( urls, parser, callback, error_callback ) {
            urls_count--;
 
            if ( urls_count === 0 ) {
-               ( callback || noop )( results );
+               ( callback || utils.noop )( results );
            }
 
         }, function( err ) {
@@ -140,10 +138,10 @@ function parseBodies( urls, parser, callback, error_callback ) {
             results[ i ] = null;
             urls_count--;
 
-            ( error_callback || noop )( err );
+            ( error_callback || utils.noop )( err );
 
            if ( urls_count === 0 ) {
-               ( callback || noop )( results );
+               ( callback || utils.noop )( results );
            }
         });
 
@@ -180,8 +178,8 @@ function paginate( url, opts ) {
     var params   = getParams( url ),
         
         parser   = opts.parser,
-        final_cb = opts.callback || noop,
-        error_cb = opts.error || noop,
+        final_cb = opts.callback || utils.noop,
+        error_cb = opts.error || utils.noop,
         limit,
         offset   = opts.offset > 0 ? opts.offset : 0,
         bpp      = opts.bpp > 0 ? opts.bpp : null;
