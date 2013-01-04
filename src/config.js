@@ -13,6 +13,8 @@ exports.variables = {
 
         ajax: 'on' // makes the page weight lighter
 
-    }
+    },
+
+    globals: {}
 
 };
