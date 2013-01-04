@@ -1,4 +1,5 @@
-var conf = require( '../src/config' ).vars;
+var conf = require( '../src/config' ).vars,
+    api  = require( '../src/api' );
 
 describe( 'configuration', function() {
 
