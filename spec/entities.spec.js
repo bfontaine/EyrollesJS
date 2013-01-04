@@ -7,6 +7,12 @@ var entities = require( '../src/entities' ),
 
 describe( 'BooksList', function() {
 
+    beforeEach(function() {
+
+        conf.globals.cache = false;
+
+    });
+
     it( 'should have a .fetch method', function() {
 
             var bl = new entities.BooksList();
@@ -168,6 +174,12 @@ describe( 'BooksList', function() {
 });
 
 describe( 'Book object', function() {
+
+    beforeEach(function() {
+
+        conf.globals.cache = false;
+
+    });
 
     it( 'should work with the "new" keyword and without it', function() {
 
