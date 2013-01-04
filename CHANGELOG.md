@@ -7,7 +7,7 @@ v0.0.2
 - `BooksList#fetchAll` has been added, to fetch all books.
 - `api.set`, `api.unset` and `api.getVar` functions added to set/unset/get
   global config variables.
-
+- Entities caching added.
 
 Minor changes
 -------------
