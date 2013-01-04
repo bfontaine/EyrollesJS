@@ -74,17 +74,20 @@ exports.set = function _set() {
 exports.unset = function _unset( k ) {
 
     if ( k instanceof Array ) {
-        k.forEach(_unset);
-    }
-    else if ( arguments.length > 1 ) {
 
-        [].forEach.call( arguments, _unset );
+        k.forEach(function( e ) {
+            _unset( e );
+        });
+    
+    } else if ( arguments.length > 1 ) {
 
-    }
-    else {
+        [].forEach.call( arguments, function( e ) {
+            _unset(e);
+        });
+
+    } else {
 
         delete config.globals[k];
-
 
     }
 
