@@ -38,13 +38,22 @@ describe( 'API module', function() {
 
         });
 
-        it( 'should set boolean config variables when called with 1 string',
+        it( 'should set boolean config variables when called with one string',
                 function() {
 
             api.set( 'foo' )
                .set( 'bar' );
 
             expect( conf.globals ).toEqual({ 'foo': true, 'bar': true });
+
+        });
+
+        it( 'should set config variables when called with one object',
+                function() {
+
+            api.set({ 'foo': 42, 'bar': {} });
+
+            expect( conf.globals ).toEqual({ 'foo': 42, 'bar': {} });
 
         });
 
@@ -67,23 +76,60 @@ describe( 'API module', function() {
 
         });
 
-        //TODO called with 1 object
-
     });
 
-    it( 'should have a `.unset()` method', function() {
+    describe( 'has a `.unset()` method, which', function() {
 
         expect( typeof api.unset ).toEqual( 'function' );
 
-        //TODO
+        it( 'should unset a variable if called with its name', function() {
+
+            conf.globals.foo = true;
+
+            api.unset( 'foo' );
+            expect( conf.globals.foo ).not.toBeDefined();
+
+        });
+
+        it( 'should unset multiple variables if called with multiple args',
+                function() {
+
+            conf.globals.bar = conf.globals.foo = true;
+
+            api.unset( 'bar', 'foo' );
+
+            expect( conf.globals.foo ).not.toBeDefined();
+            expect( conf.globals.bar ).not.toBeDefined();
+
+        });
+
+        it( 'should unset multiple variables if called with one array',
+                function() {
+
+            conf.globals.bar = conf.globals.foo = true;
+
+            api.unset([ 'foo', 'bar' ]);
+
+            expect( conf.globals.foo ).not.toBeDefined();
+            expect( conf.globals.bar ).not.toBeDefined();
+
+        });
+
 
     });
 
-    it( 'should have a `.getVar()` method', function() {
+    describe( 'has a `.getVar()` method, which', function() {
 
         expect( typeof api.getVar ).toEqual( 'function' );
 
-        //TODO
+        it( 'should return a variable value', function() {
+
+            conf.globals.foo = 'bar';
+
+            expect( api.getVar( 'foo' ) ).toEqual( 'bar' );
+
+        });
+
     });
 
 });
