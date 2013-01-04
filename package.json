@@ -30,6 +30,8 @@
     "iconv-lite" : "*"
   },
   "devDependencies": {
-      "nock" : "*"
+      "nock" : "*",
+      "jake" : "*",
+      "jasmine-node": "*"
   }
 }
