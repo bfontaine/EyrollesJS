@@ -32,8 +32,6 @@ var requests = require( './requests' ),
     // Basic caching
     cache = {};
 
-    globals.cache = true;
-
 function parseBooksList( $ ) {
 
     if ( $( '#noSearchResult' ).length > 0 || $( '.noresult' ).length > 0 ) {
@@ -88,7 +86,11 @@ function createEntity( baseUrl, parser ) {
 
            }
 
-           if ( globals.cache && cache[ baseUrl + path ] ) {
+           if ( !globals.cache ) {
+
+               cache = {};
+
+           } else if ( cache[ baseUrl + path ] ) {
 
                utils.extends( that, attrs );
 
