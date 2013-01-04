@@ -262,8 +262,6 @@ describe( 'Caching', function() {
                 .replyWithFile( 200, __dirname + '/mocks/' + isbn + '.html' );
 
 
-        console.log( '\n[S] Cache is: ' + conf.globals.cache );
-
         book.fetch({
 
             callback: function ( b ) {
