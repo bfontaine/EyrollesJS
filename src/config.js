@@ -1,4 +1,4 @@
-exports.variables = {
+exports.vars = {
 
     urls: {
 

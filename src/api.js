@@ -1,4 +1,6 @@
-var entities = require( './entities' );
+var entities = require( './entities' ),
+    config   = require( './config' ).vars,
+    utils    = require( './utils' );
 
 var SearchQuery = function SearchQuery( opts ) {
 

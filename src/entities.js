@@ -1,5 +1,9 @@
 var requests = require( './requests' ),
     utils    = require( './utils' ),
+<<<<<<< Updated upstream
+=======
+    globals  = require( './config' ).vars.globals,
+>>>>>>> Stashed changes
 
     colon_re    = /\s*:\s*/,
     no_img_re   = /\/novisuel\.gif$/,
@@ -26,7 +30,10 @@ var requests = require( './requests' ),
         'Format':       [ 'format', trim ],
         'Poids':        [ 'weight', function( w ) { return parseInt( w, 10 ); } ]
 
-    };
+    },
+    
+    // Basic caching
+    cache = {};
 
 function parseBooksList( $ ) {
 
@@ -57,7 +64,7 @@ function parseBooksList( $ ) {
  *      createEntity( '/People/', function($, people){…} )
  *
  **/
-function createEntity( baseUrl, parser, entity_opts ) {
+function createEntity( baseUrl, parser ) {
 
     return function( path, attrs ) {
 
@@ -68,6 +75,8 @@ function createEntity( baseUrl, parser, entity_opts ) {
        }
 
        that.fetch = function( opts ) {
+
+           console.log( '\n    Cache is: ' + globals.cache );
 
            if ( fetching ) { return; }
            else { fetching = true; }
@@ -82,14 +91,40 @@ function createEntity( baseUrl, parser, entity_opts ) {
 
            }
 
+           if ( globals.cache && cache[ baseUrl + path ] ) {
+
+               utils.extends( that, attrs );
+
+               fetching = false;
+
+               if ( typeof opts.callback === 'function' ) {
+
+                   opts.callback( that );
+
+               }
+
+               return that;
+
+           }
+
            requests.parseBody( baseUrl + path, function( $ ) {
 
-               parser( that, $, {
+               var attrs = {};
+
+               parser( attrs, $, {
 
                    limit:  opts.limit,
                    offset: opts.offset
 
                });
+
+               if ( globals.cache ) {
+
+                   cache[ baseUrl + path ] = attrs;
+
+               }
+
+               utils.extends( that, attrs );
 
                fetching = false;
 

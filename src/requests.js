@@ -1,10 +1,10 @@
 var cheerio     = require( 'cheerio' ),
     iconv       = require( 'iconv-lite' ),
     request     = require( 'request' ),
-    config      = require( './config' ).variables,
+    config      = require( './config' ).vars,
     utils       = require( './utils' ),
 
-    re_http     = /^https?:\/\//,
+    re_protocol = /^[a-z]+:\/\//,
     re_list_len = /: \d+ . \d+ sur (\d+) livres/;
 
 
@@ -88,7 +88,7 @@ function parseBody( url, callback, error_callback ) {
 
     }
 
-    if ( !re_http.test( url ) ) {
+    if ( !re_protocol.test( url ) ) {
         url = config.urls.root + url;
     }
 

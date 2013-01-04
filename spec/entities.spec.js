@@ -1,6 +1,9 @@
 var entities = require( '../src/entities' ),
+    conf     = require( '../src/config' ).vars,
     iconv    = require( 'iconv-lite' ),
-    nock     = require( 'nock' );
+    nock     = require( 'nock' ),
+    
+    root_url = 'http://www.eyrolles.com';
 
 describe( 'BooksList', function() {
 
@@ -23,7 +26,7 @@ describe( 'BooksList', function() {
 
             bl.push( book );
 
-            nock( 'http://www.eyrolles.com' )
+            nock( root_url )
                 .get( '/foo' ).reply( 200, iconv.encode( body, 'latin1' ) );
 
             bl.fetchAll({
@@ -51,7 +54,7 @@ describe( 'BooksList', function() {
         expect( entities.BooksList.prototype ).toEqual( [] );
         expect( bl.length ).toEqual( 0 );
 
-        nock( 'http://www.eyrolles.com' )
+        nock( root_url )
            .get( '/Accueil/Recherche/?ajax=on&q=foo&page=1' )
                .replyWithFile( 200,
                    __dirname + '/mocks/search-for-foo-p1.html' );
@@ -75,7 +78,7 @@ describe( 'BooksList', function() {
 
     it( 'should use pagination to fetch large results', function( done ) {
 
-        var _n = nock( 'http://www.eyrolles.com' ), p;
+        var _n = nock( root_url ), p;
 
         for ( p = 1; p <= 5; p++ ) {
 
@@ -105,7 +108,7 @@ describe( 'BooksList', function() {
 
     it( 'can be limited using the "limit" option', function( done ) {
 
-        var _n = nock( 'http://www.eyrolles.com' ), p;
+        var _n = nock( root_url ), p;
 
         _n.get( '/Accueil/Recherche/?ajax=on&q=foo&page=1' )
             .replyWithFile( 200,
@@ -134,7 +137,7 @@ describe( 'BooksList', function() {
 
     it( 'should look at the "offset" option', function( done ) {
 
-        var _n = nock( 'http://www.eyrolles.com' ), p;
+        var _n = nock( root_url ), p;
 
         _n.get( '/Accueil/Recherche/?ajax=on&q=foo&page=1' )
             .replyWithFile( 200,
@@ -179,7 +182,7 @@ describe( 'Book object', function() {
             path = 'Informatique/Livre/le-guide-pratique-twitter-' + isbn,
             book = new entities.Book( path );
 
-        nock( 'http://www.eyrolles.com' )
+        nock( root_url )
             .get( '/' + path )
                 .replyWithFile( 200, __dirname + '/mocks/' + isbn + '.html' );
 
@@ -220,7 +223,7 @@ describe( 'Book object', function() {
         var body = '<p id="contenu"><p id="description"><h1>Foo</h1></p></p>',
             book = new entities.Book( 'foo' );
 
-        nock( 'http://www.eyrolles.com' )
+        nock( root_url )
             .get( '/foo' )
             .reply( 200, iconv.encode( body, 'latin1' ) );
 
@@ -236,5 +239,58 @@ describe( 'Book object', function() {
 
     });
 
+});
+
+describe( 'Caching', function() {
+
+    beforeEach(function() {
+
+        conf.globals.cache = true;
+
+    });
+
+    it( 'should work on books', function( done ) {
+
+        var isbn = '9782212136081',
+            path = 'Informatique/Livre/le-guide-pratique-twitter-' + isbn,
+            book = new entities.Book( path ),
+            
+            url_called_again = false;
+
+        nock( root_url )
+            .get( '/' + path )
+                .replyWithFile( 200, __dirname + '/mocks/' + isbn + '.html' );
+
+
+        console.log( '\n[S] Cache is: ' + conf.globals.cache );
+
+        book.fetch({
+
+            callback: function ( b ) {
+
+                expect( b.exists ).toBeTruthy();
+
+                nock( root_url )
+                    .get( '/' + path )
+                        .reply( 200, function() {
+                            url_called_again = true; return '-';
+                        });
+
+                book.fetch({
+
+                    callback: function() {
+
+                        expect( url_called_again ).toBeFalsy();
+                        done();
+
+                    }
+
+                });
+
+            }
+
+        });
+
+    });
 
 });
