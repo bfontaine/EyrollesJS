@@ -1,4 +1,4 @@
 language: node_js
 node_js:
   - 0.8
-before_install: npm install jake jasmine-node nock
+before_install: npm install -g jake jasmine-node nock
