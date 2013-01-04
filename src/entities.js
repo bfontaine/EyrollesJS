@@ -1,5 +1,6 @@
 var requests = require( './requests' ),
     utils    = require( './utils' ),
+    config   = require( './config' ).globals,
 
     colon_re    = /\s*:\s*/,
     no_img_re   = /\/novisuel\.gif$/,
@@ -296,11 +297,11 @@ BooksList.prototype = new Array();
 
 var Publisher = createEntity( '', function( publisher, $ ) {
 
-    publisher.name = $( '#contenu h1' ).text().split( colon_re )[1].trim();
+        publisher.name = $( '#contenu h1' ).text().split( colon_re )[1].trim();
 
-    publisher.books = parseBooksList( $ );
+        publisher.books = parseBooksList( $ );
 
-});
+    });
 
 exports.Author = Author;
 exports.Book = Book;
