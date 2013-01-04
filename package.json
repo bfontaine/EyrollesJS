@@ -1,6 +1,6 @@
 {
   "name": "eyrolles-api",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Unofficial API for Eyrolles.com",
   "main": "src/api.js",
   "files": [ "src" ],
