@@ -1,9 +1,6 @@
 var requests = require( './requests' ),
     utils    = require( './utils' ),
-<<<<<<< Updated upstream
-=======
     globals  = require( './config' ).vars.globals,
->>>>>>> Stashed changes
 
     colon_re    = /\s*:\s*/,
     no_img_re   = /\/novisuel\.gif$/,
