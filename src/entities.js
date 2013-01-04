@@ -32,6 +32,8 @@ var requests = require( './requests' ),
     // Basic caching
     cache = {};
 
+    globals.cache = true;
+
 function parseBooksList( $ ) {
 
     if ( $( '#noSearchResult' ).length > 0 || $( '.noresult' ).length > 0 ) {
@@ -72,8 +74,6 @@ function createEntity( baseUrl, parser ) {
        }
 
        that.fetch = function( opts ) {
-
-           console.log( '\n    Cache is: ' + globals.cache );
 
            if ( fetching ) { return; }
            else { fetching = true; }
@@ -169,7 +169,7 @@ var Book = createEntity( '', function( book, $ ) {
                                     .map(function( _, e ) {
                                         return $( e ).text().split( colon_re ); }),
 
-        i, len, last_minis_children,
+        i, len, last_minis_children, tmp,
         d_website_label, d_label, d_value, d_fn;
 
     book.img         = no_img_re.test( img_src ) ? null : img_src;
@@ -223,8 +223,8 @@ var Book = createEntity( '', function( book, $ ) {
         bookstore: getPrice( $( '.prixediteur' ).children() )
     };
 
-    book.isAvailable = $( '.period .spacer' )
-                                .text().indexOf( 'indisponible' ) === -1;
+    tmp = $( '.period .spacer' ).text();
+    book.isAvailable = tmp && tmp.indexOf( 'indisponible' ) === -1;
 
     return book.exists = true;
 });
