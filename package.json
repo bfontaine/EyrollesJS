@@ -5,7 +5,7 @@
   "main": "src/api.js",
   "files": [ "src" ],
   "scripts": {
-      "test": "jake test"
+      "test": "jake --trace test"
   },
   "repository": {
     "type": "git",
