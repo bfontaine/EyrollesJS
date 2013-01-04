@@ -40,6 +40,71 @@ var SearchQuery = function SearchQuery( opts ) {
  **/
 
 /**
+ * Set some config values
+ **/
+exports.set = function _set() {
+
+    var k, opts = {};
+
+    if ( arguments.length === 1 ) {
+
+        // .set( 'foo' )
+        if ( '' + ( k = arguments[0] ) === k ) {
+
+            opts[ k ] = true;
+
+        // .set({ … })
+        } else { opts = k; }
+
+    } else if ( arguments.length === 2 ) {
+
+        // .set( 'foo', 'bar' )
+        opts[ arguments[0] ] = arguments[1];
+
+    }
+
+    utils.extends( config.globals, opts );
+    return exports;
+
+};
+
+/**
+ * Unset a config value
+ **/
+exports.unset = function _unset( k ) {
+
+    if ( k instanceof Array ) {
+
+        k.forEach(function( e ) {
+            _unset( e );
+        });
+    
+    } else if ( arguments.length > 1 ) {
+
+        [].forEach.call( arguments, function( e ) {
+            _unset(e);
+        });
+
+    } else {
+
+        delete config.globals[k];
+
+    }
+
+    return exports;
+
+};
+
+/**
+ * Get a config value
+ **/
+exports.getVar = function ( k ) {
+
+    return config.globals[k];
+
+};
+
+/**
  * #search( opts )
  * ---------------
  * Return a `SearchQuery` object to perform a search on Eyrolles’ website. This

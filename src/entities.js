@@ -328,11 +328,11 @@ BooksList.prototype = new Array();
 
 var Publisher = createEntity( '', function( publisher, $ ) {
 
-    publisher.name = $( '#contenu h1' ).text().split( colon_re )[1].trim();
+        publisher.name = $( '#contenu h1' ).text().split( colon_re )[1].trim();
 
-    publisher.books = parseBooksList( $ );
+        publisher.books = parseBooksList( $ );
 
-});
+    });
 
 exports.Author = Author;
 exports.Book = Book;
