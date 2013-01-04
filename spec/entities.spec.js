@@ -1,5 +1,5 @@
 var entities = require( '../src/entities' ),
-    conf     = require( '../src/config' ).vars,
+    globals  = require( '../src/config' ).vars.globals,
     iconv    = require( 'iconv-lite' ),
     nock     = require( 'nock' ),
     
@@ -9,7 +9,7 @@ describe( 'BooksList', function() {
 
     beforeEach(function() {
 
-        conf.globals.cache = false;
+        globals.cache = false;
 
     });
 
@@ -177,7 +177,7 @@ describe( 'Book object', function() {
 
     beforeEach(function() {
 
-        conf.globals.cache = false;
+        globals.cache = false;
 
     });
 
@@ -257,7 +257,7 @@ describe( 'Caching', function() {
 
     beforeEach(function() {
 
-        conf.globals.cache = true;
+        globals.cache = true;
 
     });
 
@@ -272,7 +272,6 @@ describe( 'Caching', function() {
         nock( root_url )
             .get( '/' + path )
                 .replyWithFile( 200, __dirname + '/mocks/' + isbn + '.html' );
-
 
         book.fetch({
 
